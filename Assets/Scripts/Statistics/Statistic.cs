@@ -9,10 +9,11 @@ public class Statistic: ScriptableObject
     protected object value;
 
     // Events
-    public delegate void UpdateValue(object value);
-    public static event UpdateValue OnValueUpdate;
+    public delegate void UpdateValueDelegate(object value);
+    public event UpdateValueDelegate OnValueUpdate;
 
-    public void SetValue(object value)
+    public StatisticIds GetId() { return id; }
+    public void UpdateValue(object value)
     {
         this.value = value;
         OnValueUpdate?.Invoke(value);

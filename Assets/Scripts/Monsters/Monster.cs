@@ -8,13 +8,30 @@ public class Monster : MonoBehaviour
 
     [SerializeField]
     protected MonsterIds id;
+    [SerializeField]
+    protected Sprite icon;
+    [SerializeField]
+    protected TextLanguageOwn species;
+    [SerializeField]
+    protected TextLanguageOwn description;
+    [SerializeField]
+    protected TextLanguageOwn ability;
+
     protected float stress;
 
+    [SerializeField]
     protected SkillsManager skills;
+    [SerializeField]
     protected ToolsManager tools;
+    [SerializeField]
     protected ClothesManager clothes;
 
     public MonsterIds GetId() { return id; }
+
+    public Sprite GetIcon()
+    {
+        return icon;
+    }
 
     public Dictionary<SkillIds, Skill> GetSkills()
     {
@@ -61,7 +78,6 @@ public class Monster : MonoBehaviour
     {
         return clothes.GetClothesSlots();
     }
-
     public bool Work(float stress, double exp)
     {
         Console.WriteLine("Add Task to parameters and make them add exp to required skills");
@@ -69,4 +85,7 @@ public class Monster : MonoBehaviour
         clothes.UseClothes();
         return AddStress(stress);
     }
+    public string GetSpecies() { return species.GetText(); }
+    public string GetDescription() { return description.GetText(); }
+    public string GetAbility() { return ability.GetText(); }
 }

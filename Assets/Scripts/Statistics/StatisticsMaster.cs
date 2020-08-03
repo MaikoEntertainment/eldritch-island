@@ -5,6 +5,12 @@ using UnityEngine;
 public class StatisticsMaster : MonoBehaviour
 {
     private static StatisticsMaster _instance;
+    [SerializeField]
+    private StatisticsDatabase database;
+
+    // Events
+    public delegate void StatisticUpdate(Statistic statistic);
+    public static event StatisticUpdate onStatisticUpdate;
 
     void Awake()
     {
@@ -18,8 +24,21 @@ public class StatisticsMaster : MonoBehaviour
             Destroy(this);
         }
     }
-
-
     public static StatisticsMaster GetInstance() { return _instance; }
 
+    public Dictionary<StatisticIds, Statistic> GetStatistics()
+    {
+        return database.GetStatistics();
+    }
+
+    public Statistic GetStatistic(StatisticIds id)
+    {
+        return database.GetStatistic(id);
+    }
+
+    public void UpdateStatistic(StatisticIds id, object value)
+    {
+        Statistic s = database.UpdateStatistic(id, value);
+        onStatisticUpdate?.Invoke(s);
+    }
 }

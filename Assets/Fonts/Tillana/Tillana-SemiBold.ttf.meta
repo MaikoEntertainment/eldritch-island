@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 2f34158962b038545a089c265a773cfe
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Tillana
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 60bf3621817374d44b9d3a1d55d92666, type: 3}
+  - {fileID: 12800000, guid: f201f0d4531b9774e8c89f9ffc80c55d, type: 3}
+  - {fileID: 12800000, guid: 6bad7868fbb539d408c35a63551549c3, type: 3}
+  - {fileID: 12800000, guid: d4ae107b1605edf4288e64a45a9c8879, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

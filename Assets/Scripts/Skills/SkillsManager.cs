@@ -1,32 +1,75 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[Serializable]
 public class SkillsManager
 {
-    protected Dictionary<SkillIds, Skill> skills;
+    [SerializeField]
+    protected List<Skill> initialSkills = new List<Skill>();
+    protected Dictionary<SkillIds, Skill> skills = new Dictionary<SkillIds, Skill>();
 
-    public SkillsManager(Dictionary<SkillIds, Skill> initialSkills)
+    public SkillsManager(Dictionary<SkillIds, Skill> savedSkills)
     {
-        InitializeSkills(initialSkills);
+        InitializeSkills(savedSkills);
     }
 
-    protected void InitializeSkills(Dictionary<SkillIds, Skill> initialSkills)
+    protected void InitializeSkills(Dictionary<SkillIds, Skill> savedSkills)
     {
-        skills = initialSkills;
-        if (!initialSkills.ContainsKey(SkillIds.Nature))
-            skills.Add(SkillIds.Nature, new Skill());
-        if (!initialSkills.ContainsKey(SkillIds.Woodcutting))
-            skills.Add(SkillIds.Woodcutting, new SkillWoodcutting());
-        if (!initialSkills.ContainsKey(SkillIds.Mining))
-            skills.Add(SkillIds.Mining, new SkillMining());
-        if (!initialSkills.ContainsKey(SkillIds.Crafting))
-            skills.Add(SkillIds.Crafting, new SkillCrafting());
-        if (!initialSkills.ContainsKey(SkillIds.War))
-            skills.Add(SkillIds.War, new SkillWar());
-        if (!initialSkills.ContainsKey(SkillIds.Witchcraft))
-            skills.Add(SkillIds.Witchcraft, new SkillWitchcraft());
+        skills = savedSkills;
+        // Adds missing skills
+        if (!savedSkills.ContainsKey(SkillIds.Nature))
+            AddMissingSkill(SkillIds.Nature);
+        if (!savedSkills.ContainsKey(SkillIds.Woodcutting))
+            AddMissingSkill(SkillIds.Woodcutting);
+        if (!savedSkills.ContainsKey(SkillIds.Mining))
+            AddMissingSkill(SkillIds.Mining);
+        if (!savedSkills.ContainsKey(SkillIds.Crafting))
+            AddMissingSkill(SkillIds.Crafting);
+        if (!savedSkills.ContainsKey(SkillIds.War))
+            AddMissingSkill(SkillIds.Crafting);
+        if (!savedSkills.ContainsKey(SkillIds.Witchcraft))
+            AddMissingSkill(SkillIds.Witchcraft);
     }
+
+    protected void AddMissingSkill(SkillIds id)
+    {
+        Skill initial = GetIntialSkill(id);
+        int level = initial!=null ? initial.GetLevel() : 0;
+        double exp = initial != null ? initial.GetExp() : 0;
+        switch (id)
+        {
+            case SkillIds.Woodcutting:
+                skills.Add(id, new SkillWoodcutting(level, exp));
+                break;
+            case SkillIds.Mining:
+                skills.Add(id, new SkillMining(level, exp));
+                break;
+            case SkillIds.Crafting:
+                skills.Add(id, new SkillMining(level, exp));
+                break;
+            case SkillIds.War:
+                skills.Add(id, new SkillWar(level, exp));
+                break;
+            case SkillIds.Witchcraft:
+                skills.Add(id, new SkillWitchcraft(level, exp));
+                break;
+            default:
+                skills.Add(id, new Skill(level, exp));
+                break;
+        }
+    }
+
+    protected Skill GetIntialSkill(SkillIds id)
+    {
+        foreach (Skill initial in initialSkills)
+        {
+            if (initial.GetId() == id)
+                return initial;
+        }
+        return null;
+    }
+        
 
     public Skill GetSkill(SkillIds id)
     {

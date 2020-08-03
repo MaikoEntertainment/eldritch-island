@@ -2,20 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[Serializable]
 public class Skill
 {
+    [SerializeField]
+    protected SkillIds id = SkillIds.Nature;
+    [SerializeField]
     protected int level = 0;
+    [SerializeField]
     protected double exp = 0;
 
-    public Skill(int initialLevel=0)
+    public Skill(int initialLevel = 0, double exp=0)
     {
         level = initialLevel;
+        this.exp = exp;
+
     }
 
     public virtual SkillIds GetId()
     {
-        return SkillIds.Nature;
+        return id;
     }
     public int GetLevel()
     {

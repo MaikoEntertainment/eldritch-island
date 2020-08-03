@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
+[CreateAssetMenu]
 public class MonsterDatabase : ScriptableObject
 {
+    [SerializeField]
     protected List<Monster> monsters = new List<Monster>();
     protected Dictionary<MonsterIds, Monster> monsterDictionary = new Dictionary<MonsterIds, Monster>();
 

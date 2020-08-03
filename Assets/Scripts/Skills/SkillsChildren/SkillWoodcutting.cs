@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SkillWoodcutting : Skill
 {
-    public override SkillIds GetId()
+    public SkillWoodcutting(int initialLevel = 0, double exp=0) : base(initialLevel, exp) 
     {
-        return SkillIds.Woodcutting;
+        id = SkillIds.Woodcutting;
     }
 }

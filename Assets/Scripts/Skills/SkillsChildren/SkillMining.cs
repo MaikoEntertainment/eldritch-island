@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SkillMining : Skill
 {
-    public override SkillIds GetId()
+    public SkillMining(int initialLevel = 0, double exp = 0) : base(initialLevel, exp) 
     {
-        return SkillIds.Mining;
+        id = SkillIds.Mining;
     }
 }

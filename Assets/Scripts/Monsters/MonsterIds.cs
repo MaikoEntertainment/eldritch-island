@@ -6,5 +6,6 @@ public enum MonsterIds
 {
     Kraken = 0,
     Vampire = 1,
-    Shadow = 2
+    Shadow = 2,
+    Fungus = 3
 }

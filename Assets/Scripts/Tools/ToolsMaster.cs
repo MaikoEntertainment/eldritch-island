@@ -29,8 +29,7 @@ public class ToolsMaster : MonoBehaviour
         return database.GetTools();
     }
 
-    public ToolBase GetTool
-        (int id)
+    public ToolBase GetTool(int id)
     {
         return database.GetTool(id);
     }

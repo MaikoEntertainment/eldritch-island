@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[Serializable]
 public class ToolsManager
 {
     protected List<Tool> tools;
+    [SerializeField]
     protected int slots = 1;
 
     public int GetToolSlots() { return slots; }
