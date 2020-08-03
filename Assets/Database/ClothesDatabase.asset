@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac8d2775a9ae3940ba9f5a93378c7c3, type: 3}
+  m_Name: ClothesDatabase
+  m_EditorClassIdentifier: 
+  sections:
+  - category: Nature
+    clothes:
+    - {fileID: 11400000, guid: 7806c1e704136874e8c76c8bd1cd31fc, type: 2}
