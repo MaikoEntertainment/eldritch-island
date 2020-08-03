@@ -25,7 +25,7 @@ public class ClothesDatabase : ScriptableObject
         }
     }
 
-    public Dictionary<int, ClothesBase> GetItems()
+    public Dictionary<int, ClothesBase> GetClothesList()
     {
         return clothesDictionary;
     }

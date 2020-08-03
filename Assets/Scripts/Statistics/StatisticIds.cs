@@ -1,0 +1,12 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum StatisticIds
+{
+    Clicks = 0,
+    SwampDiscovered = 1,
+    FrostDiscovered = 2,
+    HotDiscovered = 3,
+    tribeName=4
+}

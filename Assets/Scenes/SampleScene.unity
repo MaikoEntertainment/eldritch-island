@@ -216,6 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 654796080}
   - component: {fileID: 654796081}
+  - component: {fileID: 654796082}
   m_Layer: 0
   m_Name: Masters
   m_TagString: Untagged
@@ -249,3 +250,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74dd72f21645f6b43af99b7b91061dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tools: []
+  clothes: []
+--- !u!114 &654796082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654796079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde8b666cfab0454596074d4d838fd29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  database: {fileID: 11400000, guid: fbb5a162eb4073a4d9959e5dc9120da4, type: 2}

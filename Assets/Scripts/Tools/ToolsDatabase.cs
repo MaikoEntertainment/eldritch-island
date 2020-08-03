@@ -24,12 +24,12 @@ public class ToolsDatabase : ScriptableObject
         }
     }
 
-    public Dictionary<int, ToolBase> GetItems()
+    public Dictionary<int, ToolBase> GetTools()
     {
         return toolsDictionary;
     }
 
-    public ToolBase GetItem(int id)
+    public ToolBase GetTool(int id)
     {
         if (toolsDictionary.ContainsKey(id))
         {

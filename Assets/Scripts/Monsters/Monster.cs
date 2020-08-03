@@ -6,12 +6,15 @@ public class Monster : MonoBehaviour
 {
     public static float maxStress = 100;
 
-    public MonsterIds id;
-    public float stress;
+    [SerializeField]
+    protected MonsterIds id;
+    protected float stress;
 
     protected SkillsManager skills;
     protected ToolsManager tools;
     protected ClothesManager clothes;
+
+    public MonsterIds GetId() { return id; }
 
     public Dictionary<SkillIds, Skill> GetSkills()
     {
