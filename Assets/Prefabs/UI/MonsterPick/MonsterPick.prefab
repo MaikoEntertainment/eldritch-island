@@ -399,10 +399,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 579a78984cd7e28449d8bba8df592e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 8286577211797679125}
   species: {fileID: 8286577210060850859}
   ability: {fileID: 8286577211080797232}
   skills: {fileID: 8286577212146842109}
-  skillPrefab: {fileID: 8268475811923174782, guid: 4d8f376ac210a7d4b9b2307fd9850070, type: 3}
+  skillPrefab: {fileID: 2961050502743232265, guid: 4d8f376ac210a7d4b9b2307fd9850070, type: 3}
 --- !u!1 &8286577211080797246
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +755,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8286577211421764938}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8286577210861248678}
+        m_TargetAssemblyTypeName: UIMonsterPick, Assembly-CSharp
+        m_MethodName: Pick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8286577211533484815
 GameObject:
   m_ObjectHideFlags: 0

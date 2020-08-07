@@ -15,20 +15,20 @@ MonoBehaviour:
   languageSkills:
     skillsText:
     - id: 0
-      text:
+      name:
         english: Nature
     - id: 1
-      text:
+      name:
         english: Woodcutting
     - id: 2
-      text:
+      name:
         english: Mining
     - id: 3
-      text:
+      name:
         english: Crafting
     - id: 4
-      text:
+      name:
         english: War
     - id: 5
-      text:
+      name:
         english: Witchcraft

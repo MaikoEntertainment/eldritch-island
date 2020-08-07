@@ -18,17 +18,12 @@ public class MonsterMaster : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            database.InitializeDictionary();
         }
         else
         {
             Destroy(this);
         }
-    }
-
-    private void Start()
-    {
-        // Load from save active Monsters with skill levels, tool, clothes, etc
-
     }
 
     public static MonsterMaster GetInstance() { return _instance; }
@@ -54,10 +49,11 @@ public class MonsterMaster : MonoBehaviour
     {
         int draftSize = 3;
         List<Monster> draft = new List<Monster>();
-        List<Monster> shuffledList = GetShuffledList(GetInactiveMonsters().Values.ToList());
+        List<Monster> inactive = GetInactiveMonsters().Values.ToList();
+        List<Monster> shuffledList = GetShuffledList(inactive);
         foreach (Monster m in shuffledList)
         {
-            if (draftSize < draft.Count)
+            if (draftSize > draft.Count)
                 draft.Add(m);
             else
                 break;

@@ -9,8 +9,9 @@ public class UIMonsterPickSkill : MonoBehaviour
     
     public void Load(Skill skill)
     {
-        string skillName = LanguageMaster.GetInstance().GetSkillName(skill.GetId());
-        string skillValue = skill.GetLevel() > 0 ? "+" : "-" + skill.GetLevel();
+        SkillIds id = skill.GetId();
+        string skillName = LanguageMaster.GetInstance().GetSkillName(id);
+        string skillValue = (skill.GetLevel() >= 0 ? " +" : " -") + skill.GetLevel();
         text.text = skillName + skillValue;
     }
 }

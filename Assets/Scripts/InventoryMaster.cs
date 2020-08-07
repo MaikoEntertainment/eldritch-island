@@ -6,12 +6,29 @@ using UnityEngine;
 
 public class InventoryMaster : MonoBehaviour
 {
+    private static InventoryMaster _instance;
+
     [SerializeField]
     protected List<Tool> tools;
     [SerializeField]
     protected List<Clothes> clothes;
     [SerializeField]
     protected Dictionary<int, Item> items;
+
+    private void Awake()
+    {
+        if (_instance)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    public static InventoryMaster GetInstance() { return _instance; }
 
     public Dictionary<int, Item> GetItems() { return items; }
     public Item GetItem(int id) 
@@ -20,13 +37,14 @@ public class InventoryMaster : MonoBehaviour
             return items[id];
         return null;
     }
-    public void AddItem(ItemBase item, long amount)
+    public void ChangeItemAmount(int id, long amount)
     {
-        if (!items.ContainsKey(item.GetId()))
+        if (!items.ContainsKey(id))
         {
+            ItemBase item = ItemMaster.GetInstance().GetItem(id);
             items.Add(item.GetId(), new Item(item, Math.Max(amount,0)));
         }
-        items[item.GetId()].ChangeAmount(amount);
+        items[id].ChangeAmount(amount);
     }
 
     public List<Tool> GetTools()

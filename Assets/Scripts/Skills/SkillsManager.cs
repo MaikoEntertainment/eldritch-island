@@ -6,16 +6,12 @@ using UnityEngine;
 public class SkillsManager
 {
     [SerializeField]
-    protected List<Skill> initialSkills = new List<Skill>();
-    protected Dictionary<SkillIds, Skill> skills = new Dictionary<SkillIds, Skill>();
+    protected List<Skill> initialSkills;
+    protected Dictionary<SkillIds, Skill> skills;
 
-    public SkillsManager(Dictionary<SkillIds, Skill> savedSkills)
+    public void InitializeSkills()
     {
-        InitializeSkills(savedSkills);
-    }
-
-    protected void InitializeSkills(Dictionary<SkillIds, Skill> savedSkills)
-    {
+        Dictionary<SkillIds, Skill> savedSkills = new Dictionary<SkillIds, Skill>();
         skills = savedSkills;
         // Adds missing skills
         if (!savedSkills.ContainsKey(SkillIds.Nature))
@@ -27,7 +23,7 @@ public class SkillsManager
         if (!savedSkills.ContainsKey(SkillIds.Crafting))
             AddMissingSkill(SkillIds.Crafting);
         if (!savedSkills.ContainsKey(SkillIds.War))
-            AddMissingSkill(SkillIds.Crafting);
+            AddMissingSkill(SkillIds.War);
         if (!savedSkills.ContainsKey(SkillIds.Witchcraft))
             AddMissingSkill(SkillIds.Witchcraft);
     }
@@ -46,7 +42,7 @@ public class SkillsManager
                 skills.Add(id, new SkillMining(level, exp));
                 break;
             case SkillIds.Crafting:
-                skills.Add(id, new SkillMining(level, exp));
+                skills.Add(id, new SkillCrafting(level, exp));
                 break;
             case SkillIds.War:
                 skills.Add(id, new SkillWar(level, exp));
@@ -60,7 +56,7 @@ public class SkillsManager
         }
     }
 
-    protected Skill GetIntialSkill(SkillIds id)
+    public Skill GetIntialSkill(SkillIds id)
     {
         foreach (Skill initial in initialSkills)
         {
@@ -69,7 +65,10 @@ public class SkillsManager
         }
         return null;
     }
-        
+    public List<Skill> GetIntialSkills()
+    {
+        return initialSkills;
+    }
 
     public Skill GetSkill(SkillIds id)
     {

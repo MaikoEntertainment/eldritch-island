@@ -27,4 +27,6 @@ public class Tool : MonoBehaviour
         double durability = toolBase.GetDurability();
         return Math.Max(durability - durabilityUsed, 0);
     }
+
+    public ToolBase GetToolBase() { return toolBase; }
 }

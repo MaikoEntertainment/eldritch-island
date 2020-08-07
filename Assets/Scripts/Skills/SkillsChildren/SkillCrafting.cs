@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SkillCrafting : Skill
 {
-    public override SkillIds GetId()
+    public SkillCrafting(int initialLevel = 0, double exp = 0) : base(initialLevel, exp)
     {
-        return SkillIds.Crafting;
+        id = SkillIds.Crafting;
     }
 }

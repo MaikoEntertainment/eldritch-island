@@ -20,11 +20,16 @@ public class Monster : MonoBehaviour
     protected float stress;
 
     [SerializeField]
-    protected SkillsManager skills;
+    protected SkillsManager skills = new SkillsManager();
     [SerializeField]
-    protected ToolsManager tools;
+    protected ToolsManager tools = new ToolsManager();
     [SerializeField]
-    protected ClothesManager clothes;
+    protected ClothesManager clothes = new ClothesManager();
+
+    private void Awake()
+    {
+        skills.InitializeSkills();
+    }
 
     public MonsterIds GetId() { return id; }
 
@@ -36,6 +41,10 @@ public class Monster : MonoBehaviour
     public Dictionary<SkillIds, Skill> GetSkills()
     {
         return skills.GetSkills();
+    }
+    public List<Skill> GetInitialSkills()
+    {
+        return skills.GetIntialSkills();
     }
     public virtual Dictionary<SkillIds, Skill> GetUsableSkills()
     {
@@ -78,14 +87,73 @@ public class Monster : MonoBehaviour
     {
         return clothes.GetClothesSlots();
     }
-    public bool Work(float stress, double exp)
+    public string GetSpecies() { return species.GetText(); }
+    public string GetDescription() { return description.GetText(); }
+    public string GetAbility() { return ability.GetText(); }
+
+    // Taks specific
+    public bool FinishWork(float stress)
     {
         Console.WriteLine("Add Task to parameters and make them add exp to required skills");
         tools.UseTools();
         clothes.UseClothes();
         return AddStress(stress);
     }
-    public string GetSpecies() { return species.GetText(); }
-    public string GetDescription() { return description.GetText(); }
-    public string GetAbility() { return ability.GetText(); }
+    public virtual List<Item> GetTaskItemCostForThisMonster(Task task, List<Item> currentCosts)
+    {
+        // Change for Monster with specific abilities
+        List <Item> finalCost = currentCosts;
+        foreach (Clothes t in GetClothes())
+        {
+            finalCost = t.GetClothes().GetTaskItemCostForThisMonster(task, this, currentCosts);
+        }
+        foreach (Tool t in GetTools())
+        {
+            finalCost = t.GetToolBase().GetTaskItemCostForThisMonster(task, this, currentCosts);
+        }
+        return finalCost;
+    }
+
+    public virtual List<ItemReward> GetTaskItemRewards(Task task, List<ItemReward> currentRewards)
+    {
+        // Change for Monster with specific abilities
+        List<ItemReward> finalCost = currentRewards;
+        foreach (Clothes t in GetClothes())
+        {
+            finalCost = t.GetClothes().GetTaskItemRewards(task, this, finalCost);
+        }
+        foreach (Tool t in GetTools())
+        {
+            finalCost = t.GetToolBase().GetTaskItemRewards(task, this, finalCost);
+        }
+        return finalCost;
+    }
+    public virtual List<Tool> GetTaskToolRewards(Task task, List<Tool> currentRewards)
+    {
+        // Change for Monster with specific abilities
+        List<Tool> finalCost = currentRewards;
+        foreach (Clothes t in GetClothes())
+        {
+            finalCost = t.GetClothes().GetTaskToolRewards(task, this, finalCost);
+        }
+        foreach (Tool t in GetTools())
+        {
+            finalCost = t.GetToolBase().GetTaskToolRewards(task, this, finalCost);
+        }
+        return finalCost;
+    }
+    public virtual List<Clothes> GetTaskClothesRewards(Task task, List<Clothes> currentRewards)
+    {
+        // Change for Monster with specific abilities
+        List<Clothes> finalCost = currentRewards;
+        foreach (Clothes t in GetClothes())
+        {
+            finalCost = t.GetClothes().GetTaskClothesRewards(task, this, finalCost);
+        }
+        foreach (Tool t in GetTools())
+        {
+            finalCost = t.GetToolBase().GetTaskClothesRewards(task, this, finalCost);
+        }
+        return finalCost;
+    }
 }

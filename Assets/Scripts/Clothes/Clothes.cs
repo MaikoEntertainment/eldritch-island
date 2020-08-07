@@ -27,4 +27,5 @@ public class Clothes : MonoBehaviour
         double durability = clothesBase.GetDurability();
         return Math.Max(durability - durabilityUsed, 0);
     }
+    public ClothesBase GetClothes() { return clothesBase; }
 }

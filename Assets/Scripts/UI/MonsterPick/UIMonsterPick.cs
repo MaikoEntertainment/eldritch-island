@@ -7,20 +7,32 @@ using UnityEngine.UI;
 
 public class UIMonsterPick : MonoBehaviour
 {
+    public Image icon;
     public TextMeshProUGUI species;
     public TextMeshProUGUI ability;
     public GridLayoutGroup skills;
 
-    public GameObject skillPrefab;
+    public UIMonsterPickSkill skillPrefab;
+
+    protected Monster m;
 
     public void Load(Monster monster)
     {
+        m = monster;
         species.text = monster.GetSpecies();
         ability.text = monster.GetAbility();
-        foreach(Skill s in monster.GetSkills().Values.ToList())
+        icon.sprite = monster.GetIcon();
+        List<Skill> list = monster.GetInitialSkills();
+        foreach (Skill s in list)
         {
             if (s.GetLevel() != 0)
-                Instantiate(skillPrefab, skills.transform);
+                Instantiate(skillPrefab.gameObject, skills.transform).GetComponent<UIMonsterPickSkill>().Load(s);
         }
+    }
+
+    public void Pick()
+    {
+        MonsterMaster.GetInstance().PickMonster(m.GetId());
+        UIMonsterPickerMaster.GetInstance().HideMonsterDraft();
     }
 }

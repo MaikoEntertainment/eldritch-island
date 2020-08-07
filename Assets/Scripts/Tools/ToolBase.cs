@@ -27,4 +27,25 @@ public class ToolBase: ScriptableObject
     {
         
     }
+
+    public virtual List<Item> GetTaskItemCostForThisMonster(Task task, Monster monster, List<Item> currentCosts)
+    {
+        // Change for Tools with specific abilities
+        return currentCosts;
+    }
+    public virtual List<ItemReward> GetTaskItemRewards(Task task, Monster monster, List<ItemReward> currentRewards)
+    {
+        // Change for Tools with specific abilities
+        return currentRewards;
+    }
+    public virtual List<Tool> GetTaskToolRewards(Task task, Monster monster, List<Tool> currentRewards)
+    {
+        // Change for Tools with specific abilities
+        return currentRewards;
+    }
+    public virtual List<Clothes> GetTaskClothesRewards(Task task, Monster monster, List<Clothes> currentRewards)
+    {
+        // Change for Tools with specific abilities
+        return currentRewards;
+    }
 }

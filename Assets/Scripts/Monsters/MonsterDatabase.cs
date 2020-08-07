@@ -4,15 +4,10 @@ using UnityEngine;
 public class MonsterDatabase : ScriptableObject
 {
     [SerializeField]
-    protected List<Monster> monsters = new List<Monster>();
+    protected List<Monster> monsters;
     protected Dictionary<MonsterIds, Monster> monsterDictionary = new Dictionary<MonsterIds, Monster>();
 
-    public MonsterDatabase()
-    {
-        InitializeDictionary();
-    }
-
-    protected void InitializeDictionary()
+    public void InitializeDictionary()
     {
         // The dictionary has faster load times
         foreach (Monster mon in monsters)
