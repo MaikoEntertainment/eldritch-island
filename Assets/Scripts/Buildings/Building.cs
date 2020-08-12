@@ -23,7 +23,7 @@ public class Building : MonoBehaviour
         foreach (TaskBase tb in taskBases)
             dictionaryTaskBases.Add(tb.GetId(), tb);
     }
-
+    public BuildingIds GetId() { return id; }
     public int GetLevel() { return level; }
     public List<TaskBase> GetTasks() { return taskBases; }
     public List<Task> GetActiveTasks() { return tasksActive; }
@@ -44,13 +44,19 @@ public class Building : MonoBehaviour
             t.CalculateProgressPerSecond();
     }
 
-    public void CreateTask(int taskId)
+    public Task CreateTask(int taskId)
     {
         if (dictionaryTaskBases.ContainsKey(taskId))
         {
             TaskBase tb = dictionaryTaskBases[taskId];
             draftTask = new Task(tb);
+            return draftTask;
         }
+        return null;
+    }
+    public Task GetDraftTask()
+    {
+        return draftTask;
     }
     public void CancelDraftTask()
     {

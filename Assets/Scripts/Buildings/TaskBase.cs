@@ -10,7 +10,13 @@ public class TaskBase: ScriptableObject
     protected double progressNeeded = 0;
     [SerializeField]
     protected Tag[] tags;
-    
+    [SerializeField]
+    protected TextLanguageOwn myName;
+    [SerializeField]
+    protected TextLanguageOwn description;
+    [SerializeField]
+    protected Sprite icon;
+
     [SerializeField]
     protected float stressChange = 10;
     [SerializeField]
@@ -27,6 +33,9 @@ public class TaskBase: ScriptableObject
     protected List<Clothes> clothesRewards;
 
     public int GetId() { return id; }
+    public string GetName() { return myName.GetText(); }
+    public string GetDescription() { return description.GetText(); }
+    public Sprite GetIcon() { return icon; }
     public double GetProgressNeeded()
     {
         return progressNeeded;

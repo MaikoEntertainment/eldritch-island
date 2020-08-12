@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[Serializable]
 public class Item
 {
+    [SerializeField]
     protected ItemBase itemBase;
+    [SerializeField]
     protected long amount;
 
     public Item(ItemBase itemBase, long amount)
@@ -31,6 +34,11 @@ public class Item
     public CategoryIds GetCategory()
     {
         return itemBase.GetCategory();
+    }
+
+    public Sprite GetIcon()
+    {
+        return itemBase.GetIcon();
     }
 
     public void Use()

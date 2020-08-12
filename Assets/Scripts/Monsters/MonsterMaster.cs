@@ -104,5 +104,6 @@ public class MonsterMaster : MonoBehaviour
             Destroy(previousMonster.gameObject);
         }
         activeMonsters.Add(m.GetId(), instance);
+        UITasklessMonsterMaster.GetInstance().UpdateTasklessMonsters(GetActiveMonsters().Values.ToList());
     }
 }

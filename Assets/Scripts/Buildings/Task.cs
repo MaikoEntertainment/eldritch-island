@@ -7,7 +7,7 @@ public class Task
 {
     protected TaskBase taskBase;
 
-    protected List<Monster> monsters;
+    protected List<Monster> monsters = new List<Monster>();
 
     protected double progressPerSecond;
 
@@ -48,7 +48,7 @@ public class Task
         return progress;
     }
 
-    public List<Item> GetTaskFinalItemCost()
+    public List<Item> GetTaskFinalItemMonsterCost()
     {
         List<Item> realPerMonsterCost = GetTask().GetCostPerMonster();
         foreach (Monster m in GetMonsters())
@@ -99,6 +99,33 @@ public class Task
                 return false;
         }
         return true;
+    }
+
+    public List<Item> GetItemFinalCost()
+    {
+        Dictionary<int, Item> totalCosts = new Dictionary<int, Item>();
+
+        List<Item> perMonsterCost = GetTask().GetCostPerMonster();
+
+        // Base Costs
+        foreach(Item i in GetTask().GetItemCost())
+        {
+            totalCosts.Add(i.GetId(), i);
+        }
+
+        //Costs per Monster
+        foreach (Monster m in GetMonsters())
+        {
+            List<Item> realPerMonsterCost = m.GetTaskItemCostForThisMonster(this, perMonsterCost);
+            foreach (Item i in realPerMonsterCost)
+            {
+                if (totalCosts.ContainsKey(i.GetId()))
+                    totalCosts[i.GetId()].ChangeAmount(i.GetAmount());
+                else
+                    totalCosts.Add(i.GetId(), i);
+            }
+        }
+        return totalCosts.Values.ToList();
     }
 
     public void SetMonsters(List<Monster> monsters)
