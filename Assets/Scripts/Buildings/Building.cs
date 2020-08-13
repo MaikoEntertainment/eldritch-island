@@ -12,12 +12,15 @@ public class Building : MonoBehaviour
 
     [SerializeField]
     protected List<TaskBase> taskBases;
+    protected Dictionary<int, TaskBase> dictionaryTaskBases = new Dictionary<int, TaskBase>();
     [SerializeField]
-    protected List<Task> tasksActive;
+    protected List<Task> tasksActive = new List<Task>();
 
     protected Task draftTask;
 
-    protected Dictionary<int, TaskBase> dictionaryTaskBases = new Dictionary<int, TaskBase>();
+    public delegate void TaskUpdated();
+    public TaskUpdated onTasksUpdated;
+
     private void Start()
     {
         foreach (TaskBase tb in taskBases)
@@ -54,6 +57,12 @@ public class Building : MonoBehaviour
         }
         return null;
     }
+    public void DeleteTask(Task t)
+    {
+        t.onClear -= DeleteTask;
+        GetActiveTasks().Remove(t);
+        onTasksUpdated?.Invoke();
+    }
     public Task GetDraftTask()
     {
         return draftTask;
@@ -66,7 +75,16 @@ public class Building : MonoBehaviour
     {
         if (draftTask != null)
         {
-            return draftTask.StartTask();
+            bool result = draftTask.CanPayTask();
+            if (result)
+            {
+                tasksActive.Add(draftTask);
+                draftTask.StartTask();
+                onTasksUpdated?.Invoke();
+                draftTask.onClear += DeleteTask;
+                CancelDraftTask();
+            }
+            return result;
         }
         return false;
     }

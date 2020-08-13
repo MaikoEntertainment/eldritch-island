@@ -8,7 +8,6 @@ public class BuildingMaster : MonoBehaviour
     public static BuildingMaster _instance;
     public List<Building> buildingsPrefabs;
     protected Dictionary<BuildingIds,Building> buildingDictionary = new Dictionary<BuildingIds, Building>();
-
     void Awake()
     {
         if (_instance)
@@ -50,7 +49,7 @@ public class BuildingMaster : MonoBehaviour
     public List<Building> GetUnlockedBuildings()
     {
         List<Building> unlocked = new List<Building>();
-        foreach(Building b in buildingsPrefabs)
+        foreach(Building b in buildingDictionary.Values.ToList())
         {
             if (b.CanUnlock()) unlocked.Add(b);
         }

@@ -60,15 +60,19 @@ public class Monster : MonoBehaviour
     }
     public virtual float GetStress() { return stress; }
     public virtual float GetStressMax() { return maxStress; }
+
+    public virtual float GetStressAfterTask(Task t)
+    {
+        return Mathf.Max(stress + t.GetTask().GetStressChange(),0);
+    }
     public virtual bool AddStress(float stressChange)
     {
         stress += stressChange;
         return (stress > GetStressMax());
     }
-    public virtual bool CanWork(float stressGain) 
+    public virtual bool CanWork(Task task) 
     {
-        Console.WriteLine("Add Task to parameters");
-        float resultingStress = stressGain + stress;
+        float resultingStress = GetStressAfterTask(task);
         return GetStressMax() > resultingStress;
     }
     public List<Tool> GetTools()
@@ -92,24 +96,24 @@ public class Monster : MonoBehaviour
     public string GetAbility() { return ability.GetText(); }
 
     // Taks specific
-    public bool FinishWork(float stress)
+    public bool FinishWork(Task t)
     {
-        Console.WriteLine("Add Task to parameters and make them add exp to required skills");
+        float stressChange = GetStressAfterTask(t);
         tools.UseTools();
         clothes.UseClothes();
-        return AddStress(stress);
+        return AddStress(stressChange);
     }
     public virtual List<Item> GetTaskItemCostForThisMonster(Task task, List<Item> currentCosts)
     {
         // Change for Monster with specific abilities
-        List <Item> finalCost = currentCosts;
+        List<Item> finalCost = currentCosts;
         foreach (Clothes t in GetClothes())
         {
-            finalCost = t.GetClothes().GetTaskItemCostForThisMonster(task, this, currentCosts);
+            finalCost = t.GetClothes().GetTaskItemCostForThisMonster(task, this, finalCost);
         }
         foreach (Tool t in GetTools())
         {
-            finalCost = t.GetToolBase().GetTaskItemCostForThisMonster(task, this, currentCosts);
+            finalCost = t.GetToolBase().GetTaskItemCostForThisMonster(task, this, finalCost);
         }
         return finalCost;
     }

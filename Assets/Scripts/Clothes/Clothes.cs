@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Clothes : MonoBehaviour
+[Serializable]
+public class Clothes
 {
     protected ClothesBase clothesBase;
     protected double durabilityUsed;

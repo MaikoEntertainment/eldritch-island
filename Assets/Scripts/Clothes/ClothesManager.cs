@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class ClothesManager
 {
-    protected List<Clothes> clothes;
+    protected List<Clothes> clothes = new List<Clothes>();
     [SerializeField]
     protected int slots = 1;
 

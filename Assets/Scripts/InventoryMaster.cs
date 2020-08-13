@@ -9,11 +9,11 @@ public class InventoryMaster : MonoBehaviour
     private static InventoryMaster _instance;
 
     [SerializeField]
-    protected List<Tool> tools;
+    protected List<Tool> tools = new List<Tool>();
     [SerializeField]
-    protected List<Clothes> clothes;
+    protected List<Clothes> clothes = new List<Clothes>();
     [SerializeField]
-    protected Dictionary<int, Item> items;
+    protected Dictionary<int, Item> items = new Dictionary<int, Item>();
 
     private void Awake()
     {
@@ -44,7 +44,8 @@ public class InventoryMaster : MonoBehaviour
             ItemBase item = ItemMaster.GetInstance().GetItem(id);
             items.Add(item.GetId(), new Item(item, Math.Max(amount,0)));
         }
-        items[id].ChangeAmount(amount);
+        else
+            items[id].ChangeAmount(amount);
     }
 
     public List<Tool> GetTools()

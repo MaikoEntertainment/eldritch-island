@@ -15,6 +15,7 @@ public class ItemMaster : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            database.InitializeDictionary();
         }
         else
         {

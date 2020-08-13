@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+
+public static class Utils
+{
+    public static T DeepClone<T>(T obj)
+    {
+        using (var stream = new System.IO.MemoryStream())
+        {
+            var formatter = new BinaryFormatter();
+            formatter.Serialize(stream, obj);
+            stream.Position = 0;
+            return (T)formatter.Deserialize(stream);
+        }
+    }
+
+    static readonly string[] suffixes = { "", "k", "M", "B", "T" };
+    public static string ToFormat(long cash, string prefix = "")
+    {
+        int k;
+        if (cash == 0)
+            k = 0;    // log10 of 0 is not valid
+        else
+            k = (int)(Math.Log10(cash) / 3); // get number of digits and divide by 3
+        var dividor = Math.Pow(10, k * 3);  // actual number we print
+        string format = (k > 0) ? "F1" : "F0";
+        var text = prefix + (cash / dividor).ToString(format) + suffixes[k];
+        return text;
+    }
+}

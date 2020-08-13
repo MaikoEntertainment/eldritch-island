@@ -16,7 +16,9 @@ public class UIBuildingBase : MonoBehaviour
 
     public void Initializae()
     {
+        Building b = BuildingMaster.GetInstance().GetBuilding(id);
         UpdateTasks();
+        b.onTasksUpdated += UpdateTasks;
     }
 
     public void UpdateTasks()

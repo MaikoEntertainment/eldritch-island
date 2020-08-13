@@ -2,6 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu]
+[Serializable]
 public class ItemBase: ScriptableObject
 {
     [SerializeField]

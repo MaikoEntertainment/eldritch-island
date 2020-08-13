@@ -67,12 +67,19 @@ public class UIBuildingMaster : MonoBehaviour
         creatorInstance = null;
     }
 
-    public void ViewTaskDetails(Task task, Building building)
+    public void ViewTaskDetails(TaskBase task)
     {
-        if (!creatorInstance)
+        if (creatorInstance)
         {
-            OpenTaskCreator(building);
+            creatorInstance.LoadTaskDraft(task);
         }
-        creatorInstance.LoadTask(task);
+    }
+
+    public void CloseMonsterPicker()
+    {
+        if (creatorInstance)
+        {
+            creatorInstance.CloseMonsterPicker();
+        }
     }
 }

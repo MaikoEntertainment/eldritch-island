@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class ToolsManager
 {
-    protected List<Tool> tools;
+    protected List<Tool> tools = new List<Tool>();
     [SerializeField]
     protected int slots = 1;
 

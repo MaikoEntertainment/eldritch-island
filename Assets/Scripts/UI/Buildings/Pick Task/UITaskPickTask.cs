@@ -16,13 +16,10 @@ public class UITaskPickTask : MonoBehaviour
     public UIItem itemPrefab;
     public UIItemReward itemRewardPrefab;
     public UIToolReward toolPrefab;
-
-    private Building building;
     private TaskBase task;
 
-    public void Load(TaskBase taskBase, Building building)
+    public void Load(TaskBase taskBase)
     {
-        this.building = building;
         task = taskBase;
         text.text = taskBase.GetName();
         icon.sprite = taskBase.GetIcon();
@@ -52,7 +49,6 @@ public class UITaskPickTask : MonoBehaviour
 
     public void OpenTask()
     {
-        Task taskNew = building.CreateTask(task.GetId());
-        UIBuildingMaster.GetInstance().ViewTaskDetails(taskNew, building);
+        UIBuildingMaster.GetInstance().ViewTaskDetails(task);
     }
 }

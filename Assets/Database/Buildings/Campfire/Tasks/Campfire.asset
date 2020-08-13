@@ -23,11 +23,17 @@ MonoBehaviour:
   stressChange: -10
   itemCosts:
   - itemBase: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
-    amount: 3
+    amount: 6
   costPerMonster:
-  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
+  - itemBase: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
     amount: 1
-  skillsRequired: []
-  itemRewards: []
+  skillsRequired:
+  - skillId: 5
+    levelModifier: 0
+  itemRewards:
+  - item: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
+    minAmount: 1
+    extraRange: 0
+    rewardChance: 0.5
   toolRewards: []
   clothesRewards: []

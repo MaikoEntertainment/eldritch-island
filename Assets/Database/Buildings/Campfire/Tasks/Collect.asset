@@ -25,7 +25,7 @@ MonoBehaviour:
   costPerMonster: []
   skillsRequired:
   - skillId: 0
-    levelModifier: 0
+    levelModifier: 5
   itemRewards:
   - item: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
     minAmount: 5

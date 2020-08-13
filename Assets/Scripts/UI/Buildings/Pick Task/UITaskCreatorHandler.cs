@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
 public class UITaskCreatorHandler : MonoBehaviour
 {
     public Transform taskList;
+    public Transform monsterPicker;
 
     public Transform itemCostList;
     public Transform itemCostPerMonsterList;
@@ -20,12 +22,18 @@ public class UITaskCreatorHandler : MonoBehaviour
     public UITaskPickTask taskPrefab;
     public UIItem itemPrefab;
     public UIItemReward itemRewardPrefab;
+    public UIMonsterTaskPickerHandler monsterPickerPrefab;
+    public UITasklessMonster monsterPickedPrefab;
+
+    private Building currentBuilding;
+    private Task currentTask;
 
     public void Load(Building building)
     {
-        foreach(TaskBase tb in building.GetTasks())
+        currentBuilding = building;
+        foreach (TaskBase tb in building.GetTasks())
         {
-            Instantiate(taskPrefab.gameObject, taskList).GetComponent<UITaskPickTask>().Load(tb, building);
+            Instantiate(taskPrefab.gameObject, taskList).GetComponent<UITaskPickTask>().Load(tb);
         }
         if (building.GetDraftTask()!=null)
         {
@@ -37,28 +45,44 @@ public class UITaskCreatorHandler : MonoBehaviour
             LoadTask(building.CreateTask(first.GetId()));
         }
     }
+
+    public void LoadTaskDraft(TaskBase task)
+    {
+        Task taskNew = currentBuilding.CreateTask(task.GetId());
+        LoadTask(taskNew);
+    }
     public void LoadTask(Task task)
     {
-        progressNeeded.text = "" + task.GetTask().GetProgressNeeded();
-        stress.text = (task.GetTask().GetStressChange() >= 0 ? "+" : "") + task.GetTask().GetStressChange();
-        description.text = task.GetTask().GetDescription();
-        progressPerSec.text = task.CalculateProgressPerSecond()+"/s";
+        currentTask = task;
+        UpdateCurrentTask();
+    }
+
+    public void UpdateCurrentTask()
+    {
+        progressNeeded.text = "" + currentTask.GetTask().GetProgressNeeded();
+        progressPerSec.text = currentTask.CalculateProgressPerSecond().ToString("F1") + "/s";
+        stress.text = (currentTask.GetTask().GetStressChange() >= 0 ? "+" : "") + currentTask.GetTask().GetStressChange();
+        description.text = currentTask.GetTask().GetDescription();
         ClearTask();
-        foreach (Item i in task.GetTask().GetItemCost())
+        foreach (Item i in currentTask.GetTask().GetItemCost())
         {
             Instantiate(itemPrefab.gameObject, itemCostList).GetComponent<UIItem>().Load(i);
         }
-        foreach (Item i in task.GetTask().GetCostPerMonster())
+        foreach (Item i in currentTask.GetTask().GetCostPerMonster())
         {
             Instantiate(itemPrefab.gameObject, itemCostPerMonsterList).GetComponent<UIItem>().Load(i);
         }
-        foreach (ItemReward i in task.GetTask().GetItemRewards())
+        foreach (ItemReward i in currentTask.GetTask().GetItemRewards())
         {
             Instantiate(itemRewardPrefab.gameObject, resultList).GetComponent<UIItemReward>().Load(i);
         }
-        foreach (Item i in task.GetItemFinalCost())
+        foreach (Item i in currentTask.GetItemFinalCost())
         {
             Instantiate(itemPrefab.gameObject, itemTotalCostList).GetComponent<UIItem>().Load(i);
+        }
+        foreach (Monster m in currentTask.GetMonsters())
+        {
+            Instantiate(monsterPickedPrefab.gameObject, monsterList).GetComponent<UITasklessMonster>().Load(m);
         }
     }
 
@@ -80,10 +104,39 @@ public class UITaskCreatorHandler : MonoBehaviour
         {
             Destroy(i.gameObject);
         }
+        foreach (Transform m in monsterList)
+        {
+            Destroy(m.gameObject);
+        }
     }
 
     public void Close()
     {
         UIBuildingMaster.GetInstance().CloseTaskCreator();
+    }
+
+    public void OpenMonsterPicker()
+    {
+        CloseMonsterPicker();
+        Instantiate(monsterPickerPrefab.gameObject, monsterPicker).GetComponent<UIMonsterTaskPickerHandler>().Load(currentTask);
+    }
+
+    public void CloseMonsterPicker()
+    {
+        foreach(Transform t in monsterPicker)
+        {
+            Destroy(t.gameObject);
+        }
+        UpdateCurrentTask();
+    }
+
+    public void BeginTaskDraft()
+    {
+        bool result = currentBuilding.BeginDraftTask();
+        if (result)
+        {
+            Close();
+        }
+            
     }
 }

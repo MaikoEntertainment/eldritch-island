@@ -9,12 +9,7 @@ public class ItemDatabase : ScriptableObject
     protected List<ItemDataBaseSection> sections = new List<ItemDataBaseSection>();
     protected Dictionary<int, ItemBase> itemsDictionary = new Dictionary<int, ItemBase>();
 
-    public ItemDatabase()
-    {
-        InitializeDictionary();
-    }
-
-    protected void InitializeDictionary()
+    public void InitializeDictionary()
     {
         foreach (ItemDataBaseSection section in sections)
         {

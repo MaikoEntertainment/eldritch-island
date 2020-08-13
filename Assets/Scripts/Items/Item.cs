@@ -15,6 +15,13 @@ public class Item
         this.itemBase = itemBase;
         this.amount = amount;
     }
+
+    public Item Clone(Item i)
+    {
+        return new Item(i.GetItemBase(), i.GetAmount());
+    }
+
+    public ItemBase GetItemBase() { return itemBase; }
     public int GetId()
     {
         return itemBase.GetId();

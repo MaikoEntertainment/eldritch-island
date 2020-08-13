@@ -37,6 +37,29 @@ public class MonsterMaster : MonoBehaviour
         return activeMonsters;
     }
 
+    public Dictionary<MonsterIds, Monster> GetTasklessMonsters()
+    {
+        Dictionary<MonsterIds, Monster> activeMonster = GetActiveMonsters();
+        Dictionary<MonsterIds, Monster> taskedMonsters = new Dictionary<MonsterIds, Monster>();
+        Dictionary<MonsterIds, Monster> taskless = new Dictionary<MonsterIds, Monster>();
+        foreach (Building b in BuildingMaster.GetInstance().GetUnlockedBuildings())
+        {
+            foreach(Task task in b.GetActiveTasks())
+            {
+                foreach(Monster m in task.GetMonsters())
+                {
+                    taskedMonsters.Add(m.GetId(), m);
+                }
+            }
+        }
+        foreach(Monster m in activeMonster.Values.ToList())
+        {
+            if (!taskedMonsters.ContainsKey(m.GetId()))
+                taskless.Add(m.GetId(), m);
+        }
+        return taskless;
+    }
+
     public Dictionary<MonsterIds, Monster> GetInactiveMonsters()
     {
         return GetMonsters()
@@ -85,6 +108,7 @@ public class MonsterMaster : MonoBehaviour
         if (activeMonsters.ContainsKey(id)) return activeMonsters[id];
         return null;
     }
+
     public void PickMonster(MonsterIds id)
     {
         Monster activatedMonster = database.GetMonster(id);
@@ -104,6 +128,6 @@ public class MonsterMaster : MonoBehaviour
             Destroy(previousMonster.gameObject);
         }
         activeMonsters.Add(m.GetId(), instance);
-        UITasklessMonsterMaster.GetInstance().UpdateTasklessMonsters(GetActiveMonsters().Values.ToList());
+        UITasklessMonsterMaster.GetInstance().UpdateTasklessMonsters();
     }
 }

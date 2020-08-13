@@ -15,7 +15,11 @@ public class TimeMaster : MonoBehaviour
 
     // Events
     public delegate void TimeMultiplier(float timeMultiplier);
-    public static event TimeMultiplier OnTimeMultiplier;
+    public event TimeMultiplier OnTimeMultiplier;
+    public delegate void TimePass(float timePassed);
+    public event TimePass OnTimePassed;
+
+    private float timePassed = 0;
     void Awake()
     {
         if (_instance == null)
@@ -27,6 +31,16 @@ public class TimeMaster : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+    }
+
+    private void Update()
+    {
+        timePassed += Time.deltaTime;
+        if (timePassed > GetTicInterval())
+        {
+            OnTimePassed?.Invoke(timePassed * GetTimeMultiplier());
+            timePassed = 0;
         }
     }
 

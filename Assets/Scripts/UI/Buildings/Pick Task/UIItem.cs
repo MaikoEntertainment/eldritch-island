@@ -12,6 +12,6 @@ public class UIItem : MonoBehaviour
     public void Load(Item item)
     {
         icon.sprite = item?.GetIcon();
-        amount.text = ""+item?.GetAmount();
+        amount.text = ""+Utils.ToFormat(item.GetAmount());
     }
 }

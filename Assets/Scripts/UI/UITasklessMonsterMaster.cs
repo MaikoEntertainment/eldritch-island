@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UITasklessMonsterMaster : MonoBehaviour
@@ -19,8 +20,9 @@ public class UITasklessMonsterMaster : MonoBehaviour
     }
 
     public static UITasklessMonsterMaster GetInstance() { return _instance; }
-    public void UpdateTasklessMonsters(List<Monster> monsters)
+    public void UpdateTasklessMonsters()
     {
+        List<Monster> monsters = MonsterMaster.GetInstance().GetTasklessMonsters().Values.ToList();
         ClearMonsters();
         foreach (Monster monster in monsters)
         {
