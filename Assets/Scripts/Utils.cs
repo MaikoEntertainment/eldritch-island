@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 
 public static class Utils
 {
@@ -17,7 +16,7 @@ public static class Utils
     }
 
     static readonly string[] suffixes = { "", "k", "M", "B", "T" };
-    public static string ToFormat(long cash, string prefix = "")
+    public static string ToFormat(double cash, string prefix = "")
     {
         int k;
         if (cash == 0)
@@ -28,5 +27,15 @@ public static class Utils
         string format = (k > 0) ? "F1" : "F0";
         var text = prefix + (cash / dividor).ToString(format) + suffixes[k];
         return text;
+    }
+
+    public static Color GetSuccessColor()
+    {
+        return new Color(.24f,.78f,.27f);
+    }
+
+    public static Color GetWrontColor()
+    {
+        return new Color(.91f, 0, .27f);
     }
 }

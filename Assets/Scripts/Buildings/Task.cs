@@ -16,6 +16,10 @@ public class Task
     protected int iterationsLeft;
     [SerializeField]
     protected bool hasTaskBegun = false;
+    [SerializeField]
+    protected bool isInfinite = false;
+
+    protected double progressBuildingMultiplier = 1;
 
     public delegate void Updated(Task task);
     public Updated onUpdate;
@@ -32,7 +36,36 @@ public class Task
     public double GetProgressPerSecond() { return progressPerSecond; }
     public double GetProgressGoal() { return GetTask().GetProgressNeeded(); }
     public double GetProgressMade(){ return progress; }
+    // Returns overflow progress
+    public double AddProgress(double progressMade)
+    {
+        progress += progressMade;
+        double extra = System.Math.Max(0, progress - GetProgressGoal());
+        if (extra > 0)
+        {
+            // Sets overflow progress to the next interation
+            progress = extra;
+            FinishTask();
+        }
+        onUpdate?.Invoke(this);
+        return extra;
+    }
+    public void SetBuildingProgress(double progress)
+    {
+        progressBuildingMultiplier = progress;
+        CalculateProgressPerSecond();
+    }
+    public double GetBuildingProgressMultiplier() { return progressBuildingMultiplier; }
+    public double OnProgressClick()
+    {
+        double progressClick = BuildingMaster.GetInstance().GetClickProgress();
+        AddProgress(progressClick);
+        return progressClick;
+    }
     public int GetIterationsLeft() { return iterationsLeft; }
+    public void SetIterationsLeft(int iterations) { iterationsLeft = iterations; }
+    public void SetInfinite(bool value) { isInfinite = value; }
+    public bool GetIsInfinite() { return isInfinite; }
     public double CalculateProgressPerSecond()
     {
         float progress = 0;
@@ -49,7 +82,7 @@ public class Task
                 monsterProgress /= taskBase.GetSkillsRequired().Count;
             progress += monsterProgress;
         }
-        progressPerSecond = progress;
+        progressPerSecond = progress * progressBuildingMultiplier;
         return progress;
     }
 
@@ -62,8 +95,7 @@ public class Task
         }
         return realPerMonsterCost;
     }
-
-    public void CheckForEnoughMonsters()
+    public void CheckForMonsterSanity()
     {
         List<Monster> filteredMonsters = new List<Monster>();
         foreach (Monster m in GetMonsters())
@@ -74,46 +106,6 @@ public class Task
         SetMonsters(filteredMonsters);
         UITasklessMonsterMaster.GetInstance()?.UpdateTasklessMonsters();
     }
-
-    public bool CanPayTask()
-    {
-        List<Item> totalCosts = GetItemFinalCost();
-        foreach (Item i in totalCosts)
-        {
-            Item itemInventory = InventoryMaster.GetInstance().GetItem(i.GetId());
-            if (itemInventory == null || itemInventory.GetAmount() < i.GetAmount())
-                return false;
-        }
-        return true;
-    }
-
-    public List<Item> GetItemFinalCost()
-    {
-        Dictionary<int, Item> totalCosts = new Dictionary<int, Item>();
-
-        List<Item> perMonsterCost = GetTask().GetCostPerMonster().ToList();
-
-        // Base Costs
-        foreach(Item i in GetTask().GetItemCost())
-        {
-            totalCosts.Add(i.GetId(), i);
-        }
-
-        //Costs per Monster
-        foreach (Monster m in GetMonsters())
-        {
-            List<Item> realPerMonsterCost = m.GetTaskItemCostForThisMonster(this, perMonsterCost);
-            foreach (Item i in realPerMonsterCost)
-            {
-                if (totalCosts.ContainsKey(i.GetId()))
-                    totalCosts[i.GetId()].ChangeAmount(i.GetAmount());
-                else
-                    totalCosts.Add(i.GetId(), new Item(i.GetItemBase(),i.GetAmount()));
-            }
-        }
-        return totalCosts.Values.ToList();
-    }
-
     public void SetMonsters(List<Monster> monsters)
     {
         this.monsters = monsters;
@@ -128,12 +120,49 @@ public class Task
         if (monsters.Contains(m))
             monsters.Remove(m);
     }
+    public bool CanPayTask()
+    {
+        List<Item> totalCosts = GetItemFinalCost();
+        foreach (Item i in totalCosts)
+        {
+            Item itemInventory = InventoryMaster.GetInstance().GetItem(i.GetId());
+            if (itemInventory == null || itemInventory.GetAmount() < i.GetAmount())
+                return false;
+        }
+        return true;
+    }
+    public List<Item> GetItemFinalCost()
+    {
+        Dictionary<int, Item> totalCosts = new Dictionary<int, Item>();
+
+        List<Item> perMonsterCost = GetTask().GetCostPerMonster().ToList();
+
+        // Base Costs
+        foreach(Item i in GetTask().GetItemCost())
+        {
+            totalCosts.Add(i.GetId(), i.Clone());
+        }
+
+        //Costs per Monster
+        foreach (Monster m in GetMonsters())
+        {
+            List<Item> realPerMonsterCost = m.GetTaskItemCostForThisMonster(this, perMonsterCost);
+            foreach (Item i in realPerMonsterCost)
+            {
+                if (totalCosts.ContainsKey(i.GetId()))
+                    totalCosts[i.GetId()].ChangeAmount(i.GetAmount());
+                else
+                    totalCosts.Add(i.GetId(), i.Clone());
+            }
+        }
+        return totalCosts.Values.ToList();
+    }
 
     public bool StartTask()
     {
-        CheckForEnoughMonsters();
+        CheckForMonsterSanity();
         bool canPay = CanPayTask();
-        if (!canPay) return false;
+        if (!canPay) ClearTask();
         // Check if its the first iteration of the Task
         if (!hasTaskBegun)
         {
@@ -143,14 +172,9 @@ public class Task
         List<Item> realPerMonsterCost = new List<Item>();
         foreach (Monster m in GetMonsters())
         {
-            realPerMonsterCost = m.GetTaskItemCostForThisMonster(this, realPerMonsterCost);
-            m.AddStress(GetTask().GetStressChange());
+            m.AddTaskStress(this);
         }
-        foreach (Item i in realPerMonsterCost)
-        {
-            InventoryMaster.GetInstance().ChangeItemAmount(i.GetId(), -1 * i.GetAmount());
-        }
-        foreach (Item i in taskBase.GetItemCost())
+        foreach (Item i in GetItemFinalCost())
         {
             InventoryMaster.GetInstance().ChangeItemAmount(i.GetId(), -1 * i.GetAmount());
         }
@@ -159,6 +183,7 @@ public class Task
     }
     public void FinishTask()
     {
+        GetTask().OnComplete();
         List<ItemReward> finalItemsRewards = taskBase.GetItemRewards();
         List<Tool> finalToolRewards = taskBase.GetToolRewards();
         List<Clothes> finalClothesRewards = taskBase.GetClotheRewards();
@@ -171,7 +196,8 @@ public class Task
         foreach (ItemReward ir in finalItemsRewards)
         {
             Item i = ir.ObtainReward();
-            InventoryMaster.GetInstance().ChangeItemAmount(i.GetId(), i.GetAmount());
+            if (i.GetAmount() > 0)
+                InventoryMaster.GetInstance().ChangeItemAmount(i.GetId(), i.GetAmount());
         }
         foreach (Tool t in finalToolRewards)
         {
@@ -181,9 +207,9 @@ public class Task
         {
             InventoryMaster.GetInstance().AddClothes(c);
         }
-        
-        iterationsLeft -= 1;
-        if (iterationsLeft > 0)
+        if (!GetIsInfinite())
+            iterationsLeft -= 1;
+        if (iterationsLeft >= 0)
         {
             StartTask();
         }
@@ -202,23 +228,20 @@ public class Task
         onClear?.Invoke(this);
     }
 
+    public void CancelTask()
+    {
+        List<Item> usedItems = GetItemFinalCost();
+        foreach (Item ic in usedItems)
+        {
+            InventoryMaster.GetInstance().ChangeItemAmount(ic.GetId(), ic.GetAmount());
+        }
+        ClearTask();
+    }
+
     public void PassTime(float timePassed)
     {
         double progressMade = timePassed * progressPerSecond;
-        double extra = AddProgress(progressMade);
-        if (extra > 0)
-        {
-            // Sets overflow progress to the next interation
-            progress = extra;
-            FinishTask();
-        }
-        onUpdate?.Invoke(this);
+        AddProgress(progressMade);
     }
-    // Returns overflow progress
-    public double AddProgress(double progressMade)
-    {
-        progress += progressMade;
-        double extraProgresss = System.Math.Max(0, progress - GetProgressGoal());
-        return extraProgresss;
-    } 
+
 }

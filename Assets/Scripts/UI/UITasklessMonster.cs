@@ -9,8 +9,11 @@ public class UITasklessMonster : MonoBehaviour
     public Image icon;
     public TextMeshProUGUI text;
 
+    private Monster m;
+
     public void Load(Monster m)
     {
+        this.m = m;
         float stress = m.GetStress();
         float max = m.GetStressMax();
         text.text = stress + "/" + max;
@@ -24,6 +27,11 @@ public class UITasklessMonster : MonoBehaviour
         {
             StartCoroutine(Fade.FadeCanvas(cg, 0, 1, 1));
         }
+    }
+
+    public void OpenDetails()
+    {
+        UIMonsterViewerMaster.GetInstance().Load(m);
     }
 
 }

@@ -20,6 +20,12 @@ public class ToolsManager
         }
         return false;
     }
+    public bool UnEquipTool(int index)
+    {
+        if (index >= tools.Count) return false;
+        tools.RemoveAt(index);
+        return true;
+    }
 
     public bool HasFreeSlots()
     {

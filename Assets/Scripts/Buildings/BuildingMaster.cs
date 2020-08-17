@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -28,6 +29,13 @@ public class BuildingMaster : MonoBehaviour
     }
 
     public static BuildingMaster GetInstance() { return _instance; }
+
+    public double GetClickProgress()
+    {
+        double level = (double)StatisticsMaster.GetInstance().GetStatistic(StatisticIds.ClickPowerLevel).GetValue();
+        double clickProgress = (long)(1 + level * 0.25);
+        return clickProgress;
+    }
 
     public void InitializeDictionary()
     {

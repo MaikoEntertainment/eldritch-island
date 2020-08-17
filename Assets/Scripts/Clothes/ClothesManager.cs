@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [Serializable]
@@ -20,7 +19,12 @@ public class ClothesManager
         }
         return false;
     }
-
+    public bool UnEquipTool(int index)
+    {
+        if (index >= clothes.Count) return false;
+        clothes.RemoveAt(index);
+        return true;
+    }
     public bool HasFreeSlots()
     {
         return slots > clothes.Count;

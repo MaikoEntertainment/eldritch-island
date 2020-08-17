@@ -9,6 +9,8 @@ public class UITasklessMonsterMaster : MonoBehaviour
 
     public UITasklessMonster tasklessMonsterPrefab;
 
+    private Dictionary<MonsterIds, UITasklessMonster> tasklessCache = new Dictionary<MonsterIds, UITasklessMonster>();
+
     private void Awake()
     {
         if (_instance)
@@ -22,11 +24,23 @@ public class UITasklessMonsterMaster : MonoBehaviour
     public static UITasklessMonsterMaster GetInstance() { return _instance; }
     public void UpdateTasklessMonsters()
     {
-        List<Monster> monsters = MonsterMaster.GetInstance().GetTasklessMonsters().Values.ToList();
-        ClearMonsters();
-        foreach (Monster monster in monsters)
+        Dictionary<MonsterIds, Monster> monsters = MonsterMaster.GetInstance().GetTasklessMonsters();
+        foreach (MonsterIds mId in tasklessCache.Keys.ToList())
         {
-            Instantiate(tasklessMonsterPrefab.gameObject, transform).GetComponent<UITasklessMonster>().Load(monster);
+            if (!monsters.ContainsKey(mId))
+            {
+                Destroy(tasklessCache[mId].gameObject);
+                tasklessCache.Remove(mId);
+            }
+        }
+        foreach (Monster monster in monsters.Values.ToList())
+        {
+            if (!tasklessCache.ContainsKey(monster.GetId()))
+            {
+                UITasklessMonster taskless = Instantiate(tasklessMonsterPrefab.gameObject, transform).GetComponent<UITasklessMonster>();
+                taskless.Load(monster);
+                tasklessCache.Add(monster.GetId(), taskless);
+            }
         }
     }
 

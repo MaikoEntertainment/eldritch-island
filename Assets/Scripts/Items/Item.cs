@@ -10,15 +10,18 @@ public class Item
     [SerializeField]
     protected long amount;
 
+    public delegate void AmountChange(Item i, long change);
+    public AmountChange onAmountChange;
+
     public Item(ItemBase itemBase, long amount)
     {
         this.itemBase = itemBase;
         this.amount = amount;
     }
 
-    public Item Clone(Item i)
+    public Item Clone()
     {
-        return new Item(i.GetItemBase(), i.GetAmount());
+        return new Item(GetItemBase(), GetAmount());
     }
 
     public ItemBase GetItemBase() { return itemBase; }
@@ -35,6 +38,7 @@ public class Item
     public long ChangeAmount(long change)
     {
         amount += change;
+        onAmountChange?.Invoke(this, change);
         return amount;
     }
 

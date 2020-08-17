@@ -57,9 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Tillana-Bold
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 1466963227
   material: {fileID: 4558420073106066805}
-  materialHashCode: 0
+  materialHashCode: -284758864
   m_Version: 1.1.0
   m_SourceFontFileGUID: 60bf3621817374d44b9d3a1d55d92666
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 60bf3621817374d44b9d3a1d55d92666, type: 3}
@@ -2654,7 +2654,7 @@ Material:
     - _FaceTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 1, y: 1}
     - _MainTex:
         m_Texture: {fileID: -206113168178432104}
         m_Scale: {x: 1, y: 1}

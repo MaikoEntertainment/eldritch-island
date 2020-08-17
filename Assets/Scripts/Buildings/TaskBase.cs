@@ -51,19 +51,24 @@ public class TaskBase: ScriptableObject
     {
         return itemCosts;
     }
-
     public List<ItemReward> GetItemRewards()
     {
         return itemRewards;
     }
-
     public List<Tool> GetToolRewards()
     {
         return toolRewards;
     }
-
     public List<Clothes> GetClotheRewards()
     {
         return clothesRewards;
+    }
+    public virtual void OnComplete()
+    {
+
+    }
+    public virtual bool IsAvailable()
+    {
+        return true;
     }
 }

@@ -7,12 +7,8 @@ public class StatisticsDatabase : ScriptableObject
     [SerializeField]
     protected List<StatisticsSection> sections = new List<StatisticsSection>();
     protected Dictionary<StatisticIds, Statistic> dictionary = new Dictionary<StatisticIds, Statistic>();
-    
-    public StatisticsDatabase()
-    {
-        InitializeDictionary();
-    }
-    protected void InitializeDictionary()
+
+    public void InitializeDictionary()
     {
         foreach (StatisticsSection section in sections)
         {

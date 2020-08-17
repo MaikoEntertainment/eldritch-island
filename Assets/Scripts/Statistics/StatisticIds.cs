@@ -8,5 +8,6 @@ public enum StatisticIds
     SwampDiscovered = 1,
     FrostDiscovered = 2,
     HotDiscovered = 3,
-    tribeName=4
+    TribeName = 4,
+    ClickPowerLevel = 5
 }

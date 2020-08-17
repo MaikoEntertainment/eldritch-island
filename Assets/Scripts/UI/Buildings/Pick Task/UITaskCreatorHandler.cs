@@ -1,14 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using TMPro;
+using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UITaskCreatorHandler : MonoBehaviour
 {
     public Transform taskList;
     public Transform monsterPicker;
+    public InputField iterations;
+    public Toggle toggle;
+    public Button done;
 
+    public TextMeshProUGUI usedSlots;
+    public TextMeshProUGUI totalSlots;
     public Transform itemCostList;
     public Transform itemCostPerMonsterList;
     public Transform itemTotalCostList;
@@ -31,10 +39,6 @@ public class UITaskCreatorHandler : MonoBehaviour
     public void Load(Building building)
     {
         currentBuilding = building;
-        foreach (TaskBase tb in building.GetTasks())
-        {
-            Instantiate(taskPrefab.gameObject, taskList).GetComponent<UITaskPickTask>().Load(tb);
-        }
         if (building.GetDraftTask()!=null)
         {
             LoadTask(building.GetDraftTask());
@@ -42,19 +46,39 @@ public class UITaskCreatorHandler : MonoBehaviour
         else
         {
             TaskBase first = building.GetUnlockedTasks()[0];
-            LoadTask(building.CreateTask(first.GetId()));
+            LoadTaskDraft(first);
         }
+        UpdateTaskList();
+        int used = building.GetActiveTasks().Count;
+        usedSlots.text = used.ToString();
+        usedSlots.color = (used < building.GetTaskSlots()) ? Utils.GetSuccessColor() : Utils.GetWrontColor();
+        totalSlots.text = building.GetTaskSlots().ToString();
     }
 
     public void LoadTaskDraft(TaskBase task)
     {
         Task taskNew = currentBuilding.CreateTask(task.GetId());
+        taskNew.SetInfinite(toggle.isOn);
         LoadTask(taskNew);
     }
     public void LoadTask(Task task)
     {
         currentTask = task;
         UpdateCurrentTask();
+        UpdateTaskList();
+    }
+
+    public void UpdateTaskList()
+    {
+        foreach (Transform task in taskList)
+        {
+            Destroy(task.gameObject);
+        }
+        foreach (TaskBase tb in currentBuilding.GetTasks())
+        {
+            bool isSelected = (tb.GetId() == currentBuilding.GetDraftTask().GetTask().GetId());
+            Instantiate(taskPrefab.gameObject, taskList).GetComponent<UITaskPickTask>().Load(tb, isSelected);
+        }
     }
 
     public void UpdateCurrentTask()
@@ -78,12 +102,28 @@ public class UITaskCreatorHandler : MonoBehaviour
         }
         foreach (Item i in currentTask.GetItemFinalCost())
         {
-            Instantiate(itemPrefab.gameObject, itemTotalCostList).GetComponent<UIItem>().Load(i);
+            UIItem uiCost = Instantiate(itemPrefab.gameObject, itemTotalCostList).GetComponent<UIItem>();
+            Item iInventory = InventoryMaster.GetInstance().GetItem(i.GetId());
+            long inventoryAmount = iInventory != null ? iInventory.GetAmount() : 0;
+            uiCost.Load(i, i.GetAmount() > inventoryAmount);
+
         }
         foreach (Monster m in currentTask.GetMonsters())
         {
             Instantiate(monsterPickedPrefab.gameObject, monsterList).GetComponent<UITasklessMonster>().Load(m);
         }
+        done.interactable = currentBuilding.CanBeginDraft();
+    }
+
+    public void UpdateIterations(string newValue)
+    {
+        currentTask.SetIterationsLeft(int.Parse(newValue, CultureInfo.InvariantCulture.NumberFormat));
+    }
+
+    public void UpdateIsInfinite(bool isInfinite)
+    {
+        currentTask.SetInfinite(isInfinite);
+        iterations.interactable = !isInfinite;
     }
 
     public void ClearTask()
@@ -113,6 +153,7 @@ public class UITaskCreatorHandler : MonoBehaviour
     public void Close()
     {
         UIBuildingMaster.GetInstance().CloseTaskCreator();
+        currentBuilding.CancelDraftTask();
     }
 
     public void OpenMonsterPicker()

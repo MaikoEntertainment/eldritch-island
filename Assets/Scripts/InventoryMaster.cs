@@ -15,6 +15,9 @@ public class InventoryMaster : MonoBehaviour
     [SerializeField]
     protected Dictionary<int, Item> items = new Dictionary<int, Item>();
 
+    public delegate void NewItem(Item i);
+    public NewItem OnNewItem;
+
     private void Awake()
     {
         if (_instance)
@@ -42,7 +45,10 @@ public class InventoryMaster : MonoBehaviour
         if (!items.ContainsKey(id))
         {
             ItemBase item = ItemMaster.GetInstance().GetItem(id);
-            items.Add(item.GetId(), new Item(item, Math.Max(amount,0)));
+            Item newItem = new Item(item, Math.Max(amount, 0));
+            items.Add(item.GetId(), newItem);
+            OnNewItem?.Invoke(newItem);
+            newItem.onAmountChange?.Invoke(newItem, amount);
         }
         else
             items[id].ChangeAmount(amount);

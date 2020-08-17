@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIBuildingBase : MonoBehaviour
 {
+    public TextMeshProUGUI buildingName;
     public Transform taskList;
 
     public UITaskBase taskPrefab;
@@ -19,6 +21,7 @@ public class UIBuildingBase : MonoBehaviour
         Building b = BuildingMaster.GetInstance().GetBuilding(id);
         UpdateTasks();
         b.onTasksUpdated += UpdateTasks;
+        buildingName.text = b.GetName();
     }
 
     public void UpdateTasks()

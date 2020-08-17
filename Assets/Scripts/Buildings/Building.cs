@@ -8,12 +8,16 @@ public class Building : MonoBehaviour
 {
     [SerializeField]
     protected BuildingIds id;
+    [SerializeField]
+    protected int initialTaskSlots = 1;
     protected int level = 0;
+
+    [SerializeField]
+    protected TextLanguageOwn myName;
 
     [SerializeField]
     protected List<TaskBase> taskBases;
     protected Dictionary<int, TaskBase> dictionaryTaskBases = new Dictionary<int, TaskBase>();
-    [SerializeField]
     protected List<Task> tasksActive = new List<Task>();
 
     protected Task draftTask;
@@ -28,6 +32,8 @@ public class Building : MonoBehaviour
     }
     public BuildingIds GetId() { return id; }
     public int GetLevel() { return level; }
+    public virtual int GetTaskSlots() { return initialTaskSlots; }
+    public string GetName() { return myName.GetText(); }
     public List<TaskBase> GetTasks() { return taskBases; }
     public List<Task> GetActiveTasks() { return tasksActive; }
     public List<TaskBase> GetUnlockedTasks() { return taskBases; }
@@ -35,6 +41,10 @@ public class Building : MonoBehaviour
     {
         Console.WriteLine("Replace with own cost");
         return new List<Item>(); 
+    }
+    public virtual double GetBuildingProgressMultiplier()
+    {
+        return 1 + 0.1f * GetLevel();
     }
     public virtual bool CanUnlock()
     {
@@ -71,20 +81,24 @@ public class Building : MonoBehaviour
     {
         draftTask = null;
     }
+
+    public bool CanBeginDraft()
+    {
+        if (draftTask == null) return false;
+        bool hasSpace = tasksActive.Count < GetTaskSlots();
+        bool canPay = draftTask.CanPayTask();
+        return hasSpace && canPay;
+    }
     public bool BeginDraftTask()
     {
-        if (draftTask != null)
+        if (CanBeginDraft())
         {
-            bool result = draftTask.CanPayTask();
-            if (result)
-            {
-                tasksActive.Add(draftTask);
-                draftTask.StartTask();
-                onTasksUpdated?.Invoke();
-                draftTask.onClear += DeleteTask;
-                CancelDraftTask();
-            }
-            return result;
+            tasksActive.Add(draftTask);
+            draftTask.StartTask();
+            onTasksUpdated?.Invoke();
+            draftTask.onClear += DeleteTask;
+            CancelDraftTask();
+            return true;
         }
         return false;
     }

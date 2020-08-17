@@ -1995,6 +1995,7 @@ MonoBehaviour:
   itemList: {fileID: 5809551020278039865}
   itemMonsterList: {fileID: 983794844521247625}
   resultList: {fileID: 983794843509744222}
+  selectedColor: {r: 0.7960785, g: 0.5254902, b: 0.16862746, a: 1}
   itemPrefab: {fileID: 6537781163065902405, guid: 044dc8fb51e724f47b1821f4031ea393, type: 3}
   itemRewardPrefab: {fileID: 8996964571335523852, guid: f832b849269fbee48bcc61f8203454c2, type: 3}
   toolPrefab: {fileID: 6808906324580933684, guid: 441a62287937a8d4ba2c33903487f4a4, type: 3}

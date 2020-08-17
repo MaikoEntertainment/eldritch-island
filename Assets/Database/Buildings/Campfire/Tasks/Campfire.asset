@@ -9,27 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e1a8fe29dc02d246bb8581824cfc626, type: 3}
+  m_Script: {fileID: 11500000, guid: ed74429f603eeca44aca4c31fc575f48, type: 3}
   m_Name: Campfire
   m_EditorClassIdentifier: 
   id: 0
   progressNeeded: 50
-  tags: 
+  tags: 05000000
   myName:
-    english: Campfire
+    english: Campfire Ritual
   description:
-    english: Removes 10 Stress from ALL inactive monsters.
+    english: Reduces 10 Stress from all inactive Monsters.
   icon: {fileID: -5692852124484312159, guid: e8996999b66463142a43f917b261a88a, type: 3}
   stressChange: -10
-  itemCosts:
-  - itemBase: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
-    amount: 6
+  itemCosts: []
   costPerMonster:
   - itemBase: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
     amount: 1
   skillsRequired:
   - skillId: 5
-    levelModifier: 0
+    levelModifier: 1
   itemRewards:
   - item: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
     minAmount: 1

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e1a8fe29dc02d246bb8581824cfc626, type: 3}
+  m_Name: Chop
+  m_EditorClassIdentifier: 
+  id: 0
+  progressNeeded: 20
+  tags: 01000000
+  myName:
+    english: Chop
+  description:
+    english: Venture trough the twisted woods to collect wood.
+  icon: {fileID: 6812396857366647474, guid: e8996999b66463142a43f917b261a88a, type: 3}
+  stressChange: 8
+  itemCosts:
+  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
+    amount: 2
+  costPerMonster:
+  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
+    amount: 1
+  skillsRequired:
+  - skillId: 1
+    levelModifier: 2
+  itemRewards:
+  - item: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
+    minAmount: 3
+    extraRange: 2
+    rewardChance: 1
+  - item: {fileID: 11400000, guid: b46c0fb9d93f3f94f80752367df32de5, type: 2}
+    minAmount: 1
+    extraRange: 0
+    rewardChance: 0.1
+  toolRewards: []
+  clothesRewards: []

@@ -65,9 +65,13 @@ public class Monster : MonoBehaviour
     {
         return Mathf.Max(stress + t.GetTask().GetStressChange(),0);
     }
+    public virtual void AddTaskStress(Task t)
+    {
+        stress = GetStressAfterTask(t);
+    }
     public virtual bool AddStress(float stressChange)
     {
-        stress += stressChange;
+        stress =  Math.Max(stress + stressChange,0);
         return (stress > GetStressMax());
     }
     public virtual bool CanWork(Task task) 
@@ -79,6 +83,14 @@ public class Monster : MonoBehaviour
     {
         return tools.GetEquippedTools();
     }
+    public bool EquipTool(Tool t)
+    {
+        return tools.EquipTool(t);
+    }
+    public bool UnEquipTool(int index)
+    {
+        return tools.UnEquipTool(index);
+    }
     public int GetToolSlots()
     {
         return tools.GetToolSlots();
@@ -86,6 +98,14 @@ public class Monster : MonoBehaviour
     public List<Clothes> GetClothes()
     {
         return clothes.GetEquippedClothes();
+    }
+    public bool UnEquipClothes(int index)
+    {
+        return clothes.UnEquipTool(index);
+    }
+    public bool EquipClothes(Clothes c)
+    {
+        return clothes.EquipClothes(c);
     }
     public int GetClothesSlots()
     {

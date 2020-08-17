@@ -13,6 +13,10 @@ public class Statistic: ScriptableObject
     public event UpdateValueDelegate OnValueUpdate;
 
     public StatisticIds GetId() { return id; }
+    public object GetValue()
+    {
+        return value;
+    }
     public void UpdateValue(object value)
     {
         this.value = value;

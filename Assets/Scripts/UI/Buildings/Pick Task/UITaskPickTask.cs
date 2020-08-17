@@ -12,16 +12,19 @@ public class UITaskPickTask : MonoBehaviour
     public Transform itemList;
     public Transform itemMonsterList;
     public Transform resultList;
+    public Color selectedColor;
 
     public UIItem itemPrefab;
     public UIItemReward itemRewardPrefab;
     public UIToolReward toolPrefab;
     private TaskBase task;
 
-    public void Load(TaskBase taskBase)
+    public void Load(TaskBase taskBase, bool isSelected=false)
     {
         task = taskBase;
         text.text = taskBase.GetName();
+        if (isSelected)
+            text.color = selectedColor;
         icon.sprite = taskBase.GetIcon();
         stress.text = (taskBase.GetStressChange() >= 0 ? "+" : "") + taskBase.GetStressChange().ToString();
         ClearLists();
