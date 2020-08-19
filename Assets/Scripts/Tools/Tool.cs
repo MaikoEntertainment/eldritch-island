@@ -2,29 +2,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Tool : MonoBehaviour
+[Serializable]
+public class Tool
 {
+    [SerializeField]
     protected ToolBase toolBase;
+    [SerializeField]
     protected double durabilityUsed;
     protected int tier;
 
+    public Tool(ToolBase toolBase, int tier = 0)
+    {
+        this.toolBase = toolBase;
+        this.tier = tier;
+    }
+
     public int GetId() { return toolBase.GetId(); }
-    public double GetDurability() { return toolBase.GetDurability(); }
+    public double GetDurability() { return toolBase.GetDurability(GetTier()); }
     public Tag[] GetTags() { return toolBase.GetTags(); }
-    public List<SkillBonus> GetSkillBonuses() { return toolBase.GetSkillBonuses(); }
+    public List<SkillBonus> GetSkillBonuses() { return toolBase.GetSkillBonuses(GetTier()); }
     public Sprite GetIcon() { return toolBase.GetIcon(); }
     public bool Use(double durabilityUsed=1)
     {
         toolBase.Use();
-        durabilityUsed += durabilityUsed;
-        double durability = toolBase.GetDurability();
-        return durabilityUsed >= durability;
+        this.durabilityUsed += durabilityUsed;
+        double durability = GetDurability();
+        return this.durabilityUsed >= durability;
     }
     public int GetTier() { return tier; }
     public double GetDurabilityLeft()
     {
-        double durability = toolBase.GetDurability();
+        double durability = GetDurability();
         return Math.Max(durability - durabilityUsed, 0);
     }
 

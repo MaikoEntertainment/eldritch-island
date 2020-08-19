@@ -15,13 +15,15 @@ public class ClothesManager
         if (HasFreeSlots())
         {
             this.clothes.Add(clothes);
+            InventoryMaster.GetInstance().RemoveClothes(clothes);
             return true;
         }
         return false;
     }
     public bool UnEquipTool(int index)
     {
-        if (index >= clothes.Count) return false;
+        if (index >= clothes.Count || index < 0) return false;
+        InventoryMaster.GetInstance().AddClothes(clothes[index]);
         clothes.RemoveAt(index);
         return true;
     }
@@ -33,9 +35,13 @@ public class ClothesManager
     public void UseClothes()
     {
         Console.WriteLine("Add Task to parameters");
+        List<Clothes> clothesWithDurabiliy = new List<Clothes>();
         foreach (Clothes c in clothes)
         {
-            c.Use();
+            bool broke = c.Use();
+            if (!broke)
+                clothesWithDurabiliy.Add(c);
         }
+        clothes = clothesWithDurabiliy;
     }
 }

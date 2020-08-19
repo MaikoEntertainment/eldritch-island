@@ -8,4 +8,9 @@ public class SkillMining : Skill
     {
         id = SkillIds.Mining;
     }
+
+    public override Skill Copy()
+    {
+        return new SkillMining(level, exp);
+    }
 }

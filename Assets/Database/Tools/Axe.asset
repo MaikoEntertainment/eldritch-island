@@ -15,10 +15,10 @@ MonoBehaviour:
   id: 0
   icon: {fileID: 6812396857366647474, guid: e8996999b66463142a43f917b261a88a, type: 3}
   durability: 10
-  name:
-    english: Axe
-  description:
+  myName:
     english: 
+  description:
+    english: Useful for cutting wood and some other things.
   skillBonuses:
   - skillId: 1
     levelModifier: 3

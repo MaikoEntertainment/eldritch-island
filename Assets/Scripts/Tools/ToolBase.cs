@@ -12,7 +12,7 @@ public class ToolBase: ScriptableObject
     [SerializeField]
     protected long durability;
     [SerializeField]
-    protected TextLanguageOwn name;
+    protected TextLanguageOwn myName;
     [SerializeField]
     protected TextLanguageOwn description;
     [SerializeField]
@@ -21,14 +21,27 @@ public class ToolBase: ScriptableObject
     protected Tag[] tags;
 
     public int GetId() { return id; }
-    public double GetDurability() { return durability; }
+    public double GetDurability(int tier=0) { return durability * (1 + tier); }
     public Tag[] GetTags() { return tags; }
-    public List<SkillBonus> GetSkillBonuses() { return skillBonuses; }
+    public List<SkillBonus> GetSkillBonuses(int tier = 0) {
+        if (tier==0)
+            return skillBonuses;
+        List<SkillBonus> bonusesTier = new List<SkillBonus>();
+        foreach(SkillBonus sb in skillBonuses)
+        {
+            int newMod = (int)(sb.GetLevelModifier() * (1 + 0.25f * tier));
+            bonusesTier.Add(new SkillBonus(sb.GetSkillId(), newMod));
+        }
+        return bonusesTier;
+    }
     public Sprite GetIcon() { return icon; }
     public void Use()
     {
         
     }
+
+    public string GetName() { return myName.GetText(); }
+    public string GetDescription() { return description.GetText(); }
 
     public virtual List<Item> GetTaskItemCostForThisMonster(Task task, Monster monster, List<Item> currentCosts)
     {

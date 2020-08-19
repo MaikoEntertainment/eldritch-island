@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
@@ -41,6 +42,30 @@ public class Monster : MonoBehaviour
     public Dictionary<SkillIds, Skill> GetSkills()
     {
         return skills.GetSkills();
+    }
+    public Dictionary<SkillIds, Skill> GetFinalSkills()
+    {
+        Dictionary<SkillIds, Skill> skills = GetSkills();
+        Dictionary<SkillIds, Skill> finalSkills = new Dictionary<SkillIds, Skill>();
+        foreach (Skill sk in skills.Values.ToList())
+        {
+            finalSkills.Add(sk.GetId(), sk.Copy());
+        }
+        foreach (Tool tl in tools.GetEquippedTools())
+        {
+            foreach(SkillBonus sb in tl.GetSkillBonuses())
+            {
+                finalSkills[sb.GetSkillId()].AddBonusLevel(sb.GetLevelModifier());
+            }
+        }
+        foreach (Clothes cl in clothes.GetEquippedClothes())
+        {
+            foreach (SkillBonus sb in cl.GetSkillBonuses())
+            {
+                finalSkills[sb.GetSkillId()].AddBonusLevel(sb.GetLevelModifier());
+            }
+        }
+        return finalSkills;
     }
     public List<Skill> GetInitialSkills()
     {
@@ -116,12 +141,11 @@ public class Monster : MonoBehaviour
     public string GetAbility() { return ability.GetText(); }
 
     // Taks specific
-    public bool FinishWork(Task t)
+    public void FinishWork(Task t)
     {
-        float stressChange = GetStressAfterTask(t);
         tools.UseTools();
         clothes.UseClothes();
-        return AddStress(stressChange);
+        AddTaskStress(t);
     }
     public virtual List<Item> GetTaskItemCostForThisMonster(Task task, List<Item> currentCosts)
     {

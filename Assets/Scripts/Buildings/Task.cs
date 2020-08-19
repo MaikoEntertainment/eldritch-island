@@ -72,10 +72,10 @@ public class Task
         foreach(Monster m in GetMonsters())
         {
             float monsterProgress = 0;
-            Dictionary<SkillIds, Skill> skills = m.GetSkills();
+            Dictionary<SkillIds, Skill> skills = m.GetFinalSkills();
             foreach(SkillBonus s in taskBase.GetSkillsRequired())
             {
-                int level = skills[s.GetSkillId()].GetLevel();
+                int level = skills[s.GetSkillId()].GetLevelWithBonuses();
                 monsterProgress += 1 + 0.1f * level;
             }
             if (taskBase.GetSkillsRequired().Count > 0)
@@ -84,6 +84,16 @@ public class Task
         }
         progressPerSecond = progress * progressBuildingMultiplier;
         return progress;
+    }
+
+    public int GetCraftingPower()
+    {
+        int power = 0;
+        foreach (Monster m in GetMonsters())
+        {
+            power += m.GetFinalSkills()[SkillIds.Crafting].GetLevelWithBonuses();
+        }
+        return power;
     }
 
     public List<Item> GetTaskFinalItemMonsterCost()
@@ -170,10 +180,6 @@ public class Task
             hasTaskBegun = true;
         }
         List<Item> realPerMonsterCost = new List<Item>();
-        foreach (Monster m in GetMonsters())
-        {
-            m.AddTaskStress(this);
-        }
         foreach (Item i in GetItemFinalCost())
         {
             InventoryMaster.GetInstance().ChangeItemAmount(i.GetId(), -1 * i.GetAmount());
@@ -185,13 +191,14 @@ public class Task
     {
         GetTask().OnComplete();
         List<ItemReward> finalItemsRewards = taskBase.GetItemRewards();
-        List<Tool> finalToolRewards = taskBase.GetToolRewards();
-        List<Clothes> finalClothesRewards = taskBase.GetClotheRewards();
+        List<ToolBase> finalToolRewards = taskBase.GetToolRewards();
+        List<ClothesBase> finalClothesRewards = taskBase.GetClotheRewards();
         foreach (Monster m in GetMonsters())
         {
             finalItemsRewards = m.GetTaskItemRewards(this, finalItemsRewards);
             foreach (SkillBonus s in GetTask().GetSkillsRequired())
                 m.AddSkillExp(s.GetSkillId(), s.GetLevelModifier());
+            m.FinishWork(this);
         }
         foreach (ItemReward ir in finalItemsRewards)
         {
@@ -199,13 +206,16 @@ public class Task
             if (i.GetAmount() > 0)
                 InventoryMaster.GetInstance().ChangeItemAmount(i.GetId(), i.GetAmount());
         }
-        foreach (Tool t in finalToolRewards)
+        int craftingPower = GetCraftingPower();
+        foreach (ToolBase t in finalToolRewards)
         {
-            InventoryMaster.GetInstance().AddTool(t);
+            Tool reward = ItemMaster.GetInstance().CreateTool(t, craftingPower);
+            InventoryMaster.GetInstance().AddTool(reward);
         }
-        foreach (Clothes c in finalClothesRewards)
+        foreach (ClothesBase c in finalClothesRewards)
         {
-            InventoryMaster.GetInstance().AddClothes(c);
+            Clothes reward = ItemMaster.GetInstance().CreateClothes(c, craftingPower);
+            InventoryMaster.GetInstance().AddClothes(reward);
         }
         if (!GetIsInfinite())
             iterationsLeft -= 1;

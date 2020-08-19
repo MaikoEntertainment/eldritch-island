@@ -32,6 +32,7 @@ public class UITaskCreatorHandler : MonoBehaviour
     public UIItemReward itemRewardPrefab;
     public UIMonsterTaskPickerHandler monsterPickerPrefab;
     public UITasklessMonster monsterPickedPrefab;
+    public UIToolReward toolRewardPrefab;
 
     private Building currentBuilding;
     private Task currentTask;
@@ -99,6 +100,14 @@ public class UITaskCreatorHandler : MonoBehaviour
         foreach (ItemReward i in currentTask.GetTask().GetItemRewards())
         {
             Instantiate(itemRewardPrefab.gameObject, resultList).GetComponent<UIItemReward>().Load(i);
+        }
+        foreach (ToolBase tr in currentTask.GetTask().GetToolRewards())
+        {
+            Instantiate(toolRewardPrefab.gameObject, resultList).GetComponent<UIToolReward>().Load(tr);
+        }
+        foreach (ClothesBase cr in currentTask.GetTask().GetClotheRewards())
+        {
+            Instantiate(toolRewardPrefab.gameObject, resultList).GetComponent<UIToolReward>().Load(cr);
         }
         foreach (Item i in currentTask.GetItemFinalCost())
         {

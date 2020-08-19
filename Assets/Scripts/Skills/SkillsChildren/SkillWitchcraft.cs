@@ -8,4 +8,9 @@ public class SkillWitchcraft : Skill
     {
         id = SkillIds.Witchcraft;
     }
+
+    public override Skill Copy()
+    {
+        return new SkillWitchcraft(level, exp);
+    }
 }

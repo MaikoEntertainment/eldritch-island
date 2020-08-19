@@ -8,4 +8,9 @@ public class SkillWoodcutting : Skill
     {
         id = SkillIds.Woodcutting;
     }
+
+    public override Skill Copy()
+    {
+        return new SkillWoodcutting(level, exp);
+    }
 }

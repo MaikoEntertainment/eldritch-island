@@ -8,4 +8,9 @@ public class SkillWar : Skill
     {
         id = SkillIds.War;
     }
+
+    public override Skill Copy()
+    {
+        return new SkillWar(level, exp);
+    }
 }

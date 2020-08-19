@@ -16,13 +16,15 @@ public class ToolsManager
         if (HasFreeSlots())
         {
             tools.Add(tool);
+            InventoryMaster.GetInstance().RemoveTool(tool);
             return true;
         }
         return false;
     }
     public bool UnEquipTool(int index)
     {
-        if (index >= tools.Count) return false;
+        if (index >= tools.Count || index < 0) return false;
+        InventoryMaster.GetInstance().AddTool(tools[index]);
         tools.RemoveAt(index);
         return true;
     }
@@ -35,9 +37,13 @@ public class ToolsManager
     public void UseTools()
     {
         Console.WriteLine("Add Task to parameters");
-        foreach(Tool t in tools)
+        List<Tool> toolsWithDurabiliy = new List<Tool>();
+        foreach (Tool t in tools)
         {
-            t.Use();
+            bool broke = t.Use();
+            if (!broke)
+                toolsWithDurabiliy.Add(t);
         }
+        tools = toolsWithDurabiliy;
     }
 }

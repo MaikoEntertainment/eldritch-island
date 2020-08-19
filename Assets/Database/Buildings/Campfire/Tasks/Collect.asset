@@ -31,5 +31,7 @@ MonoBehaviour:
     minAmount: 5
     extraRange: 3
     rewardChance: 1
-  toolRewards: []
-  clothesRewards: []
+  toolRewards:
+  - {fileID: 11400000, guid: 3e77e8e2e905c974c8c9a92b87b79643, type: 2}
+  clothesRewards:
+  - {fileID: 11400000, guid: 7806c1e704136874e8c76c8bd1cd31fc, type: 2}

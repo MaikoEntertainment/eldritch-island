@@ -67,7 +67,10 @@ public class InventoryMaster : MonoBehaviour
     {
         tools.Add(tool);
     }
-
+    public void RemoveTool(Tool tool)
+    {
+        tools.Remove(tool);
+    }
    
     public List<Clothes> GetClothes()
     {
@@ -81,6 +84,9 @@ public class InventoryMaster : MonoBehaviour
     {
         this.clothes.Add(clothes);
     }
-
+    public void RemoveClothes(Clothes clothes)
+    {
+        this.clothes.Remove(clothes);
+    }
 
 }

@@ -4,20 +4,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITaskMonsterTool : MonoBehaviour
+public class UITaskMonsterClothes : MonoBehaviour
 {
     public Image icon;
     public TextMeshProUGUI uses;
     public TextMeshProUGUI tier;
 
-    private Tool tool;
+    private Clothes clothes;
 
-    public delegate void Click(Tool t);
+    public delegate void Click(Clothes t);
     public event Click onClick;
 
-    public UITaskMonsterTool Load(Tool t)
+    public UITaskMonsterClothes Load(Clothes t)
     {
-        tool = t;
+        clothes = t;
         icon.sprite = t.GetIcon();
         uses.text = t.GetDurabilityLeft().ToString();
         tier.text = t.GetTier().ToString();
@@ -26,6 +26,6 @@ public class UITaskMonsterTool : MonoBehaviour
 
     public void OnClick()
     {
-        onClick?.Invoke(tool);
+        onClick?.Invoke(clothes);
     }
 }

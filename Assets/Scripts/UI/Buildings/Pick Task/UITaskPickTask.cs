@@ -34,10 +34,10 @@ public class UITaskPickTask : MonoBehaviour
             Instantiate(itemPrefab.gameObject, itemMonsterList).GetComponent<UIItem>().Load(i);
         foreach (ItemReward i in taskBase.GetItemRewards())
             Instantiate(itemRewardPrefab.gameObject, resultList).GetComponent<UIItemReward>().Load(i);
-        foreach (Tool t in taskBase.GetToolRewards())
-            Instantiate(toolPrefab.gameObject, resultList).GetComponent<UIToolReward>().Load(t.GetToolBase());
-        foreach (Clothes c in taskBase.GetClotheRewards())
-            Instantiate(toolPrefab.gameObject, resultList).GetComponent<UIToolReward>().Load(c.GetClothes());
+        foreach (ToolBase t in taskBase.GetToolRewards())
+            Instantiate(toolPrefab.gameObject, resultList).GetComponent<UIToolReward>().Load(t);
+        foreach (ClothesBase c in taskBase.GetClotheRewards())
+            Instantiate(toolPrefab.gameObject, resultList).GetComponent<UIToolReward>().Load(c);
     }
 
     public void ClearLists()

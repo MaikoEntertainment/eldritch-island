@@ -28,9 +28,9 @@ public class TaskBase: ScriptableObject
     [SerializeField]
     protected List<ItemReward> itemRewards;
     [SerializeField]
-    protected List<Tool> toolRewards;
+    protected List<ToolBase> toolRewards;
     [SerializeField]
-    protected List<Clothes> clothesRewards;
+    protected List<ClothesBase> clothesRewards;
 
     public int GetId() { return id; }
     public string GetName() { return myName.GetText(); }
@@ -55,11 +55,12 @@ public class TaskBase: ScriptableObject
     {
         return itemRewards;
     }
-    public List<Tool> GetToolRewards()
+    public List<ToolBase> GetToolRewards()
     {
+        
         return toolRewards;
     }
-    public List<Clothes> GetClotheRewards()
+    public List<ClothesBase> GetClotheRewards()
     {
         return clothesRewards;
     }

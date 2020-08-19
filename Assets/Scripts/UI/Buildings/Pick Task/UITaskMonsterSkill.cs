@@ -10,6 +10,12 @@ public class UITaskMonsterSkill : MonoBehaviour
     public void Load(Skill s)
     {
         string skillName = LanguageMaster.GetInstance().GetSkillName(s.GetId());
-        skillText.text = skillName + " " + s.GetLevel();
+        double exp = s.GetExp();
+        double toLevel = s.GetExpToLevelUp();
+        int originalLevel = s.GetLevel();
+        int bonus = s.GetLevelWithBonuses();
+        skillText.text = skillName + " " + bonus + " ("+(exp/toLevel*100).ToString("F1")+"%)";
+        if (originalLevel < bonus)
+            skillText.color = Utils.GetSuccessColor();
     }
 }

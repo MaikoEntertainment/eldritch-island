@@ -11,12 +11,18 @@ public class Skill
     protected int level = 0;
     [SerializeField]
     protected double exp = 0;
-
+    // Use only when getting the Skill with bonus and never for the actual skill
+    protected int bonusLevel = 0;
     public Skill(int initialLevel = 0, double exp=0)
     {
         level = initialLevel;
         this.exp = exp;
 
+    }
+
+    public virtual Skill Copy()
+    {
+        return new Skill(level, exp);
     }
 
     public virtual SkillIds GetId()
@@ -27,6 +33,19 @@ public class Skill
     {
         return level;
     }
+    public int GetBonusLevel()
+    {
+        return bonusLevel;
+    }
+    public int GetLevelWithBonuses()
+    {
+        return level + bonusLevel;
+    }
+    public int AddBonusLevel(int bonus)
+    {
+        bonusLevel += bonus;
+        return GetLevelWithBonuses();
+    }
 
    public double GetExp()
     {
@@ -36,23 +55,32 @@ public class Skill
     public virtual double GetExpToLevelUp()
     {
         double baseValue = 5;
-        return Math.Pow(baseValue, 2 * level);
+        return Math.Pow(baseValue, level);
     }
 
     public bool AddExp(double expGained)
     {
         exp += expGained;
-        if (exp > GetExpToLevelUp())
+        if (exp >= GetExpToLevelUp())
         {
+            double extra = exp - GetExpToLevelUp();
             LevelUp();
+            if (extra > 0)
+                AddExp(extra);
             return true;
         }
         return false;
     }
 
+    public void AddLevel(int add)
+    {
+        level += add;
+    }
+
     public int LevelUp()
     {
         level += 1;
+        exp = 0;
         return level;
     }
 }

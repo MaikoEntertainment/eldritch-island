@@ -11,10 +11,16 @@ public class UIMonsterViewerHandler : MonoBehaviour
     public TextMeshProUGUI species;
     public TextMeshProUGUI ability;
     public TextMeshProUGUI stress;
+    public TextMeshProUGUI toolsUsed;
+    public TextMeshProUGUI toolsSlots;
+    public TextMeshProUGUI clothesUsed;
+    public TextMeshProUGUI clothesSlots;
 
-    public Transform toolList;
-    public Transform clothesList;
+    public Transform equippedToolList;
+    public Transform equippedClothesList;
     public Transform skillsList;
+    public Transform toolPicker;
+    public Transform clothesPicker;
 
     public Button plusToolButton;
     public Button plusClothesButton;
@@ -22,6 +28,8 @@ public class UIMonsterViewerHandler : MonoBehaviour
     public UIMonsterViewerTool toolPrefab;
     public UIMonsterViewerClothes clothesPrefab;
     public UITaskMonsterSkill skillPrefab;
+    public UIMonsterViewerToolsPicker toolPickerPrefab;
+    public UIMonsterViewerClothesPicker clothesPickerPrefab;
 
     private Monster monster;
 
@@ -38,37 +46,52 @@ public class UIMonsterViewerHandler : MonoBehaviour
 
     public void UpdateEquipment()
     {
-        foreach (Transform t in toolList)
-        {
-            if (t.gameObject!=plusToolButton.gameObject)
-                Destroy(t.gameObject);
-        }
-        foreach (Transform c in clothesList)
+        UpdateTools();
+        UpdateClothes();
+    }
+
+    public void UpdateClothes()
+    {
+        foreach (Transform c in equippedClothesList)
         {
             if (c.gameObject != plusClothesButton.gameObject)
                 Destroy(c.gameObject);
         }
-        int toolSlots = monster.GetToolSlots();
         int clothesSlots = monster.GetClothesSlots();
-        foreach (Tool t in monster.GetTools())
+        this.clothesSlots.text = clothesSlots.ToString();
+        foreach (Clothes c in monster.GetClothes())
         {
-            Instantiate(toolPrefab.gameObject, toolList).GetComponent<UIMonsterViewerTool>().Load(t, monster);
-            toolSlots--;
+            Instantiate(clothesPrefab.gameObject, equippedClothesList).GetComponent<UIMonsterViewerClothes>().Load(c, monster).onClose += (Clothes to) => { UpdateClothes(); UpdateSkills(); }; ;
+            clothesSlots--;
         }
-
-        if (toolSlots > 0)
-            plusToolButton.gameObject.SetActive(true);
-        else
-            plusToolButton.gameObject.SetActive(false);
+        clothesUsed.text = (monster.GetClothesSlots() - clothesSlots).ToString();
+        clothesUsed.color = clothesSlots > 0 ? Utils.GetSuccessColor() : Utils.GetWrontColor();
         if (clothesSlots > 0)
             plusClothesButton.gameObject.SetActive(true);
         else
             plusClothesButton.gameObject.SetActive(false);
+    }
 
-        foreach (Clothes c in monster.GetClothes())
+    public void UpdateTools()
+    {
+        foreach (Transform t in equippedToolList)
         {
-            Instantiate(clothesPrefab.gameObject, toolList).GetComponent<UIMonsterViewerClothes>().Load(c, monster);
+            if (t.gameObject != plusToolButton.gameObject)
+                Destroy(t.gameObject);
         }
+        int toolSlots = monster.GetToolSlots();
+        toolsSlots.text = toolSlots.ToString();
+        foreach (Tool t in monster.GetTools())
+        {
+            Instantiate(toolPrefab.gameObject, equippedToolList).GetComponent<UIMonsterViewerTool>().Load(t, monster).onClose += (Tool to) => { UpdateTools(); UpdateSkills(); };
+            toolSlots--;
+        }
+        toolsUsed.text = (monster.GetToolSlots() - toolSlots).ToString();
+        toolsUsed.color = toolSlots > 0 ? Utils.GetSuccessColor() : Utils.GetWrontColor();
+        if (toolSlots > 0)
+            plusToolButton.gameObject.SetActive(true);
+        else
+            plusToolButton.gameObject.SetActive(false);
     }
 
     public void UpdateSkills()
@@ -77,10 +100,24 @@ public class UIMonsterViewerHandler : MonoBehaviour
         {
             Destroy(skill.gameObject);
         }
-        foreach(Skill s in monster.GetSkills().Values.ToList())
+        foreach(Skill s in monster.GetFinalSkills().Values.ToList())
         {
             Instantiate(skillPrefab.gameObject, skillsList).GetComponent<UITaskMonsterSkill>().Load(s);
         }
+    }
+
+    public void OpenToolsPicker()
+    {
+        foreach (Transform t in toolPicker)
+            Destroy(t.gameObject);
+        Instantiate(toolPickerPrefab.gameObject, toolPicker).GetComponent<UIMonsterViewerToolsPicker>().Load(monster);
+    }
+
+    public void OpenClothesPicker()
+    {
+        foreach (Transform t in clothesPicker)
+            Destroy(t.gameObject);
+        Instantiate(clothesPickerPrefab.gameObject, clothesPicker).GetComponent<UIMonsterViewerClothesPicker>().Load(monster);
     }
 
     public void Close()
