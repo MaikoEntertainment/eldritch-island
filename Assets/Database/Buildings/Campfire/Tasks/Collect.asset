@@ -28,10 +28,9 @@ MonoBehaviour:
     levelModifier: 5
   itemRewards:
   - item: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
-    minAmount: 5
-    extraRange: 3
+    minAmount: 3
+    extraRange: 2
     rewardChance: 1
-  toolRewards:
-  - {fileID: 11400000, guid: 3e77e8e2e905c974c8c9a92b87b79643, type: 2}
-  clothesRewards:
-  - {fileID: 11400000, guid: 7806c1e704136874e8c76c8bd1cd31fc, type: 2}
+  toolRewards: []
+  clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}

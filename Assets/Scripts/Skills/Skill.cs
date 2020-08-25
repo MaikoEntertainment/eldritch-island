@@ -55,7 +55,7 @@ public class Skill
     public virtual double GetExpToLevelUp()
     {
         double baseValue = 5;
-        return Math.Pow(baseValue, level);
+        return Math.Pow(baseValue, 1 + level * 0.5f);
     }
 
     public bool AddExp(double expGained)

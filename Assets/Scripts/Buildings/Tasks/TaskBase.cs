@@ -31,12 +31,14 @@ public class TaskBase: ScriptableObject
     protected List<ToolBase> toolRewards;
     [SerializeField]
     protected List<ClothesBase> clothesRewards;
+    [SerializeField]
+    protected Notification onEndNotification;
 
     public int GetId() { return id; }
     public string GetName() { return myName.GetText(); }
     public string GetDescription() { return description.GetText(); }
     public Sprite GetIcon() { return icon; }
-    public double GetProgressNeeded()
+    public virtual double GetProgressNeeded()
     {
         return progressNeeded;
     }
@@ -47,7 +49,7 @@ public class TaskBase: ScriptableObject
     }
     public List<SkillBonus> GetSkillsRequired() { return skillsRequired; }
     public List<Item> GetCostPerMonster() { return costPerMonster; }
-    public List<Item> GetItemCost()
+    public virtual List<Item> GetItemCost()
     {
         return itemCosts;
     }
@@ -66,10 +68,16 @@ public class TaskBase: ScriptableObject
     }
     public virtual void OnComplete()
     {
-
+       
     }
     public virtual bool IsAvailable()
     {
         return true;
+    }
+
+    public virtual NotificationTaskFinish GetNotificationOnEnd(Task task, List<Item> rewards, List<Tool> tools, List<Clothes> clothes)
+    {
+        NotificationTaskFinish ntf = new NotificationTaskFinish(onEndNotification, task, rewards, tools, clothes);
+        return ntf;
     }
 }

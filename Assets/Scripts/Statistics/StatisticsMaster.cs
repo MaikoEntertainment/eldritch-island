@@ -7,7 +7,7 @@ public class StatisticsMaster : MonoBehaviour
 {
     private static StatisticsMaster _instance;
     [SerializeField]
-    private StatisticsDatabase database = new StatisticsDatabase();
+    private StatisticsDatabase database;
     private Dictionary<StatisticIds, StatisticValue> statistics;
 
     // Events

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed74429f603eeca44aca4c31fc575f48, type: 3}
-  m_Name: Campfire
+  m_Name: Campfire Ritual
   m_EditorClassIdentifier: 
   id: 0
   progressNeeded: 50
@@ -28,10 +28,10 @@ MonoBehaviour:
   skillsRequired:
   - skillId: 5
     levelModifier: 1
-  itemRewards:
-  - item: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
-    minAmount: 1
-    extraRange: 0
-    rewardChance: 0.5
+  itemRewards: []
   toolRewards: []
   clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: a1ae413c3c8eda24a919f3c93c4bf1f6, type: 2}
+  requirements:
+  - buildingId: 4
+    minLevelRequired: 2

@@ -26,10 +26,11 @@ public class UIBuildingMaster : MonoBehaviour
     }
     public static UIBuildingMaster GetInstance() { return _instance; }
 
-    public void UpdateBuildingList(List<Building> buildings)
+    public void UpdateBuildingList()
     {
         ClearBuildings();
-        foreach(Building b in buildings)
+        List<Building> buildings = BuildingMaster.GetInstance().GetUnlockedBuildings();
+        foreach (Building b in buildings)
         {
             foreach (UIBuildingBase ui in UIBuildingsPrefabs)
             {

@@ -6,8 +6,7 @@ public class UIButtonUtils : MonoBehaviour
 {
     public void OpenMonsterDraft()
     {
-        List<Monster> monsters = MonsterMaster.GetInstance().GetMonsterDraft();
-        UIMonsterPickerMaster.GetInstance().ShowMonsterDraft(monsters);
+        UIMonsterPickerMaster.GetInstance().ShowMonsterDraft();
     }
 
     public void CloseMonsterDraft()

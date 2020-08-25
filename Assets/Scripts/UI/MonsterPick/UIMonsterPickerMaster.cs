@@ -24,8 +24,9 @@ public class UIMonsterPickerMaster : MonoBehaviour
 
     public static UIMonsterPickerMaster GetInstance() { return _instance; }
 
-    public void ShowMonsterDraft(List<Monster> monsterDraft)
+    public void ShowMonsterDraft()
     {
+        List<Monster> monsterDraft = MonsterMaster.GetInstance().GetMonsterDraft();
         HideMonsterDraft();
         pickerInstance = Instantiate(mosnterDraftPickerPrefab.gameObject, transform).GetComponent<UIMonsterPickerManager>();
         pickerInstance.FillPicks(monsterDraft);

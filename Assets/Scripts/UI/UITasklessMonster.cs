@@ -16,7 +16,7 @@ public class UITasklessMonster : MonoBehaviour
         this.m = m;
         float stress = m.GetStress();
         float max = m.GetStressMax();
-        text.text = stress + "/" + max;
+        text.text = stress.ToString("F1") + "/" + max;
         icon.sprite = m.GetIcon();
     }
 

@@ -2,7 +2,6 @@
 using UnityEngine;
 
 [CreateAssetMenu]
-[Serializable]
 public class ItemBase: ScriptableObject
 {
     [SerializeField]
@@ -10,7 +9,7 @@ public class ItemBase: ScriptableObject
     [SerializeField]
     protected Sprite icon;
     [SerializeField]
-    protected TextLanguageOwn name;
+    protected TextLanguageOwn myName;
     [SerializeField]
     protected TextLanguageOwn description;
     [SerializeField]
@@ -26,6 +25,6 @@ public class ItemBase: ScriptableObject
         Console.WriteLine("Basic Items can't be used, only consumed in crafting/task requirements");
     }
     public Sprite GetIcon() { return icon; }
-    public string GetName() { return name.GetText(); }
+    public string GetName() { return myName.GetText(); }
     public string GetDescription() { return description.GetText(); }
 }

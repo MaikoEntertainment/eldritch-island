@@ -24,19 +24,32 @@ public class Building : MonoBehaviour
 
     public delegate void TaskUpdated();
     public TaskUpdated onTasksUpdated;
+    public delegate void LevelUped(Building building);
+    public LevelUped onLevelUp;
 
-    private void Start()
+    protected virtual void Start()
     {
         foreach (TaskBase tb in taskBases)
             dictionaryTaskBases.Add(tb.GetId(), tb);
     }
     public BuildingIds GetId() { return id; }
     public int GetLevel() { return level; }
+    public void LevelUp()
+    {
+        level++;
+        onLevelUp?.Invoke(this);
+    }
     public virtual int GetTaskSlots() { return initialTaskSlots; }
     public string GetName() { return myName.GetText(); }
     public List<TaskBase> GetTasks() { return taskBases; }
     public List<Task> GetActiveTasks() { return tasksActive; }
-    public List<TaskBase> GetUnlockedTasks() { return taskBases; }
+    public List<TaskBase> GetUnlockedTasks() {
+        List<TaskBase> unlocked = new List<TaskBase>();
+        foreach (TaskBase tb in GetTasks())
+            if (tb.IsAvailable())
+                unlocked.Add(tb);
+        return unlocked; 
+    }
     public virtual List<Item> GetLevelUpCost(int level) 
     {
         Console.WriteLine("Replace with own cost");

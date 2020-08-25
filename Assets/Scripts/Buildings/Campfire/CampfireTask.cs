@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 [CreateAssetMenu(menuName = "Tasks/Campfire/Campfire")]
-public class CampfireTask : TaskBase
+public class CampfireTask : TaskBaseBuildingLevelRequirement
 {
     public override void OnComplete()
     {
@@ -11,5 +11,6 @@ public class CampfireTask : TaskBase
         {
             m.AddStress(-10);
         }
+        UITasklessMonsterMaster.GetInstance().UpdateTasklessMonsters();
     }
 }

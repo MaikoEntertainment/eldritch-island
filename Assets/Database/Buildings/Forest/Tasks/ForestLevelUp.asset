@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c559e979f41694ebe63a8d705eae0e, type: 3}
+  m_Name: ForestLevelUp
+  m_EditorClassIdentifier: 
+  id: 0
+  progressNeeded: 60
+  tags: 
+  myName:
+    english: Level Up
+  description:
+    english: Increases progress per second by 1%. Unlocks a new task slot every 5
+      levels.
+  icon: {fileID: 4487214514996280067, guid: e8996999b66463142a43f917b261a88a, type: 3}
+  stressChange: 20
+  itemCosts:
+  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
+    amount: 40
+  costPerMonster: []
+  skillsRequired: []
+  itemRewards: []
+  toolRewards: []
+  clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
+  buildingId: 0

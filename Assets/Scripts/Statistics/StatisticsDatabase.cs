@@ -5,11 +5,12 @@ using UnityEngine;
 public class StatisticsDatabase : ScriptableObject
 {
     [SerializeField]
-    protected List<StatisticsSection> sections = new List<StatisticsSection>();
-    protected Dictionary<StatisticIds, Statistic> dictionary = new Dictionary<StatisticIds, Statistic>();
+    protected List<StatisticsSection> sections;
+    protected Dictionary<StatisticIds, Statistic> dictionary;
 
     public void InitializeDictionary()
     {
+        dictionary = new Dictionary<StatisticIds, Statistic>();
         foreach (StatisticsSection section in sections)
         {
             foreach (Statistic st in section.GetStatistics())

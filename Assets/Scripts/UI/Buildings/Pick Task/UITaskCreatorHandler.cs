@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using TMPro;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +11,7 @@ public class UITaskCreatorHandler : MonoBehaviour
     public Toggle toggle;
     public Button done;
 
+    public TextMeshProUGUI level;
     public TextMeshProUGUI usedSlots;
     public TextMeshProUGUI totalSlots;
     public Transform itemCostList;
@@ -54,6 +51,7 @@ public class UITaskCreatorHandler : MonoBehaviour
         usedSlots.text = used.ToString();
         usedSlots.color = (used < building.GetTaskSlots()) ? Utils.GetSuccessColor() : Utils.GetWrontColor();
         totalSlots.text = building.GetTaskSlots().ToString();
+        level.text = building.GetLevel().ToString();
     }
 
     public void LoadTaskDraft(TaskBase task)
@@ -75,7 +73,7 @@ public class UITaskCreatorHandler : MonoBehaviour
         {
             Destroy(task.gameObject);
         }
-        foreach (TaskBase tb in currentBuilding.GetTasks())
+        foreach (TaskBase tb in currentBuilding.GetUnlockedTasks())
         {
             bool isSelected = (tb.GetId() == currentBuilding.GetDraftTask().GetTask().GetId());
             Instantiate(taskPrefab.gameObject, taskList).GetComponent<UITaskPickTask>().Load(tb, isSelected);
@@ -84,7 +82,7 @@ public class UITaskCreatorHandler : MonoBehaviour
 
     public void UpdateCurrentTask()
     {
-        progressNeeded.text = "" + currentTask.GetTask().GetProgressNeeded();
+        progressNeeded.text = "" + (int)currentTask.GetTask().GetProgressNeeded();
         progressPerSec.text = currentTask.CalculateProgressPerSecond().ToString("F1") + "/s";
         stress.text = (currentTask.GetTask().GetStressChange() >= 0 ? "+" : "") + currentTask.GetTask().GetStressChange();
         description.text = currentTask.GetTask().GetDescription();

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -71,12 +72,12 @@ public class Task
         float progress = 0;
         foreach(Monster m in GetMonsters())
         {
-            float monsterProgress = 0;
+            float monsterProgress = Math.Max(1, taskBase.GetSkillsRequired().Count);
             Dictionary<SkillIds, Skill> skills = m.GetFinalSkills();
             foreach(SkillBonus s in taskBase.GetSkillsRequired())
             {
                 int level = skills[s.GetSkillId()].GetLevelWithBonuses();
-                monsterProgress += 1 + 0.1f * level;
+                monsterProgress += 0.1f * level;
             }
             if (taskBase.GetSkillsRequired().Count > 0)
                 monsterProgress /= taskBase.GetSkillsRequired().Count;
@@ -172,7 +173,11 @@ public class Task
     {
         CheckForMonsterSanity();
         bool canPay = CanPayTask();
-        if (!canPay) ClearTask();
+        if (!canPay)
+        {
+            ClearTask();
+            return false;
+        }
         // Check if its the first iteration of the Task
         if (!hasTaskBegun)
         {
@@ -193,6 +198,9 @@ public class Task
         List<ItemReward> finalItemsRewards = taskBase.GetItemRewards();
         List<ToolBase> finalToolRewards = taskBase.GetToolRewards();
         List<ClothesBase> finalClothesRewards = taskBase.GetClotheRewards();
+        List<Item> itemFinalValues = new List<Item>();
+        List<Tool> toolToolFinalValues = new List<Tool>();
+        List<Clothes> toolClothesFinalValues = new List<Clothes>();
         foreach (Monster m in GetMonsters())
         {
             finalItemsRewards = m.GetTaskItemRewards(this, finalItemsRewards);
@@ -204,19 +212,25 @@ public class Task
         {
             Item i = ir.ObtainReward();
             if (i.GetAmount() > 0)
+            {
                 InventoryMaster.GetInstance().ChangeItemAmount(i.GetId(), i.GetAmount());
+                itemFinalValues.Add(i);
+            }
         }
         int craftingPower = GetCraftingPower();
         foreach (ToolBase t in finalToolRewards)
         {
             Tool reward = ItemMaster.GetInstance().CreateTool(t, craftingPower);
             InventoryMaster.GetInstance().AddTool(reward);
+            toolToolFinalValues.Add(reward);
         }
         foreach (ClothesBase c in finalClothesRewards)
         {
             Clothes reward = ItemMaster.GetInstance().CreateClothes(c, craftingPower);
             InventoryMaster.GetInstance().AddClothes(reward);
+            toolClothesFinalValues.Add(reward);
         }
+        NotificationMaster.GetInstance().SendTaskNotification(GetTask().GetNotificationOnEnd(this, itemFinalValues, toolToolFinalValues, toolClothesFinalValues));
         if (!GetIsInfinite())
             iterationsLeft -= 1;
         if (iterationsLeft >= 0)
@@ -227,6 +241,7 @@ public class Task
         {
             ClearTask();
         }
+
     }
 
     public void ClearTask()

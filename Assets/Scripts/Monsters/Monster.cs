@@ -77,7 +77,10 @@ public class Monster : MonoBehaviour
     }
     public virtual bool AddSkillExp(SkillIds id, double exp)
     {
-        return skills.AddExp(id, exp);
+        bool leveledUp = skills.AddExp(id, exp);
+        if (leveledUp)
+            NotificationMaster.GetInstance().SendLevelUpNotification(GetIcon(), LanguageMaster.GetInstance().GetSkillName(id), GetSkillLevel(id));
+        return leveledUp;
     }
     public virtual int GetSkillLevel(SkillIds id)
     {

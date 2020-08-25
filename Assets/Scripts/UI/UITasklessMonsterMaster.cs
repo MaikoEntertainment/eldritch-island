@@ -14,32 +14,33 @@ public class UITasklessMonsterMaster : MonoBehaviour
     private void Awake()
     {
         if (_instance)
-            Destroy(this);
-        else
-        {
-            _instance = this;
-        }
+            Destroy(_instance);
+       _instance = this;
     }
 
     public static UITasklessMonsterMaster GetInstance() { return _instance; }
     public void UpdateTasklessMonsters()
     {
-        Dictionary<MonsterIds, Monster> monsters = MonsterMaster.GetInstance().GetTasklessMonsters();
+        Dictionary<MonsterIds, Monster> tasklessMonsters = MonsterMaster.GetInstance().GetTasklessMonsters();
         foreach (MonsterIds mId in tasklessCache.Keys.ToList())
         {
-            if (!monsters.ContainsKey(mId))
+            if (!tasklessMonsters.ContainsKey(mId))
             {
                 Destroy(tasklessCache[mId].gameObject);
                 tasklessCache.Remove(mId);
             }
         }
-        foreach (Monster monster in monsters.Values.ToList())
+        foreach (Monster monster in tasklessMonsters.Values.ToList())
         {
             if (!tasklessCache.ContainsKey(monster.GetId()))
             {
                 UITasklessMonster taskless = Instantiate(tasklessMonsterPrefab.gameObject, transform).GetComponent<UITasklessMonster>();
                 taskless.Load(monster);
                 tasklessCache.Add(monster.GetId(), taskless);
+            }
+            else
+            {
+                tasklessCache[monster.GetId()].Load(monster);
             }
         }
     }

@@ -465,6 +465,7 @@ GameObject:
   - component: {fileID: 2666927088649854345}
   - component: {fileID: 7332217606339425965}
   - component: {fileID: 1770792889456011944}
+  - component: {fileID: 1824516758734109344}
   m_Layer: 5
   m_Name: Tools Picker
   m_TagString: Untagged
@@ -553,6 +554,19 @@ MonoBehaviour:
   skillBonusList: {fileID: 6943208861167393198}
   skillPrefab: {fileID: 514267185722029563, guid: dce73018fa455be43a9a39dcd6b431c7, type: 3}
   toolPrefab: {fileID: 8441489886379460681, guid: 14bf1b9bbbec1ae499d51dfdfa62dab1, type: 3}
+--- !u!114 &1824516758734109344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102140725751122964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ee2f2cea740814b8acfc0a8a4fd33c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0.5
 --- !u!1 &2216263192656166404
 GameObject:
   m_ObjectHideFlags: 0

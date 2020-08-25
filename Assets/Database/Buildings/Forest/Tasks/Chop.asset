@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1a8fe29dc02d246bb8581824cfc626, type: 3}
   m_Name: Chop
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1
   progressNeeded: 20
   tags: 01000000
   myName:
@@ -41,3 +41,4 @@ MonoBehaviour:
     rewardChance: 0.1
   toolRewards: []
   clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}

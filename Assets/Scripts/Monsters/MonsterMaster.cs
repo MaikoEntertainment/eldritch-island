@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -12,6 +13,8 @@ public class MonsterMaster : MonoBehaviour
     protected MonsterDatabase database;
     protected Dictionary<MonsterIds, Monster> activeMonsters = new Dictionary<MonsterIds, Monster>();
 
+    public delegate void MonsterActivated(Monster m);
+    public MonsterActivated onMonsterActivated;
     void Awake()
     {
         if (_instance == null)
@@ -35,6 +38,14 @@ public class MonsterMaster : MonoBehaviour
     public Dictionary<MonsterIds, Monster> GetActiveMonsters()
     {
         return activeMonsters;
+    }
+    public int GetAvailableSummons()
+    {
+        int campfireLevel = BuildingMaster.GetInstance().GetBuilding(BuildingIds.Campfire).GetLevel();
+        if (campfireLevel < 1) return 0;
+        int mounstersCount = activeMonsters.Count;
+        int summons = 1 + (int)(campfireLevel/3f) - mounstersCount;
+        return summons;
     }
 
     public Dictionary<MonsterIds, Monster> GetTasklessMonsters()
@@ -129,5 +140,6 @@ public class MonsterMaster : MonoBehaviour
         }
         activeMonsters.Add(m.GetId(), instance);
         UITasklessMonsterMaster.GetInstance().UpdateTasklessMonsters();
+        onMonsterActivated?.Invoke(m);
     }
 }

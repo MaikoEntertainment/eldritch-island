@@ -25,7 +25,7 @@ public class BuildingMaster : MonoBehaviour
 
     private void Start()
     {
-        UIBuildingMaster.GetInstance().UpdateBuildingList(buildingDictionary.Values.ToList());
+        UIBuildingMaster.GetInstance().UpdateBuildingList();
     }
 
     public static BuildingMaster GetInstance() { return _instance; }
