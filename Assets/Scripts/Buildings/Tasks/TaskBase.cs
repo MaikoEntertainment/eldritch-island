@@ -15,6 +15,8 @@ public class TaskBase: ScriptableObject
     [SerializeField]
     protected TextLanguageOwn description;
     [SerializeField]
+    protected TextLanguageOwn unlockCondition;
+    [SerializeField]
     protected Sprite icon;
 
     [SerializeField]
@@ -37,6 +39,7 @@ public class TaskBase: ScriptableObject
     public int GetId() { return id; }
     public string GetName() { return myName.GetText(); }
     public string GetDescription() { return description.GetText(); }
+    public string GetUnlockCondition() { return unlockCondition.GetText(); }
     public Sprite GetIcon() { return icon; }
     public virtual double GetProgressNeeded()
     {

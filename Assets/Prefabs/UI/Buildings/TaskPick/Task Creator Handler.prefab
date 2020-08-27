@@ -1093,7 +1093,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 3060289626700891661}
   m_TextComponent: {fileID: 1812570092311370383}
   m_Placeholder: {fileID: 8801144750966732320}
@@ -4447,7 +4447,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3751315501009403889}
   - component: {fileID: 3751315501009403891}
-  - component: {fileID: 3751315501009403902}
   - component: {fileID: 3751315501009403890}
   - component: {fileID: 7581764339911420630}
   m_Layer: 5
@@ -4484,36 +4483,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3751315501009403888}
   m_CullTransparentMesh: 0
---- !u!114 &3751315501009403902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3751315501009403888}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &3751315501009403890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5185,7 +5154,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &4361570331141374808
 GameObject:
   m_ObjectHideFlags: 0
@@ -8098,6 +8067,7 @@ MonoBehaviour:
   stress: {fileID: 1185938250639268002}
   description: {fileID: 2935145933581004741}
   taskPrefab: {fileID: 8770568474787209810, guid: 6ab09a2c3f921be4a849aedce32c8932, type: 3}
+  taskLockedPrefab: {fileID: 3031252125701156813, guid: 620a2d0259ba3514bbdc23e576660918, type: 3}
   itemPrefab: {fileID: 6537781163065902405, guid: 044dc8fb51e724f47b1821f4031ea393, type: 3}
   itemRewardPrefab: {fileID: 8996964571335523852, guid: f832b849269fbee48bcc61f8203454c2, type: 3}
   monsterPickerPrefab: {fileID: 4579207530149361148, guid: 832f6f6306fc63144b2c8335672d9d23, type: 3}

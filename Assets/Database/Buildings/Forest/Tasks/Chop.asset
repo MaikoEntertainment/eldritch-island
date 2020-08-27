@@ -19,6 +19,8 @@ MonoBehaviour:
     english: Chop
   description:
     english: Venture trough the twisted woods to collect wood.
+  unlockCondition:
+    english: Always up.
   icon: {fileID: 6812396857366647474, guid: e8996999b66463142a43f917b261a88a, type: 3}
   stressChange: 8
   itemCosts:
@@ -35,10 +37,6 @@ MonoBehaviour:
     minAmount: 3
     extraRange: 2
     rewardChance: 1
-  - item: {fileID: 11400000, guid: b46c0fb9d93f3f94f80752367df32de5, type: 2}
-    minAmount: 1
-    extraRange: 0
-    rewardChance: 0.1
   toolRewards: []
   clothesRewards: []
   onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}

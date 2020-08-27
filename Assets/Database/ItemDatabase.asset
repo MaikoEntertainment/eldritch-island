@@ -17,6 +17,7 @@ MonoBehaviour:
     items:
     - {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
     - {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
+    - {fileID: 11400000, guid: 2b6b2b7c948900643b518010c4ac4a30, type: 2}
   - category: Consumable
     items:
     - {fileID: 11400000, guid: b46c0fb9d93f3f94f80752367df32de5, type: 2}

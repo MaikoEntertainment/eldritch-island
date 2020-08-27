@@ -19,6 +19,8 @@ MonoBehaviour:
     english: Collect
   description:
     english: Collect food from nearby bushes.
+  unlockCondition:
+    english: Always available why are you even seeingn this lmao.
   icon: {fileID: 8100173508216559957, guid: e8996999b66463142a43f917b261a88a, type: 3}
   stressChange: 0
   itemCosts: []

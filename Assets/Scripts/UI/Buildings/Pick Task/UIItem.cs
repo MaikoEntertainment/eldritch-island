@@ -14,7 +14,7 @@ public class UIItem : MonoBehaviour
         icon.sprite = item?.GetIcon();
         amount.text = ""+Utils.ToFormat(item.GetAmount());
         if (invalid)
-            amount.color = Utils.GetWrontColor();
+            amount.color = Utils.GetWrongColor();
     }
 
 

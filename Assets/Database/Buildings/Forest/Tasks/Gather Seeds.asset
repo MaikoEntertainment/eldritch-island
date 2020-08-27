@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd55d8f11e357fa4c8b7385a3f3af482, type: 3}
+  m_Name: Gather Seeds
+  m_EditorClassIdentifier: 
+  id: 2
+  progressNeeded: 80
+  tags: 
+  myName:
+    english: Gather Seeds
+  description:
+    english: Gather seeds in order to grow your own life...
+  unlockCondition:
+    english: Level 2 is reached.
+  icon: {fileID: 6678823951699107959, guid: e8996999b66463142a43f917b261a88a, type: 3}
+  stressChange: 10
+  itemCosts:
+  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
+    amount: 10
+  costPerMonster:
+  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
+    amount: 5
+  skillsRequired:
+  - skillId: 0
+    levelModifier: 2
+  - skillId: 1
+    levelModifier: 2
+  itemRewards:
+  - item: {fileID: 11400000, guid: 2b6b2b7c948900643b518010c4ac4a30, type: 2}
+    minAmount: 1
+    extraRange: 0
+    rewardChance: 1
+  - item: {fileID: 11400000, guid: b46c0fb9d93f3f94f80752367df32de5, type: 2}
+    minAmount: 1
+    extraRange: 0
+    rewardChance: 0.1
+  toolRewards: []
+  clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
+  requirements:
+  - buildingId: 0
+    minLevelRequired: 2

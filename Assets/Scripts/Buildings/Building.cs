@@ -34,7 +34,7 @@ public class Building : MonoBehaviour
     }
     public BuildingIds GetId() { return id; }
     public int GetLevel() { return level; }
-    public void LevelUp()
+    public virtual void LevelUp()
     {
         level++;
         onLevelUp?.Invoke(this);

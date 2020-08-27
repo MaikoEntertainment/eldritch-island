@@ -50,7 +50,7 @@ MonoBehaviour:
   description:
     english: The Shadow travels between realms looking for someone to take it's place.
   ability:
-    english: Consume's half the Food on each Task.
+    english: Consume's half of it's own Food on each Task.
   skills:
     initialSkills:
     - id: 5

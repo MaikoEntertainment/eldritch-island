@@ -28,8 +28,10 @@ public class UITaskMonsterPick : MonoBehaviour
         float stressAfter = m.GetStressAfterTask(t);
         float stressMax = m.GetStressMax();
         icon.sprite = m.GetIcon();
-        stressBefore.text = stress.ToString();
-        this.stressAfter.text = stressAfter.ToString();
+        stressBefore.text = stress.ToString("F1");
+        this.stressAfter.text = stressAfter.ToString("F1");
+        if (stressMax < stressAfter)
+            this.stressAfter.color = Utils.GetWrongColor();
         monsterName.text = m.GetSpecies();
 
         foreach (SkillBonus ts in t.GetTask().GetSkillsRequired())

@@ -34,7 +34,7 @@ public static class Utils
         return new Color(.24f,.78f,.27f);
     }
 
-    public static Color GetWrontColor()
+    public static Color GetWrongColor()
     {
         return new Color(.91f, 0, .27f);
     }

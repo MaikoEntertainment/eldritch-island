@@ -25,6 +25,7 @@ public class UITaskCreatorHandler : MonoBehaviour
     public TextMeshProUGUI description;
 
     public UITaskPickTask taskPrefab;
+    public UITaskLocked taskLockedPrefab;
     public UIItem itemPrefab;
     public UIItemReward itemRewardPrefab;
     public UIMonsterTaskPickerHandler monsterPickerPrefab;
@@ -49,7 +50,7 @@ public class UITaskCreatorHandler : MonoBehaviour
         UpdateTaskList();
         int used = building.GetActiveTasks().Count;
         usedSlots.text = used.ToString();
-        usedSlots.color = (used < building.GetTaskSlots()) ? Utils.GetSuccessColor() : Utils.GetWrontColor();
+        usedSlots.color = (used < building.GetTaskSlots()) ? Utils.GetSuccessColor() : Utils.GetWrongColor();
         totalSlots.text = building.GetTaskSlots().ToString();
         level.text = building.GetLevel().ToString();
     }
@@ -58,6 +59,7 @@ public class UITaskCreatorHandler : MonoBehaviour
     {
         Task taskNew = currentBuilding.CreateTask(task.GetId());
         taskNew.SetInfinite(toggle.isOn);
+        iterations.interactable = !toggle.isOn;
         LoadTask(taskNew);
     }
     public void LoadTask(Task task)
@@ -77,6 +79,11 @@ public class UITaskCreatorHandler : MonoBehaviour
         {
             bool isSelected = (tb.GetId() == currentBuilding.GetDraftTask().GetTask().GetId());
             Instantiate(taskPrefab.gameObject, taskList).GetComponent<UITaskPickTask>().Load(tb, isSelected);
+        }
+        foreach (TaskBase tb in currentBuilding.GetTasks())
+        {
+            if (!tb.IsAvailable())
+                Instantiate(taskLockedPrefab.gameObject, taskList).GetComponent<UITaskLocked>().Load(tb);
         }
     }
 

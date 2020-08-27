@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: CampfireLevelUp
   m_EditorClassIdentifier: 
   id: 2
-  progressNeeded: 70
+  progressNeeded: 50
   tags: 
   myName:
     english: Level Up
   description:
     english: Increases progress per second by 1%. Unlocks a new monster every 3 levels.
+  unlockCondition:
+    english: Current level up task is finished.
   icon: {fileID: -5692852124484312159, guid: e8996999b66463142a43f917b261a88a, type: 3}
   stressChange: 20
   itemCosts:

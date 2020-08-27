@@ -20,11 +20,15 @@ MonoBehaviour:
   description:
     english: Increases progress per second by 1%. Unlocks a new task slot every 5
       levels.
+  unlockCondition:
+    english: Current level up task is finished.
   icon: {fileID: 4487214514996280067, guid: e8996999b66463142a43f917b261a88a, type: 3}
   stressChange: 20
   itemCosts:
   - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
-    amount: 40
+    amount: 20
+  - itemBase: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
+    amount: 10
   costPerMonster: []
   skillsRequired: []
   itemRewards: []

@@ -39,7 +39,7 @@ public class UIMonsterViewerHandler : MonoBehaviour
         icon.sprite = m.GetIcon();
         species.text = m.GetSpecies();
         ability.text = m.GetAbility();
-        stress.text = m.GetStress() + "/"+m.GetStressMax();
+        stress.text = m.GetStress().ToString("F1") + "/"+m.GetStressMax();
         UpdateEquipment();
         UpdateSkills();
     }
@@ -65,7 +65,7 @@ public class UIMonsterViewerHandler : MonoBehaviour
             clothesSlots--;
         }
         clothesUsed.text = (monster.GetClothesSlots() - clothesSlots).ToString();
-        clothesUsed.color = clothesSlots > 0 ? Utils.GetSuccessColor() : Utils.GetWrontColor();
+        clothesUsed.color = clothesSlots > 0 ? Utils.GetSuccessColor() : Utils.GetWrongColor();
         if (clothesSlots > 0)
             plusClothesButton.gameObject.SetActive(true);
         else
@@ -87,7 +87,7 @@ public class UIMonsterViewerHandler : MonoBehaviour
             toolSlots--;
         }
         toolsUsed.text = (monster.GetToolSlots() - toolSlots).ToString();
-        toolsUsed.color = toolSlots > 0 ? Utils.GetSuccessColor() : Utils.GetWrontColor();
+        toolsUsed.color = toolSlots > 0 ? Utils.GetSuccessColor() : Utils.GetWrongColor();
         if (toolSlots > 0)
             plusToolButton.gameObject.SetActive(true);
         else
