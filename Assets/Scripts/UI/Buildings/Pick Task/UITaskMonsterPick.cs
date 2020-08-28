@@ -37,7 +37,7 @@ public class UITaskMonsterPick : MonoBehaviour
         foreach (SkillBonus ts in t.GetTask().GetSkillsRequired())
         {
             Dictionary<SkillIds, Skill> monsterSkills = m.GetFinalSkills();
-            Instantiate(monsterPickSkillPrefab.gameObject, skillList).GetComponent<UITaskMonsterSkill>().Load(monsterSkills[ts.GetSkillId()]);
+            Instantiate(monsterPickSkillPrefab.gameObject, skillList).GetComponent<UITaskMonsterSkill>().Load(monsterSkills[ts.GetSkillId()], true);
         }
         foreach (Tool tool in m.GetTools())
         {

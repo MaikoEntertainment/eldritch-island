@@ -7,14 +7,14 @@ public class UITaskMonsterSkill : MonoBehaviour
 {
     public TextMeshProUGUI skillText;
 
-    public void Load(Skill s)
+    public void Load(Skill s, bool hidePercentage = false)
     {
         string skillName = LanguageMaster.GetInstance().GetSkillName(s.GetId());
         double exp = s.GetExp();
         double toLevel = s.GetExpToLevelUp();
         int originalLevel = s.GetLevel();
         int bonus = s.GetLevelWithBonuses();
-        skillText.text = skillName + " " + bonus + " ("+(exp/toLevel*100).ToString("F1")+"%)";
+        skillText.text = skillName + " " + bonus + ( hidePercentage ? "" : (" (" +(exp/toLevel*100).ToString("F1")+"%)"));
         if (originalLevel < bonus)
             skillText.color = Utils.GetSuccessColor();
     }
