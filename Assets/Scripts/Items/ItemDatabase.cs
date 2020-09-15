@@ -15,7 +15,8 @@ public class ItemDatabase : ScriptableObject
         {
             foreach(ItemBase ib in section.GetItems())
             {
-                itemsDictionary.Add(ib.GetId(), ib);
+                if (!itemsDictionary.ContainsKey(ib.GetId()))
+                    itemsDictionary.Add(ib.GetId(), ib);
             }
         }
     }

@@ -14,7 +14,7 @@ public class ClothesMaster : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
+            database.InitializeDictionary();
         }
         else
         {

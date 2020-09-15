@@ -18,7 +18,6 @@ public class SoundMaster : MonoBehaviour
         else
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -44,4 +43,18 @@ public class SoundMaster : MonoBehaviour
         newEffect.volume = effectsVolume;
         Destroy(newEffect, clip.length + 0.1f);
     }
+
+    public void SetMusicVolume(float volume)
+    {
+        songSource.volume = volume;
+    }
+
+    public float GetMusicVolume() { return songSource.volume; }
+
+    public void SetEffectVolume(float volume)
+    {
+        effectsVolume = volume;
+    }
+
+    public float GetEffectVolume() { return effectsVolume; }
 }

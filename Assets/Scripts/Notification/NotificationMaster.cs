@@ -28,4 +28,8 @@ public class NotificationMaster : MonoBehaviour
     {
         UINotificationMaster.GetInstance().LoadSkillLevelUp(new NotificationLevelUp(notificationLevelUpBase, icon, levelUpName, newLevel));
     }
+    public void SendSaveNotifcation()
+    {
+        UINotificationMaster.GetInstance().LoadSaveNotification();
+    }
 }

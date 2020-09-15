@@ -17,7 +17,6 @@ public class BuildingMaster : MonoBehaviour
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
             _instance = this;
             InitializeDictionary();
         }
@@ -26,6 +25,16 @@ public class BuildingMaster : MonoBehaviour
     private void Start()
     {
         UIBuildingMaster.GetInstance().UpdateBuildingList();
+    }
+
+    public void Load(List<SaveBuilding> buildingsSaved)
+    {
+        foreach(SaveBuilding sb in buildingsSaved)
+        {
+            Building b = GetBuilding(sb.GetId());
+            if (b)
+                b.Load(sb);
+        }
     }
 
     public static BuildingMaster GetInstance() { return _instance; }

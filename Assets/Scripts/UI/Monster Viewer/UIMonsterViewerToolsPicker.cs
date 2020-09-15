@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIMonsterViewerToolsPicker : MonoBehaviour
 {
     public Transform toolList;
     public GameObject toolViewer;
 
+    public Image icon;
     public TextMeshProUGUI toolName;
     public TextMeshProUGUI durability;
     public TextMeshProUGUI level;
@@ -49,8 +51,9 @@ public class UIMonsterViewerToolsPicker : MonoBehaviour
     {
         tool = t;
         toolViewer.SetActive(true);
+        icon.sprite = t.GetIcon();
         toolName.text = t.GetToolBase().GetName();
-        description.text = t.GetToolBase().GetDescription();
+        description.text = t.GetDescription();
         durability.text = t.GetDurabilityLeft().ToString();
         level.text = t.GetTier().ToString();
         foreach (Transform skill in skillBonusList)

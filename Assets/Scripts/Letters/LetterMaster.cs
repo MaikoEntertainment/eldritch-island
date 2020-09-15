@@ -27,17 +27,29 @@ public class LetterMaster : MonoBehaviour
         {
             _instance = this;
             InitializeDictioaries();
-            DontDestroyOnLoad(gameObject);
         }
     }
 
     void Start()
     {
-        UnlockLetter(LetterId.welcome);
-        MarkLettersAsRead();
-        UILetterMaster.GetInstance().LoadLetter(letterDictionary[LetterId.welcome]);
-        UnlockLetter(LetterId.tutorial1);
-        UnlockLetter(LetterId.tutorial2);
+        if (!unlockedLetters.ContainsKey(LetterId.welcome))
+        {
+            UnlockLetter(LetterId.welcome);
+            MarkLettersAsRead();
+            UILetterMaster.GetInstance().LoadLetter(letterDictionary[LetterId.welcome]);
+            UnlockLetter(LetterId.tutorial1);
+            UnlockLetter(LetterId.tutorial2);
+        }
+    }
+
+    public void Load(List<SaveLetter> savedLetters)
+    {
+        foreach(SaveLetter sl in savedLetters)
+        {
+            Letter letter = letterDictionary[sl.GetId()];
+            if (letter && !unlockedLetters.ContainsKey(sl.GetId()))
+                unlockedLetters.Add(sl.GetId(), letter);
+        }
     }
 
     private void InitializeDictioaries()

@@ -17,10 +17,14 @@ MonoBehaviour:
   tags: 05000000
   myName:
     english: Campfire Ritual
+    spanish: 
   description:
-    english: Reduces 10 Stress from all inactive Monsters.
+    english: Reduces 10 stress from the monsters doing this task and all inactive
+      monsters.
+    spanish: 
   unlockCondition:
     english: Level 2 is reached.
+    spanish: Nivel 2 es alcanzado.
   icon: {fileID: 8573033428421157452, guid: e8996999b66463142a43f917b261a88a, type: 3}
   stressChange: -10
   itemCosts: []

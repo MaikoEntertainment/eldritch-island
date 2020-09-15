@@ -29,4 +29,6 @@ public class StatisticValue
     {
         return value;
     }
+
+    public StatisticIds GetId() { return statistic.GetId(); }
 }

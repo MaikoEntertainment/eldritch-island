@@ -27,11 +27,32 @@ public class Building : MonoBehaviour
     public delegate void LevelUped(Building building);
     public LevelUped onLevelUp;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         foreach (TaskBase tb in taskBases)
             dictionaryTaskBases.Add(tb.GetId(), tb);
     }
+
+    protected virtual void Start()
+    {
+
+    }
+
+    public void Load(SaveBuilding sb)
+    {
+        level = sb.GetLevel();
+        foreach(SaveTask st in sb.GetTasks())
+        {
+            TaskBase tb = dictionaryTaskBases[st.GetId()];
+            Task t = new Task(tb, st);
+            tasksActive.Add(t);
+            t.PrepareTask();
+            t.SetBuildingProgress(GetBuildingProgressMultiplier());
+            t.onClear += DeleteTask;
+        }
+        
+    }
+
     public BuildingIds GetId() { return id; }
     public int GetLevel() { return level; }
     public virtual void LevelUp()
@@ -57,7 +78,7 @@ public class Building : MonoBehaviour
     }
     public virtual double GetBuildingProgressMultiplier()
     {
-        return 1 + 0.1f * GetLevel();
+        return 1 + 0.01f * GetLevel();
     }
     public virtual bool CanUnlock()
     {
@@ -76,6 +97,7 @@ public class Building : MonoBehaviour
         {
             TaskBase tb = dictionaryTaskBases[taskId];
             draftTask = new Task(tb);
+            draftTask.SetBuildingProgress(GetBuildingProgressMultiplier());
             return draftTask;
         }
         return null;

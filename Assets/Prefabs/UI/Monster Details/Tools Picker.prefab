@@ -547,6 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolList: {fileID: 6007906124338002085}
   toolViewer: {fileID: 7378488557100509083}
+  icon: {fileID: 6899407490805135470}
   toolName: {fileID: 517300921178841299}
   durability: {fileID: 1938215797824599386}
   level: {fileID: 164329725585559036}
@@ -2586,7 +2587,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 10
   m_Viewport: {fileID: 0}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}

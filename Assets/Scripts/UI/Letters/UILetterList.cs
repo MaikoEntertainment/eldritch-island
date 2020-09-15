@@ -10,6 +10,7 @@ public class UILetterList : MonoBehaviour
     public void Load()
     {
         List<Letter> list = LetterMaster.GetInstance().GetUnlockedLetters().Values.ToList();
+        list.Reverse();
         foreach (Letter l in list)
             Instantiate(letterPrefab.gameObject, letterList).GetComponent<UILetterItem>().Load(l);
     }

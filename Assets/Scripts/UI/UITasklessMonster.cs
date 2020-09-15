@@ -8,6 +8,10 @@ public class UITasklessMonster : MonoBehaviour
 {
     public Image icon;
     public TextMeshProUGUI text;
+    public Transform equipmentList;
+
+    public UITaskMonsterTool toolPrefab;
+    public UITaskMonsterClothes clothesPrefab;
 
     private Monster m;
 
@@ -18,6 +22,19 @@ public class UITasklessMonster : MonoBehaviour
         float max = m.GetStressMax();
         text.text = stress.ToString("F1") + "/" + max;
         icon.sprite = m.GetIcon();
+        if (equipmentList)
+        {
+            foreach (Transform t in equipmentList)
+                Destroy(t.gameObject);
+            foreach(Tool t in m.GetTools())
+            {
+                Instantiate(toolPrefab, equipmentList).GetComponent<UITaskMonsterTool>().Load(t);
+            }
+            foreach (Clothes c in m.GetClothes())
+            {
+                Instantiate(clothesPrefab, equipmentList).GetComponent<UITaskMonsterClothes>().Load(c);
+            }
+        }
     }
 
     private void OnEnable()

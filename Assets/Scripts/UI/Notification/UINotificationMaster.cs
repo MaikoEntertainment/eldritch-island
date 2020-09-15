@@ -8,6 +8,7 @@ public class UINotificationMaster : MonoBehaviour
 
     public UINotificationTask notificationTaskPrefab;
     public UINotificationSkillLevelUp levelUp;
+    public GameObject savePrefab;
 
     public Transform notificationsList;
 
@@ -32,5 +33,10 @@ public class UINotificationMaster : MonoBehaviour
     public void LoadSkillLevelUp(NotificationLevelUp skillLevelUp)
     {
         Instantiate(levelUp.gameObject, notificationsList).GetComponent<UINotificationSkillLevelUp>().Load(skillLevelUp);
+    }
+
+    public void LoadSaveNotification()
+    {
+        Instantiate(savePrefab, notificationsList);
     }
 }

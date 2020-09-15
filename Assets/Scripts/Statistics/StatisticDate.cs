@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Statistics/Date")]
 public class StatisticDate : Statistic
 {
     public StatisticDate()

@@ -15,7 +15,6 @@ public class ItemMaster : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
             database.InitializeDictionary();
         }
         else
@@ -37,7 +36,8 @@ public class ItemMaster : MonoBehaviour
 
     public Tool CreateTool(ToolBase toolBase, int craftingPower)
     {
-        double upgradeChance = Math.Pow(0.1f, 1 / (craftingPower * 0.25f + 1));
+        
+        double upgradeChance = Math.Pow(0.1f, 1 / (craftingPower * 0.25f + GetWorkShopLevelCraftMod()));
         int tier = 0;
         double random = UnityEngine.Random.value;
         while (random < upgradeChance && tier < 99)
@@ -51,7 +51,7 @@ public class ItemMaster : MonoBehaviour
 
     public Clothes CreateClothes(ClothesBase clothesBase, int craftingPower)
     {
-        double upgradeChance = Math.Pow(0.1f, 1 / (craftingPower * 0.25f + 1));
+        double upgradeChance = Math.Pow(0.1f, 1 / (craftingPower * 0.75f + GetWorkShopLevelCraftMod()));
         int tier = 0;
         double random = UnityEngine.Random.value;
         while (random < upgradeChance && tier < 99)
@@ -61,5 +61,11 @@ public class ItemMaster : MonoBehaviour
         }
         Clothes tool = new Clothes(clothesBase, tier);
         return tool;
+    }
+
+    private float GetWorkShopLevelCraftMod()
+    {
+        int workshopLevel = BuildingMaster.GetInstance().GetBuilding(BuildingIds.CraftHouse).GetLevel();
+        return 1 + 0.2f * workshopLevel;
     }
 }

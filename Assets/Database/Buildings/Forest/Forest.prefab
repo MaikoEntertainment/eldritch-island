@@ -47,7 +47,9 @@ MonoBehaviour:
   initialTaskSlots: 1
   myName:
     english: Forest
+    spanish: 
   taskBases:
   - {fileID: 11400000, guid: 8b4ea64f767090648862606d031ae216, type: 2}
   - {fileID: 11400000, guid: 394d7c33d2039194b8d45e28f5410adc, type: 2}
+  - {fileID: 11400000, guid: e9d815f7554cccb44a913624a5f9c600, type: 2}
   - {fileID: 11400000, guid: c51d0fa4a3e5df24abc84bbe529826f5, type: 2}

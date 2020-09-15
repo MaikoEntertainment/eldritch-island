@@ -35,4 +35,5 @@ public class UIMonsterPick : MonoBehaviour
         MonsterMaster.GetInstance().PickMonster(m.GetId());
         UIMonsterPickerMaster.GetInstance().HideMonsterDraft();
     }
+
 }

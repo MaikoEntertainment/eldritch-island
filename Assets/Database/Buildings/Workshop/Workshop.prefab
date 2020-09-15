@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3706423027074080667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5633962764347349563}
+  - component: {fileID: 8354466423954024400}
+  m_Layer: 0
+  m_Name: Workshop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5633962764347349563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3706423027074080667}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8354466423954024400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3706423027074080667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9166370515cc08747a88d90b8d657ce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 3
+  initialTaskSlots: 1
+  myName:
+    english: Workshop
+    spanish: Taller
+  taskBases:
+  - {fileID: 11400000, guid: 97d90764801fbc44aac3fb4c39cfed94, type: 2}
+  - {fileID: 11400000, guid: 37eec01ac86b5d54e9758e7ae2370a5c, type: 2}
+  - {fileID: 11400000, guid: 209e6fd62d95d0941a1c52335e7c328b, type: 2}
+  - {fileID: 11400000, guid: 3543e45191866354c8726008c7aa5679, type: 2}
+  - {fileID: 11400000, guid: c7a66aafe99acf0488f152b8a973cad7, type: 2}
+  - {fileID: 11400000, guid: cc1934f64c9d6234b8568c5a24c3ba45, type: 2}

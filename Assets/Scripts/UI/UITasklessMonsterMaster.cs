@@ -16,6 +16,17 @@ public class UITasklessMonsterMaster : MonoBehaviour
         if (_instance)
             Destroy(_instance);
        _instance = this;
+        tasklessCache = new Dictionary<MonsterIds, UITasklessMonster>();
+    }
+
+    private void Start()
+    {
+        UpdateTasklessMonsters();
+    }
+
+    private void OnDisable()
+    {
+        _instance = null;
     }
 
     public static UITasklessMonsterMaster GetInstance() { return _instance; }
@@ -24,9 +35,10 @@ public class UITasklessMonsterMaster : MonoBehaviour
         Dictionary<MonsterIds, Monster> tasklessMonsters = MonsterMaster.GetInstance().GetTasklessMonsters();
         foreach (MonsterIds mId in tasklessCache.Keys.ToList())
         {
-            if (!tasklessMonsters.ContainsKey(mId))
+            if (!tasklessMonsters.ContainsKey(mId) || !tasklessCache[mId])
             {
-                Destroy(tasklessCache[mId].gameObject);
+                if (tasklessCache[mId])
+                    Destroy(tasklessCache[mId].gameObject);
                 tasklessCache.Remove(mId);
             }
         }

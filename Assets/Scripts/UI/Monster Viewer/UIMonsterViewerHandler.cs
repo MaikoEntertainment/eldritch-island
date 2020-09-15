@@ -123,5 +123,6 @@ public class UIMonsterViewerHandler : MonoBehaviour
     public void Close()
     {
         UIMonsterViewerMaster.GetInstance().Close();
+        UITasklessMonsterMaster.GetInstance().UpdateTasklessMonsters();
     }
 }

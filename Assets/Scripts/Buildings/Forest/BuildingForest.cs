@@ -25,4 +25,9 @@ public class BuildingForest : Building
         Building b = BuildingMaster.GetInstance().GetBuilding(BuildingIds.Campfire);
         return b.GetLevel() > 1;
     }
+
+    public override int GetTaskSlots()
+    {
+        return 1 + GetLevel() / 5;
+    }
 }

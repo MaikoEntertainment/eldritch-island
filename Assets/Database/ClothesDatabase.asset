@@ -15,4 +15,4 @@ MonoBehaviour:
   sections:
   - category: Nature
     clothes:
-    - {fileID: 11400000, guid: 7806c1e704136874e8c76c8bd1cd31fc, type: 2}
+    - {fileID: 11400000, guid: eee09ec6182759749b8521028f0fee29, type: 2}

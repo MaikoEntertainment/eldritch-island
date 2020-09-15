@@ -9,6 +9,16 @@ public class ToolsManager
     [SerializeField]
     protected int slots = 1;
 
+    public void Load(List<SaveTool> savedTools)
+    {
+        foreach(SaveTool st in savedTools)
+        {
+            ToolBase tb = ToolsMaster.GetInstance().GetTool(st.GetId());
+            if (tb)
+                tools.Add(new Tool(tb, st.GetDurabilityUsed(), st.GetTier()));
+        }
+    }
+
     public int GetToolSlots() { return slots; }
     public List<Tool> GetEquippedTools() { return tools; }
     public bool EquipTool(Tool tool)
@@ -34,15 +44,15 @@ public class ToolsManager
         return slots > tools.Count;
     }
 
-    public void UseTools()
+    public void UseTools(Monster m, Task t)
     {
         Console.WriteLine("Add Task to parameters");
         List<Tool> toolsWithDurabiliy = new List<Tool>();
-        foreach (Tool t in tools)
+        foreach (Tool to in tools)
         {
-            bool broke = t.Use();
+            bool broke = to.Use(m,t);
             if (!broke)
-                toolsWithDurabiliy.Add(t);
+                toolsWithDurabiliy.Add(to);
         }
         tools = toolsWithDurabiliy;
     }

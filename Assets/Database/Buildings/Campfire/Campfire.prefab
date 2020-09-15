@@ -47,8 +47,9 @@ MonoBehaviour:
   initialTaskSlots: 1
   myName:
     english: Campfire
+    spanish: 
   taskBases:
   - {fileID: 11400000, guid: 36e5e56e3490ce24fb2decfddba8d40c, type: 2}
   - {fileID: 11400000, guid: 12daa6834daf8cf46a6fe65e1c992ea4, type: 2}
   - {fileID: 11400000, guid: bf73e58493bd940418fe5f8b418ea1d2, type: 2}
-  - {fileID: 11400000, guid: 1a3b8c2dc95e4264ca6f7cc8edc89425, type: 2}
+  - {fileID: 11400000, guid: 22230f889538eea46ae73032fe453e15, type: 2}

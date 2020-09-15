@@ -25,3 +25,6 @@ MonoBehaviour:
   - category: Improvements
     statistics:
     - {fileID: 11400000, guid: 43d189fa733044b4f888e64a805c3d3e, type: 2}
+  - category: Dungeons
+    statistics:
+    - {fileID: 11400000, guid: b7db8548c48e5ab40ad641dd2721920b, type: 2}

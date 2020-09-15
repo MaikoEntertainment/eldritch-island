@@ -6,26 +6,39 @@ using UnityEngine;
 public class SkillsManager
 {
     [SerializeField]
-    protected List<Skill> initialSkills;
-    protected Dictionary<SkillIds, Skill> skills;
+    protected List<Skill> initialSkills = new List<Skill>();
+    protected Dictionary<SkillIds, Skill> skills = new Dictionary<SkillIds, Skill>();
 
     public void InitializeSkills()
     {
-        Dictionary<SkillIds, Skill> savedSkills = new Dictionary<SkillIds, Skill>();
-        skills = savedSkills;
         // Adds missing skills
-        if (!savedSkills.ContainsKey(SkillIds.Nature))
+        if (!skills.ContainsKey(SkillIds.Nature))
             AddMissingSkill(SkillIds.Nature);
-        if (!savedSkills.ContainsKey(SkillIds.Woodcutting))
+        if (!skills.ContainsKey(SkillIds.Woodcutting))
             AddMissingSkill(SkillIds.Woodcutting);
-        if (!savedSkills.ContainsKey(SkillIds.Mining))
+        if (!skills.ContainsKey(SkillIds.Mining))
             AddMissingSkill(SkillIds.Mining);
-        if (!savedSkills.ContainsKey(SkillIds.Crafting))
+        if (!skills.ContainsKey(SkillIds.Crafting))
             AddMissingSkill(SkillIds.Crafting);
-        if (!savedSkills.ContainsKey(SkillIds.War))
+        if (!skills.ContainsKey(SkillIds.War))
             AddMissingSkill(SkillIds.War);
-        if (!savedSkills.ContainsKey(SkillIds.Witchcraft))
+        if (!skills.ContainsKey(SkillIds.Witchcraft))
             AddMissingSkill(SkillIds.Witchcraft);
+    }
+
+    public void Load(List<SaveSkill> savedSkills)
+    {
+        foreach (SaveSkill ss in savedSkills)
+        {
+            if (skills.ContainsKey(ss.GetId()))
+            {
+                skills[ss.GetId()].Load(ss);
+            }
+            else
+            {
+                AddSkill(ss.GetId(), ss.GetLevel(), ss.GetExp());
+            }
+        }
     }
 
     protected void AddMissingSkill(SkillIds id)
@@ -33,6 +46,11 @@ public class SkillsManager
         Skill initial = GetIntialSkill(id);
         int level = initial!=null ? initial.GetLevel() : 0;
         double exp = initial != null ? initial.GetExp() : 0;
+        AddSkill(id, level, exp);
+    }
+
+    public void AddSkill(SkillIds id, int level, double exp)
+    {
         switch (id)
         {
             case SkillIds.Woodcutting:

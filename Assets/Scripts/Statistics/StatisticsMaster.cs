@@ -19,7 +19,6 @@ public class StatisticsMaster : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
             InitializaDictionary();
         }
         else
@@ -35,6 +34,19 @@ public class StatisticsMaster : MonoBehaviour
         foreach (Statistic s in database.GetStatistics().Values.ToList())
         {
             statistics.Add(s.GetId(), new StatisticValue(s));
+        }
+    }
+    public void Load(List<SaveStatisticNumber> saveStatisticsNumber)
+    {
+        foreach (SaveStatistic ss in saveStatisticsNumber)
+        {
+            StatisticValue statistic = statistics[ss.id];
+            if (statistic != null)
+            {
+                if (ss.GetValue()!=null)
+                    statistic.UpdateValue(ss.GetValue());
+                print(statistic.GetId().ToString() + " - " + statistic.GetValue());
+            }
         }
     }
     public static StatisticsMaster GetInstance() { return _instance; }

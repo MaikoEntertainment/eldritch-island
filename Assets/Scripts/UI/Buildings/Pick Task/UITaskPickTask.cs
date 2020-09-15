@@ -26,7 +26,7 @@ public class UITaskPickTask : MonoBehaviour
         if (isSelected)
             text.color = selectedColor;
         icon.sprite = taskBase.GetIcon();
-        stress.text = (taskBase.GetStressChange() >= 0 ? "+" : "") + taskBase.GetStressChange().ToString();
+        stress.text = (taskBase.GetStressChange() >= 0 ? "+" : "") + taskBase.GetStressChange().ToString("F1");
         ClearLists();
         foreach (Item i in taskBase.GetItemCost())
             Instantiate(itemPrefab.gameObject, itemList).GetComponent<UIItem>().Load(i);

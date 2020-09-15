@@ -27,7 +27,26 @@ public class InventoryMaster : MonoBehaviour
         else
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    // Only load after Awake
+    public void Load(SaveInventory save)
+    {
+        foreach(SaveItem si in save.savedItems)
+        {
+            ItemBase ib = ItemMaster.GetInstance().GetItem(si.GetId());
+            items.Add(si.GetId(), new Item(ib, si.GetAmount()));
+        }
+        foreach (SaveTool st in save.savedTools)
+        {
+            ToolBase tb = ToolsMaster.GetInstance().GetTool(st.GetId());
+            tools.Add(new Tool(tb, st.GetDurabilityUsed(), st.GetTier()));
+        }
+        foreach (SaveClothes sc in save.savedClothes)
+        {
+            ClothesBase cb = ClothesMaster.GetInstance().GetClothes(sc.GetId());
+            clothes.Add(new Clothes(cb, sc.GetDurabilityUsed(), sc.GetTier()));
         }
     }
 

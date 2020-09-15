@@ -14,7 +14,7 @@ public class ToolsMaster : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
+            database.InitializeDictionary();
         }
         else
         {

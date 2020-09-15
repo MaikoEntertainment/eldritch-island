@@ -17,11 +17,15 @@ MonoBehaviour:
   tags: 
   myName:
     english: Level Up
+    spanish: 
   description:
     english: Increases progress per second by 1%. Unlocks a new task slot every 5
       levels.
+    spanish: Aumenta el progreso/seg en 1%. Desbloquea un nuevo espacio para tareas
+      cada 5 niveles.
   unlockCondition:
     english: Current level up task is finished.
+    spanish: La tarea actual de mejora se termine.
   icon: {fileID: 4487214514996280067, guid: e8996999b66463142a43f917b261a88a, type: 3}
   stressChange: 20
   itemCosts:

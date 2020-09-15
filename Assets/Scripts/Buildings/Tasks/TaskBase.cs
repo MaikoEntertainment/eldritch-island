@@ -48,9 +48,22 @@ public class TaskBase: ScriptableObject
     public Tag[] GetTags() { return tags; } 
     public float GetStressChange()
     {
+        if (stressChange > 0)
+        {
+            float upgradeMod = UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.Stress).GetBonus();
+            return (1 - upgradeMod) * stressChange;
+        }
         return stressChange;
     }
-    public List<SkillBonus> GetSkillsRequired() { return skillsRequired; }
+    public List<SkillBonus> GetSkillsRequired() {
+        float upgradeMod = 1 + UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.Experience).GetBonus();
+        List<SkillBonus> finalSkillsRequired = new List<SkillBonus>();
+        foreach(SkillBonus sb in skillsRequired)
+        {
+            finalSkillsRequired.Add(new SkillBonus(sb.skillId, (int)(sb.levelModifier * upgradeMod)));
+        }
+        return finalSkillsRequired; 
+    }
     public List<Item> GetCostPerMonster() { return costPerMonster; }
     public virtual List<Item> GetItemCost()
     {

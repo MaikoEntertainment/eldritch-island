@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd55d8f11e357fa4c8b7385a3f3af482, type: 3}
+  m_Name: Axe
+  m_EditorClassIdentifier: 
+  id: 2
+  progressNeeded: 60
+  tags: 03000000
+  myName:
+    english: Axe
+    spanish: Hacha
+  description:
+    english: Useful for cutting wood and some other things.
+    spanish: Util para obtener madera... Y para otras cosas.
+  unlockCondition:
+    english: Level 2 is reached.
+    spanish: Nivel 2 es alcanzado.
+  icon: {fileID: 6812396857366647474, guid: e8996999b66463142a43f917b261a88a, type: 3}
+  stressChange: 10
+  itemCosts:
+  - itemBase: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
+    amount: 10
+  costPerMonster:
+  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
+    amount: 5
+  skillsRequired:
+  - skillId: 3
+    levelModifier: 8
+  - skillId: 1
+    levelModifier: 2
+  itemRewards: []
+  toolRewards:
+  - {fileID: 11400000, guid: 3e77e8e2e905c974c8c9a92b87b79643, type: 2}
+  clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
+  requirements:
+  - buildingId: 3
+    minLevelRequired: 2

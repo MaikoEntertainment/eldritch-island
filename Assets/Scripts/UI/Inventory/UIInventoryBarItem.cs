@@ -9,8 +9,11 @@ public class UIInventoryBarItem : MonoBehaviour
     public Image icon;
     public TextMeshProUGUI amount;
     public Transform changeArea;
+    public Transform changePerSecondPanel;
+
 
     public UIInventoryChange changePrefab;
+    public UIItemToolBarChangeSecond changePerSecondPrefab;
 
     private Item i;
 
@@ -37,6 +40,17 @@ public class UIInventoryBarItem : MonoBehaviour
         i.onAmountChange -= UpdateAmount;
     }
 
+    public void ShowChangePerSecond()
+    {
+        HideProgressPerSecond();
+        Instantiate(changePerSecondPrefab.gameObject, changePerSecondPanel).GetComponent<UIItemToolBarChangeSecond>().Load(i);
+    }
+
+    public void HideProgressPerSecond()
+    {
+        foreach (Transform child in changePerSecondPanel)
+            Destroy(child.gameObject);
+    }
 
 
 }

@@ -8,18 +8,14 @@ public class ToolsDatabase : ScriptableObject
     protected List<ToolsDatabaseSection> sections = new List<ToolsDatabaseSection>();
     protected Dictionary<int, ToolBase> toolsDictionary = new Dictionary<int, ToolBase>();
 
-    public ToolsDatabase()
-    {
-        InitializeDictionary();
-    }
-
-    protected void InitializeDictionary()
+    public void InitializeDictionary()
     {
         foreach (ToolsDatabaseSection section in sections)
         {
             foreach (ToolBase ib in section.GetTools())
             {
-                toolsDictionary.Add(ib.GetId(), ib);
+                if (!toolsDictionary.ContainsKey(ib.GetId()))
+                    toolsDictionary.Add(ib.GetId(), ib);
             }
         }
     }

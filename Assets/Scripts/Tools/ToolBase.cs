@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Tools/ToolBase")]
 [System.Serializable]
 public class ToolBase: ScriptableObject
 {
@@ -35,13 +35,13 @@ public class ToolBase: ScriptableObject
         return bonusesTier;
     }
     public Sprite GetIcon() { return icon; }
-    public void Use()
+    public virtual void Use(Monster m, Task task, int tier = 0)
     {
         
     }
 
     public string GetName() { return myName.GetText(); }
-    public string GetDescription() { return description.GetText(); }
+    public virtual string GetDescription(int tier=0) { return description.GetText(); }
 
     public virtual List<Item> GetTaskItemCostForThisMonster(Task task, Monster monster, List<Item> currentCosts)
     {

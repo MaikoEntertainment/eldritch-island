@@ -24,6 +24,11 @@ public class Skill
     {
         return new Skill(level, exp);
     }
+    public void Load(SaveSkill ss)
+    {
+        level = ss.GetLevel();
+        exp = ss.GetExp();
+    }
 
     public virtual SkillIds GetId()
     {

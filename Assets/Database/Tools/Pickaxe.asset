@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880958cef302f484fbbf3aa9e8333a0a, type: 3}
+  m_Name: Pickaxe
+  m_EditorClassIdentifier: 
+  id: 2
+  icon: {fileID: 7281626079675469898, guid: e8996999b66463142a43f917b261a88a, type: 3}
+  durability: 10
+  myName:
+    english: Pickaxe
+    spanish: Pico
+  description:
+    english: Makes it easier to extract minerals... And more.
+    spanish: "Facilita la extracci\xF3n de minerales... Y de otras cosas."
+  skillBonuses:
+  - skillId: 2
+    levelModifier: 5
+  tags: 02000000

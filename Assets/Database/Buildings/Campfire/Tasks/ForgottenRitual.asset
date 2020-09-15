@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29a7e547c4e5f542812cbbfe730e49a, type: 3}
+  m_Name: ForgottenRitual
+  m_EditorClassIdentifier: 
+  id: 3
+  progressNeeded: 60
+  tags: 05000000
+  myName:
+    english: Forgotten Ritual
+    spanish: Ritual Perdido
+  description:
+    english: Invoke the eldritch's powers to reduce ALL your monster stress by 5.
+    spanish: Invoca los poderes de los antiguos para reducer el estres de TODOS tus
+      monstruos en 5.
+  unlockCondition:
+    english: Level 7 is reached.
+    spanish: Nivel 7 es alcanzado.
+  icon: {fileID: 5864141120653579955, guid: e8996999b66463142a43f917b261a88a, type: 3}
+  stressChange: 10
+  itemCosts:
+  - itemBase: {fileID: 11400000, guid: 0defe47787be9a8488c594edbec82fb7, type: 2}
+    amount: 3
+  costPerMonster:
+  - itemBase: {fileID: 11400000, guid: 0defe47787be9a8488c594edbec82fb7, type: 2}
+    amount: 1
+  skillsRequired:
+  - skillId: 5
+    levelModifier: 8
+  itemRewards: []
+  toolRewards: []
+  clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
+  requirements:
+  - buildingId: 4
+    minLevelRequired: 7

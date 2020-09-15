@@ -17,10 +17,15 @@ MonoBehaviour:
   tags: 
   myName:
     english: Level Up
+    spanish: Mejorar
   description:
-    english: Increases progress per second by 1%. Unlocks a new monster every 3 levels.
+    english: Increases progress per second by 1%. Unlocks a new monster at Level
+      1 and every 3 Levels.
+    spanish: Aumenta el progress/seg en 1%. Desbloquea una nueva invocacion en nivel
+      1 y cada 3 niveles.
   unlockCondition:
     english: Current level up task is finished.
+    spanish: 
   icon: {fileID: -5692852124484312159, guid: e8996999b66463142a43f917b261a88a, type: 3}
   stressChange: 20
   itemCosts:

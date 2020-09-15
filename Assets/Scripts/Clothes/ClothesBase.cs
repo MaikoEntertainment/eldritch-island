@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Clothes/ClothesBase")]
 [System.Serializable]
 public class ClothesBase : ToolBase
 {

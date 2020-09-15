@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Statistics/Number")]
 public class StatisticNumber : Statistic
 {
     [SerializeField]

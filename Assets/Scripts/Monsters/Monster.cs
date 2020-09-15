@@ -27,9 +27,20 @@ public class Monster : MonoBehaviour
     [SerializeField]
     protected ClothesManager clothes = new ClothesManager();
 
+    public delegate void StressChange(Monster m);
+    public event StressChange onStressChange;
+
     private void Awake()
     {
         skills.InitializeSkills();
+    }
+
+    public void Load(SaveMonster sm)
+    {
+        stress = sm.GetStress();
+        skills.Load(sm.GetSaveSkills());
+        tools.Load(sm.GetSaveTools());
+        clothes.Load(sm.GetSaveClothes());
     }
 
     public MonsterIds GetId() { return id; }
@@ -67,6 +78,10 @@ public class Monster : MonoBehaviour
         }
         return finalSkills;
     }
+    public virtual Dictionary<SkillIds, Skill> GetFinalSkills(Task task)
+    {
+        return GetFinalSkills();
+    }
     public List<Skill> GetInitialSkills()
     {
         return skills.GetIntialSkills();
@@ -91,15 +106,17 @@ public class Monster : MonoBehaviour
 
     public virtual float GetStressAfterTask(Task t)
     {
-        return Mathf.Max(stress + t.GetTask().GetStressChange(),0);
+        return Mathf.Max(stress + t.GetStressChange(),0);
     }
     public virtual void AddTaskStress(Task t)
     {
         stress = GetStressAfterTask(t);
+        onStressChange?.Invoke(this);
     }
     public virtual bool AddStress(float stressChange)
     {
         stress =  Math.Max(stress + stressChange,0);
+        onStressChange?.Invoke(this);
         return (stress > GetStressMax());
     }
     public virtual bool CanWork(Task task) 
@@ -146,8 +163,8 @@ public class Monster : MonoBehaviour
     // Taks specific
     public void FinishWork(Task t)
     {
-        tools.UseTools();
-        clothes.UseClothes();
+        tools.UseTools(this, t);
+        clothes.UseClothes(this, t);
         AddTaskStress(t);
     }
     public virtual List<Item> GetTaskItemCostForThisMonster(Task task, List<Item> currentCosts)

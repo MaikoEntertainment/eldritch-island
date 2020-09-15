@@ -12,7 +12,8 @@ public class MonsterDatabase : ScriptableObject
         // The dictionary has faster load times
         foreach (Monster mon in monsters)
         {
-            monsterDictionary.Add(mon.GetId(), mon);
+            if (!monsterDictionary.ContainsKey(mon.GetId()))
+                monsterDictionary.Add(mon.GetId(), mon);
         }
     }
 

@@ -32,8 +32,28 @@ public class Task
         this.taskBase = taskBase;
     }
 
+    public Task(TaskBase tb, SaveTask st)
+    {
+        taskBase = tb;
+        progress = st.GetProgressMade();
+        iterationsLeft = st.GetIterationsLeft();
+        isInfinite = st.GetIsInfinite();
+        foreach(MonsterIds ids in st.GetMonsterIds())
+        {
+            Monster m = MonsterMaster.GetInstance().GetActiveMonster(ids);
+            if (m)
+            {
+                AddMonsters(m);
+            }
+        }
+        CalculateProgressPerSecond();
+    }
     public List<Monster> GetMonsters() { return monsters; }
     public TaskBase GetTask() { return taskBase; }
+    public float GetStressChange()
+    {
+        return GetTask().GetStressChange();
+    }
     public double GetProgressPerSecond() { return progressPerSecond; }
     public double GetProgressGoal() { return GetTask().GetProgressNeeded(); }
     public double GetProgressMade(){ return progress; }
@@ -41,7 +61,7 @@ public class Task
     public double AddProgress(double progressMade)
     {
         progress += progressMade;
-        double extra = System.Math.Max(0, progress - GetProgressGoal());
+        double extra = Math.Max(0, progress - GetProgressGoal());
         if (extra > 0)
         {
             // Sets overflow progress to the next interation
@@ -84,7 +104,7 @@ public class Task
             progress += monsterProgress;
         }
         progressPerSecond = progress * progressBuildingMultiplier;
-        return progress;
+        return progressPerSecond;
     }
 
     public int GetCraftingPower()
@@ -171,26 +191,31 @@ public class Task
 
     public bool StartTask()
     {
-        CheckForMonsterSanity();
+        PrepareTask();
         bool canPay = CanPayTask();
         if (!canPay)
         {
             ClearTask();
             return false;
         }
-        // Check if its the first iteration of the Task
-        if (!hasTaskBegun)
-        {
-            TimeMaster.GetInstance().OnTimePassed += PassTime;
-            hasTaskBegun = true;
-        }
-        List<Item> realPerMonsterCost = new List<Item>();
         foreach (Item i in GetItemFinalCost())
         {
             InventoryMaster.GetInstance().ChangeItemAmount(i.GetId(), -1 * i.GetAmount());
         }
         CalculateProgressPerSecond();
         return true;
+    }
+
+    public void PrepareTask()
+    {
+        CheckForMonsterSanity();
+        // Check if its the first iteration of the Task
+        if (!hasTaskBegun)
+        {
+            TimeMaster.GetInstance().OnTimePassed += PassTime;
+            hasTaskBegun = true;
+        }
+
     }
     public void FinishTask()
     {

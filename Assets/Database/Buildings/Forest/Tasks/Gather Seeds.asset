@@ -17,18 +17,19 @@ MonoBehaviour:
   tags: 
   myName:
     english: Gather Seeds
+    spanish: 
   description:
     english: Gather seeds in order to grow your own life...
+    spanish: Recolecta semillas para crear tu propia vida.
   unlockCondition:
-    english: Level 2 is reached.
+    english: Level 7 is reached.
+    spanish: NIvel 7 es alcanzado.
   icon: {fileID: 6678823951699107959, guid: e8996999b66463142a43f917b261a88a, type: 3}
-  stressChange: 10
-  itemCosts:
-  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
-    amount: 10
+  stressChange: 4
+  itemCosts: []
   costPerMonster:
   - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
-    amount: 5
+    amount: 15
   skillsRequired:
   - skillId: 0
     levelModifier: 2
@@ -37,15 +38,11 @@ MonoBehaviour:
   itemRewards:
   - item: {fileID: 11400000, guid: 2b6b2b7c948900643b518010c4ac4a30, type: 2}
     minAmount: 1
-    extraRange: 0
+    extraRange: 1
     rewardChance: 1
-  - item: {fileID: 11400000, guid: b46c0fb9d93f3f94f80752367df32de5, type: 2}
-    minAmount: 1
-    extraRange: 0
-    rewardChance: 0.1
   toolRewards: []
   clothesRewards: []
   onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
   requirements:
   - buildingId: 0
-    minLevelRequired: 2
+    minLevelRequired: 7

@@ -9,5 +9,6 @@ public enum StatisticIds
     FrostDiscovered = 2,
     HotDiscovered = 3,
     TribeName = 4,
-    ClickPowerLevel = 5
+    ClickPowerLevel = 5,
+    Dungeon1Clears
 }

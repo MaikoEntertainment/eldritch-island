@@ -8,6 +8,15 @@ public class ClothesManager
     [SerializeField]
     protected int slots = 1;
 
+    public void Load(List<SaveClothes> savedClothes)
+    {
+        foreach (SaveClothes st in savedClothes)
+        {
+            ClothesBase cb = ClothesMaster.GetInstance().GetClothes(st.GetId());
+            if (cb)
+                clothes.Add(new Clothes(cb, st.GetDurabilityUsed(), st.GetTier()));
+        }
+    }
     public int GetClothesSlots() { return slots; }
     public List<Clothes> GetEquippedClothes() { return clothes; }
     public bool EquipClothes(Clothes clothes)
@@ -32,13 +41,13 @@ public class ClothesManager
         return slots > clothes.Count;
     }
 
-    public void UseClothes()
+    public void UseClothes(Monster m, Task t)
     {
         Console.WriteLine("Add Task to parameters");
         List<Clothes> clothesWithDurabiliy = new List<Clothes>();
         foreach (Clothes c in clothes)
         {
-            bool broke = c.Use();
+            bool broke = c.Use(m,t);
             if (!broke)
                 clothesWithDurabiliy.Add(c);
         }

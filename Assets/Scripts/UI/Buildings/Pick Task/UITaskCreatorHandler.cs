@@ -91,7 +91,7 @@ public class UITaskCreatorHandler : MonoBehaviour
     {
         progressNeeded.text = "" + (int)currentTask.GetTask().GetProgressNeeded();
         progressPerSec.text = currentTask.CalculateProgressPerSecond().ToString("F1") + "/s";
-        stress.text = (currentTask.GetTask().GetStressChange() >= 0 ? "+" : "") + currentTask.GetTask().GetStressChange();
+        stress.text = (currentTask.GetTask().GetStressChange() >= 0 ? "+" : "") + currentTask.GetTask().GetStressChange().ToString("F1");
         description.text = currentTask.GetTask().GetDescription();
         ClearTask();
         foreach (Item i in currentTask.GetTask().GetItemCost())

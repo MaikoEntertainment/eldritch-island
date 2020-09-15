@@ -9,18 +9,14 @@ public class ClothesDatabase : ScriptableObject
     protected List<ClothesDatabaseSection> sections = new List<ClothesDatabaseSection>();
     protected Dictionary<int, ClothesBase> clothesDictionary = new Dictionary<int, ClothesBase>();
 
-    public ClothesDatabase()
-    {
-        InitializeDictionary();
-    }
-
-    protected void InitializeDictionary()
+    public void InitializeDictionary()
     {
         foreach (ClothesDatabaseSection section in sections)
         {
             foreach (ClothesBase ib in section.GetClothes())
             {
-                clothesDictionary.Add(ib.GetId(), ib);
+                if (!clothesDictionary.ContainsKey(ib.GetId()))
+                    clothesDictionary.Add(ib.GetId(), ib);
             }
         }
     }

@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 10
   m_Viewport: {fileID: 0}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -2712,6 +2712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clothesList: {fileID: 3998116841284007089}
   clothesViewer: {fileID: 178416530180057999}
+  icon: {fileID: 4297536109835580538}
   clothesName: {fileID: 7147677350118485191}
   durability: {fileID: 3870023179089407096}
   level: {fileID: 7671245735172604879}

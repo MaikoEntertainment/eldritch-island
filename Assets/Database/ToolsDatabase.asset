@@ -16,3 +16,12 @@ MonoBehaviour:
   - category: Axes
     tools:
     - {fileID: 11400000, guid: 3e77e8e2e905c974c8c9a92b87b79643, type: 2}
+  - category: Oz
+    tools:
+    - {fileID: 11400000, guid: 175a2c9076d166f4fbfc622934e1fae8, type: 2}
+  - category: Pickaxes
+    tools:
+    - {fileID: 11400000, guid: b663f99452086bd4a92e52ff67f70501, type: 2}
+  - category: Weapons
+    tools:
+    - {fileID: 11400000, guid: 04a97b7264ef9fb4bb9fa8dad82bb42b, type: 2}

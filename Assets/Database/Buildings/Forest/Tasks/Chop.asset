@@ -13,16 +13,19 @@ MonoBehaviour:
   m_Name: Chop
   m_EditorClassIdentifier: 
   id: 1
-  progressNeeded: 20
+  progressNeeded: 30
   tags: 01000000
   myName:
     english: Chop
+    spanish: 
   description:
     english: Venture trough the twisted woods to collect wood.
+    spanish: 
   unlockCondition:
     english: Always up.
+    spanish: 
   icon: {fileID: 6812396857366647474, guid: e8996999b66463142a43f917b261a88a, type: 3}
-  stressChange: 8
+  stressChange: 5
   itemCosts:
   - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
     amount: 2
@@ -34,7 +37,7 @@ MonoBehaviour:
     levelModifier: 2
   itemRewards:
   - item: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
-    minAmount: 3
+    minAmount: 4
     extraRange: 2
     rewardChance: 1
   toolRewards: []

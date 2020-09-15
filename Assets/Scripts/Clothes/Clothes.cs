@@ -11,6 +11,7 @@ public class Clothes
 
     public int GetId() { return clothesBase.GetId(); }
     public double GetDurability() { return clothesBase.GetDurability(GetTier()); }
+    public string GetDescription() { return clothesBase.GetDescription(GetTier()); }
     public List<SkillBonus> GetSkillBonuses() { return clothesBase.GetSkillBonuses(GetTier()); }
     public Tag[] GetTags() { return clothesBase.GetTags(); }
     public Sprite GetIcon() { return clothesBase.GetIcon(); }
@@ -20,12 +21,19 @@ public class Clothes
         this.clothesBase = clothesBase;
         this.tier = tier;
     }
-    public bool Use(double durabilityUsed = 1)
+
+    public Clothes(ClothesBase clothesBase, double durabilityUsed, int tier)
     {
-        clothesBase.Use();
-        this.durabilityUsed += durabilityUsed;
+        this.clothesBase = clothesBase;
+        this.durabilityUsed = durabilityUsed;
+        this.tier = tier;
+    }
+    public bool Use(Monster m, Task t)
+    {
+        clothesBase.Use(m,t, GetTier());
+        durabilityUsed += 1;
         double durability = GetDurability();
-        return this.durabilityUsed >= durability;
+        return durabilityUsed >= durability;
     }
     public int GetTier() { return tier; }
     public double GetDurabilityLeft()

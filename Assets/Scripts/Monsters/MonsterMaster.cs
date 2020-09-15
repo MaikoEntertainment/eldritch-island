@@ -20,12 +20,20 @@ public class MonsterMaster : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
             database.InitializeDictionary();
         }
         else
         {
             Destroy(this);
+        }
+    }
+
+    public void Load(List<SaveMonster> monsterSaves)
+    {
+        foreach(SaveMonster sm in monsterSaves)
+        {
+            Monster m = PickMonster(sm.GetMonsterId());
+            m.Load(sm);
         }
     }
 
@@ -120,16 +128,17 @@ public class MonsterMaster : MonoBehaviour
         return null;
     }
 
-    public void PickMonster(MonsterIds id)
+    public Monster PickMonster(MonsterIds id)
     {
         Monster activatedMonster = database.GetMonster(id);
         if (activatedMonster)
         {
-            InstantiateMonster(activatedMonster);
+            return InstantiateMonster(activatedMonster);
         }
+        return null;
     }
     // Creates the in game instance of the Monster Prefab, which can be edited
-    public void InstantiateMonster(Monster m)
+    public Monster InstantiateMonster(Monster m)
     {
         Monster instance = Instantiate(m);
         if (activeMonsters.ContainsKey(m.GetId()))
@@ -139,7 +148,8 @@ public class MonsterMaster : MonoBehaviour
             Destroy(previousMonster.gameObject);
         }
         activeMonsters.Add(m.GetId(), instance);
-        UITasklessMonsterMaster.GetInstance().UpdateTasklessMonsters();
+        UITasklessMonsterMaster.GetInstance()?.UpdateTasklessMonsters();
         onMonsterActivated?.Invoke(m);
+        return instance;
     }
 }

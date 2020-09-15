@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIMonsterViewerClothesPicker : MonoBehaviour
 {
     public Transform clothesList;
     public GameObject clothesViewer;
 
+    public Image icon;
     public TextMeshProUGUI clothesName;
     public TextMeshProUGUI durability;
     public TextMeshProUGUI level;
@@ -48,8 +50,9 @@ public class UIMonsterViewerClothesPicker : MonoBehaviour
     {
         clothes = c;
         clothesViewer.SetActive(true);
+        icon.sprite = c.GetClothes().GetIcon();
         clothesName.text = c.GetClothes().GetName();
-        description.text = c.GetClothes().GetDescription();
+        description.text = c.GetDescription();
         durability.text = c.GetDurabilityLeft().ToString();
         level.text = c.GetTier().ToString();
         foreach (Transform skill in skillBonusList)

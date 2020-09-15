@@ -8,6 +8,8 @@ public class UIBuildingBase : MonoBehaviour
 {
     public TextMeshProUGUI buildingName;
     public TextMeshProUGUI level;
+    public TextMeshProUGUI slotsUsed;
+    public TextMeshProUGUI slots;
     public Transform taskList;
 
     public UITaskBase taskPrefab;
@@ -47,6 +49,14 @@ public class UIBuildingBase : MonoBehaviour
         {
             Instantiate(taskPrefab.gameObject, taskList).GetComponent<UITaskBase>().Load(t);
         }
+        int slots = BuildingMaster.GetInstance().GetBuilding(id).GetTaskSlots();
+        if (slotsUsed)
+        {
+            slotsUsed.text = tasks.Count.ToString();
+            slotsUsed.color = tasks.Count < slots ? Utils.GetSuccessColor() : Utils.GetWrongColor();
+        }
+        if (this.slots)
+            this.slots.text = slots.ToString();
     }
 
     public void ClearTasks()

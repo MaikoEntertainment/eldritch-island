@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd55d8f11e357fa4c8b7385a3f3af482, type: 3}
+  m_Name: Mine Mienerals
+  m_EditorClassIdentifier: 
+  id: 1
+  progressNeeded: 50
+  tags: 02000000
+  myName:
+    english: Mine Minerals
+    spanish: Minar Minerales
+  description:
+    english: Send your monster to the mine to dicover what treasure hide in the dark.
+    spanish: 
+  unlockCondition:
+    english: Always up
+    spanish: Siempre
+  icon: {fileID: 7281626079675469898, guid: e8996999b66463142a43f917b261a88a, type: 3}
+  stressChange: 8
+  itemCosts:
+  - itemBase: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
+    amount: 4
+  costPerMonster:
+  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
+    amount: 5
+  - itemBase: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
+    amount: 2
+  skillsRequired:
+  - skillId: 2
+    levelModifier: 10
+  itemRewards:
+  - item: {fileID: 11400000, guid: 495ce43c51f317f47b1d0c8622c896ff, type: 2}
+    minAmount: 5
+    extraRange: 5
+    rewardChance: 1
+  toolRewards: []
+  clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
+  requirements: []

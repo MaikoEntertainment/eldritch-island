@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880958cef302f484fbbf3aa9e8333a0a, type: 3}
+  m_Name: Dagger
+  m_EditorClassIdentifier: 
+  id: 3
+  icon: {fileID: 5191580535614204767, guid: e8996999b66463142a43f917b261a88a, type: 3}
+  durability: 10
+  myName:
+    english: Dagger
+    spanish: Daga
+  description:
+    english: Quick and Deadly.
+    spanish: "M\xE1s rapida que un parpadeo."
+  skillBonuses:
+  - skillId: 4
+    levelModifier: 5
+  tags: 04000000
