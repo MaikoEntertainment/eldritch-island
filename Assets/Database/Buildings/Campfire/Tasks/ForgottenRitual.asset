@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForgottenRitual
   m_EditorClassIdentifier: 
   id: 3
-  progressNeeded: 60
+  progressNeeded: 120
   tags: 05000000
   myName:
     english: Forgotten Ritual
@@ -35,11 +35,11 @@ MonoBehaviour:
     amount: 1
   skillsRequired:
   - skillId: 5
-    levelModifier: 8
+    levelModifier: 12
   itemRewards: []
   toolRewards: []
   clothesRewards: []
-  onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
+  onEndNotification: {fileID: 11400000, guid: f41d9d32de555a6459feda39e0e39baa, type: 2}
   requirements:
   - buildingId: 4
     minLevelRequired: 7

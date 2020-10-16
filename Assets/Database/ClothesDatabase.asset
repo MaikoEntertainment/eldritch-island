@@ -16,3 +16,6 @@ MonoBehaviour:
   - category: Nature
     clothes:
     - {fileID: 11400000, guid: eee09ec6182759749b8521028f0fee29, type: 2}
+  - category: Pets
+    clothes:
+    - {fileID: 11400000, guid: 9f362106efc75f64b9b89c01bfa5ee4c, type: 2}

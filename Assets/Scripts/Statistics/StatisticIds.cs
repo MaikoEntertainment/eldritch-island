@@ -10,5 +10,6 @@ public enum StatisticIds
     HotDiscovered = 3,
     TribeName = 4,
     ClickPowerLevel = 5,
-    Dungeon1Clears
+    Dungeon1Clears = 6,
+    Dungeon2Clears = 7
 }

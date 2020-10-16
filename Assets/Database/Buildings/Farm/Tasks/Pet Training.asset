@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd55d8f11e357fa4c8b7385a3f3af482, type: 3}
+  m_Name: Pet Training
+  m_EditorClassIdentifier: 
+  id: 0
+  progressNeeded: 200
+  tags: 0000000003000000
+  myName:
+    english: Servant Training
+    spanish: 
+  description:
+    english: 
+    spanish: 
+  unlockCondition:
+    english: 
+    spanish: 
+  icon: {fileID: 21300000, guid: d695cad77bcce2644b1ce0dd2bee199c, type: 3}
+  stressChange: 10
+  itemCosts: []
+  costPerMonster: []
+  skillsRequired: []
+  itemRewards: []
+  toolRewards: []
+  clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
+  requirements:
+  - buildingId: 1
+    minLevelRequired: 5
+  - buildingId: 3
+    minLevelRequired: 8

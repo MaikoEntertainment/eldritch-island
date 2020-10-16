@@ -47,6 +47,6 @@ MonoBehaviour:
   onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
   requirements:
   - buildingId: 2
-    minLevelRequired: 3
+    minLevelRequired: 2
   statisticId: 6
   increase: 1

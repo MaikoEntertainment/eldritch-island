@@ -17,12 +17,15 @@ MonoBehaviour:
   tags: 00000000
   myName:
     english: Collect
+    spanish: 
   description:
     english: Collect food from nearby bushes.
+    spanish: 
   unlockCondition:
     english: Always available why are you even seeingn this lmao.
+    spanish: 
   icon: {fileID: 8100173508216559957, guid: e8996999b66463142a43f917b261a88a, type: 3}
-  stressChange: 0
+  stressChange: 2
   itemCosts: []
   costPerMonster: []
   skillsRequired:
@@ -31,7 +34,7 @@ MonoBehaviour:
   itemRewards:
   - item: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
     minAmount: 3
-    extraRange: 2
+    extraRange: 1
     rewardChance: 1
   toolRewards: []
   clothesRewards: []

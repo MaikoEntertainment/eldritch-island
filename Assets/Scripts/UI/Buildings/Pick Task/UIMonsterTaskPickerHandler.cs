@@ -9,6 +9,7 @@ public class UIMonsterTaskPickerHandler : MonoBehaviour
     public Transform availableMonsterList;
     public Transform chosenMonsterList;
 
+    public TextMeshProUGUI progressPerSecond;
     public TextMeshProUGUI spaceAvailable;
 
     public UITaskMonsterPick taskMonsterPrefab;
@@ -39,6 +40,7 @@ public class UIMonsterTaskPickerHandler : MonoBehaviour
                 uiMonster.onClick += OnMonsterPress;
             }
         }
+        progressPerSecond.text = task.CalculateProgressPerSecond().ToString("F2") + "/s";
     }
 
     public void ClearLists()

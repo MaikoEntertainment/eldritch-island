@@ -39,6 +39,7 @@ public class UIBuildingBase : MonoBehaviour
     public void UpdateLevel(Building b)
     {
         level.text = b.GetLevel().ToString();
+        UpdateTasks();
     }
 
     public void UpdateTasks()
@@ -57,6 +58,11 @@ public class UIBuildingBase : MonoBehaviour
         }
         if (this.slots)
             this.slots.text = slots.ToString();
+    }
+
+    public void UpdateSlots()
+    {
+
     }
 
     public void ClearTasks()

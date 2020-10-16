@@ -42,6 +42,10 @@ public class UIMonsterViewerHandler : MonoBehaviour
         stress.text = m.GetStress().ToString("F1") + "/"+m.GetStressMax();
         UpdateEquipment();
         UpdateSkills();
+        if (m.isOverStressed())
+        {
+            stress.color = Utils.GetWrongColor();
+        }
     }
 
     public void UpdateEquipment()

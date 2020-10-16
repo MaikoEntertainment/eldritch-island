@@ -17,5 +17,7 @@ public class UITaskMonsterSkill : MonoBehaviour
         skillText.text = skillName + " " + bonus + ( hidePercentage ? "" : (" (" +(exp/toLevel*100).ToString("F1")+"%)"));
         if (originalLevel < bonus)
             skillText.color = Utils.GetSuccessColor();
+        else if (originalLevel > bonus)
+            skillText.color = Utils.GetWrongColor();
     }
 }

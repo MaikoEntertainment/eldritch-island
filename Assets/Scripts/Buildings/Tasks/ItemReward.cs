@@ -15,6 +15,19 @@ public class ItemReward
     [SerializeField]
     protected float rewardChance = 1;
 
+    public ItemReward(ItemBase item, int minAmount, int extraRange, float rewardChance)
+    {
+        this.item = item;
+        this.minAmount = minAmount;
+        this.extraRange = extraRange;
+        this.rewardChance = rewardChance;
+    }
+
+    public ItemReward Copy()
+    {
+        return new ItemReward(item, minAmount, extraRange, rewardChance);
+    }
+
     public ItemBase GetItem() { return item; }
     public int GetMinAmount() { return minAmount; }
     public int GetExtraRange() { return extraRange; }

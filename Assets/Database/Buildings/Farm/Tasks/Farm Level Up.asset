@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c559e979f41694ebe63a8d705eae0e, type: 3}
+  m_Name: Farm Level Up
+  m_EditorClassIdentifier: 
+  id: 0
+  progressNeeded: 75
+  tags: 
+  myName:
+    english: Level Up
+    spanish: Mejorar
+  description:
+    english: Increases task speed by 1%. Gains a new task slot every 10 levels.
+    spanish: Increamenta la velocidad de tareas en 1%.  un nuevo espacio para tareas
+      cada 5 niveles.
+  unlockCondition:
+    english: Current level up task is finished.
+    spanish: La tarea actual de mejora se termine.
+  icon: {fileID: 7311480069754638794, guid: e8996999b66463142a43f917b261a88a, type: 3}
+  stressChange: 20
+  itemCosts:
+  - itemBase: {fileID: 11400000, guid: 2b6b2b7c948900643b518010c4ac4a30, type: 2}
+    amount: 5
+  - itemBase: {fileID: 11400000, guid: 495ce43c51f317f47b1d0c8622c896ff, type: 2}
+    amount: 20
+  costPerMonster: []
+  skillsRequired: []
+  itemRewards: []
+  toolRewards: []
+  clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: 43e52d8656ac7fb4a83fba232a3153b8, type: 2}
+  buildingId: 1

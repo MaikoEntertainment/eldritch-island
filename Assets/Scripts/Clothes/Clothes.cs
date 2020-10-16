@@ -42,4 +42,8 @@ public class Clothes
         return Math.Max(durability - durabilityUsed, 0);
     }
     public ClothesBase GetClothes() { return clothesBase; }
+    public List<ItemReward> GetTaskItemRewards(Task task, Monster monster, List<ItemReward> currentRewards)
+    {
+        return clothesBase.GetTaskItemRewards(task, monster, currentRewards, tier);
+    }
 }

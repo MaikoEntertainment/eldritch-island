@@ -22,8 +22,8 @@ MonoBehaviour:
     english: Helps the bearer reduce stress after a task.
     spanish: Ayuda al portador a reducir el estres al terminar una tarea.
   unlockCondition:
-    english: Level 4 reached.
-    spanish: Nivel 4 es alcanzado.
+    english: Level 6 reached.
+    spanish: Nivel 6 es alcanzado.
   icon: {fileID: 6678823951699107959, guid: e8996999b66463142a43f917b261a88a, type: 3}
   stressChange: 5
   itemCosts:
@@ -44,4 +44,4 @@ MonoBehaviour:
   onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
   requirements:
   - buildingId: 3
-    minLevelRequired: 4
+    minLevelRequired: 6

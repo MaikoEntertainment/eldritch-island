@@ -5,7 +5,7 @@ public class Letter : ScriptableObject
 {
     public UILetter uiPrefab;
     [SerializeField]
-    protected LetterId id = 0;
+    protected LetterId id;
     [SerializeField]
     protected TextLanguageOwn title;
 

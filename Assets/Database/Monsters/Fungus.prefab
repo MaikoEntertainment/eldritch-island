@@ -44,20 +44,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  icon: {fileID: 21300000, guid: 40b740b2c7a253a438418850eab96112, type: 3}
+  icon: {fileID: 21300000, guid: 23af8e6402422fa45851dcd1131a3a18, type: 3}
   species:
     english: Fungus
+    spanish: 
   description:
     english: It's Spores attatch to it's hosts lungs, slowly growing until a new
       fungus is born, killing it's host.
+    spanish: 
   ability:
     english: Reduces own stress gain by 10%
+    spanish: 
   skills:
     initialSkills:
     - id: 0
       level: 2
       exp: 0
-    - id: 3
+    - id: 1
       level: 2
       exp: 0
   tools:

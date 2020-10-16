@@ -41,8 +41,8 @@ public class BuildingMaster : MonoBehaviour
 
     public double GetClickProgress()
     {
-        double level = (double)StatisticsMaster.GetInstance().GetStatistic(StatisticIds.ClickPowerLevel).GetValue();
-        double clickProgress = (long)(1 + level * 0.25);
+        double bonus = UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.ClickPower).GetBonus();
+        double clickProgress = 1 + bonus;
         return clickProgress;
     }
 

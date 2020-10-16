@@ -18,7 +18,7 @@ public class UpgradeBase : ScriptableObject
 
     public Sprite GetIcon() { return icon; }
     public string GetDescription() { return description.GetText(); }
-
+    public string GetUnlockCondition() { return unlockCondition.GetText(); }
     public bool IsAvailable()
     {
         foreach (TaskBuildingRequirement br in buildingRequirements)

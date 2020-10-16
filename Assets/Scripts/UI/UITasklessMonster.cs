@@ -35,6 +35,14 @@ public class UITasklessMonster : MonoBehaviour
                 Instantiate(clothesPrefab, equipmentList).GetComponent<UITaskMonsterClothes>().Load(c);
             }
         }
+        if (m.isOverStressed())
+        {
+            text.color = Utils.GetWrongColor();
+        }
+        else
+        {
+            text.color = Color.white;
+        }
     }
 
     private void OnEnable()

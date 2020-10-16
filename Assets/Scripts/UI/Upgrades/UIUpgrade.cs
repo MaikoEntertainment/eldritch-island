@@ -14,6 +14,9 @@ public class UIUpgrade : MonoBehaviour
     public Transform costList;
     public Button upgradeButton;
 
+    public GameObject unlockPanel;
+    public TextMeshProUGUI unlockConditionText;
+
     public UIItem costPrefab;
 
     private Upgrade upgrade;
@@ -24,6 +27,10 @@ public class UIUpgrade : MonoBehaviour
         icon.sprite = upgrade.GetUpgradeBase().GetIcon();
         title.text = upgrade.GetUpgradeBase().name.GetText();
         description.text = upgrade.GetUpgradeBase().GetDescription();
+        if (upgrade.GetUpgradeBase().IsAvailable())
+            unlockPanel.SetActive(false);
+        else
+            unlockConditionText.text = upgrade.GetUpgradeBase().GetUnlockCondition();
         View(upgrade.GetLevel());
     }
     public void View()

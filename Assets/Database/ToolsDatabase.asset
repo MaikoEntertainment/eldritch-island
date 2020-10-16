@@ -25,3 +25,6 @@ MonoBehaviour:
   - category: Weapons
     tools:
     - {fileID: 11400000, guid: 04a97b7264ef9fb4bb9fa8dad82bb42b, type: 2}
+  - category: Witchcraft
+    tools:
+    - {fileID: 11400000, guid: fdc5c745ddcdb8a48939c8b5f7af1b8c, type: 2}

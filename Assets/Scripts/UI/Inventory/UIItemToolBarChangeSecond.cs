@@ -48,7 +48,7 @@ public class UIItemToolBarChangeSecond : MonoBehaviour
                 }
             }
         }
-        text.text = (itemAmountPerSecond < 0 ? "-" : "+") + Math.Abs(itemAmountPerSecond).ToString("F2")+"/s";
+        text.text = (itemAmountPerSecond < 0 ? "-" : "+") + Math.Abs(itemAmountPerSecond * 60).ToString("F2")+"/m";
         text.color = itemAmountPerSecond < 0 ? Utils.GetWrongColor() : Utils.GetSuccessColor();
     }
 }

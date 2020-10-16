@@ -36,7 +36,8 @@ public class InventoryMaster : MonoBehaviour
         foreach(SaveItem si in save.savedItems)
         {
             ItemBase ib = ItemMaster.GetInstance().GetItem(si.GetId());
-            items.Add(si.GetId(), new Item(ib, si.GetAmount()));
+            if (ib)
+                items.Add(si.GetId(), new Item(ib, si.GetAmount()));
         }
         foreach (SaveTool st in save.savedTools)
         {
@@ -108,4 +109,39 @@ public class InventoryMaster : MonoBehaviour
         this.clothes.Remove(clothes);
     }
 
+    public Tool CreateTool(ToolBase toolBase, int craftingPower)
+    {
+        float templeBonus = 1 + UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.CraftingPower).GetBonus();
+        double upgradeChance = Math.Pow(0.1f, 1 / (craftingPower * 0.25f * templeBonus + GetWorkShopLevelCraftMod()));
+        int tier = 0;
+        double random = UnityEngine.Random.value;
+        while (random < upgradeChance && tier < 99)
+        {
+            tier++;
+            random = UnityEngine.Random.value;
+        }
+        Tool tool = new Tool(toolBase, tier);
+        return tool;
+    }
+
+    public Clothes CreateClothes(ClothesBase clothesBase, int craftingPower)
+    {
+        float templeBonus = 1 + UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.CraftingPower).GetBonus();
+        double upgradeChance = Math.Pow(0.1f, 1 / (craftingPower * 0.25f * templeBonus + GetWorkShopLevelCraftMod()));
+        int tier = 0;
+        double random = UnityEngine.Random.value;
+        while (random < upgradeChance && tier < 99)
+        {
+            tier++;
+            random = UnityEngine.Random.value;
+        }
+        Clothes tool = new Clothes(clothesBase, tier);
+        return tool;
+    }
+
+    private float GetWorkShopLevelCraftMod()
+    {
+        int workshopLevel = BuildingMaster.GetInstance().GetBuilding(BuildingIds.CraftHouse).GetLevel();
+        return 1 + 0.2f * workshopLevel;
+    }
 }

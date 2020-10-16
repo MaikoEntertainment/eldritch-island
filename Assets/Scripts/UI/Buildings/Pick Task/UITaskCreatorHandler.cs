@@ -7,6 +7,7 @@ public class UITaskCreatorHandler : MonoBehaviour
 {
     public Transform taskList;
     public Transform monsterPicker;
+    public Transform errorArea;
     public InputField iterations;
     public Toggle toggle;
     public Button done;
@@ -14,6 +15,8 @@ public class UITaskCreatorHandler : MonoBehaviour
     public TextMeshProUGUI level;
     public TextMeshProUGUI usedSlots;
     public TextMeshProUGUI totalSlots;
+    public Image selectedTaskIcon;
+    public TextMeshProUGUI selectedTaskName;
     public Transform itemCostList;
     public Transform itemCostPerMonsterList;
     public Transform itemTotalCostList;
@@ -31,6 +34,10 @@ public class UITaskCreatorHandler : MonoBehaviour
     public UIMonsterTaskPickerHandler monsterPickerPrefab;
     public UITasklessMonster monsterPickedPrefab;
     public UIToolReward toolRewardPrefab;
+    public UIError errorPrefab;
+
+    public TextLanguageOwn reasourcesError;
+    public TextLanguageOwn slotsError;
 
     private Building currentBuilding;
     private Task currentTask;
@@ -89,8 +96,10 @@ public class UITaskCreatorHandler : MonoBehaviour
 
     public void UpdateCurrentTask()
     {
+        selectedTaskIcon.sprite = currentTask.GetTask().GetIcon();
+        selectedTaskName.text = currentTask.GetTask().GetName();
         progressNeeded.text = "" + (int)currentTask.GetTask().GetProgressNeeded();
-        progressPerSec.text = currentTask.CalculateProgressPerSecond().ToString("F1") + "/s";
+        progressPerSec.text = currentTask.CalculateProgressPerSecond().ToString("F2") + "/s";
         stress.text = (currentTask.GetTask().GetStressChange() >= 0 ? "+" : "") + currentTask.GetTask().GetStressChange().ToString("F1");
         description.text = currentTask.GetTask().GetDescription();
         ClearTask();
@@ -102,7 +111,7 @@ public class UITaskCreatorHandler : MonoBehaviour
         {
             Instantiate(itemPrefab.gameObject, itemCostPerMonsterList).GetComponent<UIItem>().Load(i);
         }
-        foreach (ItemReward i in currentTask.GetTask().GetItemRewards())
+        foreach (ItemReward i in currentTask.GetFinalItemRewardsPreview())
         {
             Instantiate(itemRewardPrefab.gameObject, resultList).GetComponent<UIItemReward>().Load(i);
         }
@@ -126,7 +135,7 @@ public class UITaskCreatorHandler : MonoBehaviour
         {
             Instantiate(monsterPickedPrefab.gameObject, monsterList).GetComponent<UITasklessMonster>().Load(m);
         }
-        done.interactable = currentBuilding.CanBeginDraft();
+        //done.interactable = currentBuilding.CanBeginDraft();
     }
 
     public void UpdateIterations(string newValue)
@@ -187,6 +196,17 @@ public class UITaskCreatorHandler : MonoBehaviour
 
     public void BeginTaskDraft()
     {
+        if (!currentTask.CanPayTask())
+        {
+            Instantiate(errorPrefab.gameObject, errorArea).GetComponent<UIError>().Load(reasourcesError.GetText());
+            return;
+        }
+        int used = currentBuilding.GetActiveTasks().Count;
+        if (used >= currentBuilding.GetTaskSlots())
+        {
+            Instantiate(errorPrefab.gameObject, errorArea).GetComponent<UIError>().Load(slotsError.GetText());
+            return;
+        }
         bool result = currentBuilding.BeginDraftTask();
         if (result)
         {

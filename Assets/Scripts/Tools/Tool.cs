@@ -45,4 +45,8 @@ public class Tool
     }
 
     public ToolBase GetToolBase() { return toolBase; }
+    public List<ItemReward> GetTaskItemRewards(Task task, Monster monster, List<ItemReward> currentRewards)
+    {
+        return toolBase.GetTaskItemRewards(task, monster, currentRewards, tier);
+    }
 }

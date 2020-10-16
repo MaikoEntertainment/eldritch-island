@@ -7,6 +7,7 @@ public class UITaskMonster : MonoBehaviour
 {
     public Image icon;
     public Image stressBar;
+    public Image overStressBar;
 
     private Monster m;
 
@@ -20,7 +21,8 @@ public class UITaskMonster : MonoBehaviour
 
     public void UpdateStressBar(Monster m)
     {
-        stressBar.fillAmount = m.GetStress() / m.GetStressMax();
+        stressBar.fillAmount = m.GetStress() / m.GetSaneStressMax();
+        overStressBar.fillAmount = (m.GetStress() - m.GetSaneStressMax()) / m.GetStressTreshold();
     }
 
     public void OnDisable()

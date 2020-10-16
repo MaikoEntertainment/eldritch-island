@@ -26,10 +26,26 @@ public class UITaskPickTask : MonoBehaviour
         if (isSelected)
             text.color = selectedColor;
         icon.sprite = taskBase.GetIcon();
-        stress.text = (taskBase.GetStressChange() >= 0 ? "+" : "") + taskBase.GetStressChange().ToString("F1");
+
+        if (taskBase.GetStressChange() < 0)
+        {
+            stress.text = taskBase.GetStressChange().ToString("F1");
+            stress.color = Utils.GetSuccessColor();
+        }
+        else if (taskBase.GetStressChange() > 0)
+        {
+            stress.text = "+" + taskBase.GetStressChange().ToString("F1");
+            stress.color = Utils.GetWrongColor();
+        }
+        else
+            stress.text = "+0";
         ClearLists();
         foreach (Item i in taskBase.GetItemCost())
-            Instantiate(itemPrefab.gameObject, itemList).GetComponent<UIItem>().Load(i);
+        {
+            Item inventoryItem = InventoryMaster.GetInstance().GetItem(i.GetId());
+            bool hasEnough = inventoryItem != null && inventoryItem.GetAmount() >= i.GetAmount();
+            Instantiate(itemPrefab.gameObject, itemList).GetComponent<UIItem>().Load(i, !hasEnough);
+        }
         foreach (Item i in taskBase.GetCostPerMonster())
             Instantiate(itemPrefab.gameObject, itemMonsterList).GetComponent<UIItem>().Load(i);
         foreach (ItemReward i in taskBase.GetItemRewards())

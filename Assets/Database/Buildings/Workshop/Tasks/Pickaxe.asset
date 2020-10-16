@@ -19,11 +19,11 @@ MonoBehaviour:
     english: Pickaxe
     spanish: Pico
   description:
-    english: 
+    english: Useful for mining and ripping things apart.
     spanish: 
   unlockCondition:
-    english: Level 6 Reached.
-    spanish: Nivel 6 es alcanzado.
+    english: Level 4 Reached.
+    spanish: Nivel 4 es alcanzado.
   icon: {fileID: 7281626079675469898, guid: e8996999b66463142a43f917b261a88a, type: 3}
   stressChange: 10
   itemCosts:
@@ -44,4 +44,4 @@ MonoBehaviour:
   onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
   requirements:
   - buildingId: 3
-    minLevelRequired: 6
+    minLevelRequired: 4

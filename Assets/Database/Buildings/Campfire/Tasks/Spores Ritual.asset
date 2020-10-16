@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0547284467fa949995b71b7f3c9fc7, type: 3}
+  m_Name: Spores Ritual
+  m_EditorClassIdentifier: 
+  id: 4
+  progressNeeded: 130
+  tags: 05000000
+  myName:
+    english: Spores Ritual
+    spanish: Ritual de Esporas
+  description:
+    english: Invoke the spirits of the corrupted wilds to restore ALL monsters 5
+      stress. 10 if overstressed.
+    spanish: 
+  unlockCondition:
+    english: Level 10 is Reached and level 4 in Mine is reached.
+    spanish: 
+  icon: {fileID: 8305858276438771495, guid: 05802c8ad47d5e2468eea8ad2ef45ca5, type: 3}
+  stressChange: 10
+  itemCosts:
+  - itemBase: {fileID: 11400000, guid: aac3f9c05232aa5469b1800700e82db9, type: 2}
+    amount: 3
+  - itemBase: {fileID: 11400000, guid: 2b6b2b7c948900643b518010c4ac4a30, type: 2}
+    amount: 1
+  costPerMonster:
+  - itemBase: {fileID: 11400000, guid: aac3f9c05232aa5469b1800700e82db9, type: 2}
+    amount: 1
+  skillsRequired:
+  - skillId: 0
+    levelModifier: 8
+  - skillId: 5
+    levelModifier: 12
+  itemRewards: []
+  toolRewards: []
+  clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: f41d9d32de555a6459feda39e0e39baa, type: 2}
+  requirements:
+  - buildingId: 2
+    minLevelRequired: 4
+  - buildingId: 4
+    minLevelRequired: 10
+  specialStressChange: -5

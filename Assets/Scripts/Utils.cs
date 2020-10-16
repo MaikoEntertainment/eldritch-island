@@ -36,6 +36,6 @@ public static class Utils
 
     public static Color GetWrongColor()
     {
-        return new Color(.91f, 0, .27f);
+        return new Color(1f, 0, .37f);
     }
 }

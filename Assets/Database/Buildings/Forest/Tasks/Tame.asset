@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd55d8f11e357fa4c8b7385a3f3af482, type: 3}
+  m_Name: Tame
+  m_EditorClassIdentifier: 
+  id: 4
+  progressNeeded: 300
+  tags: 
+  myName:
+    english: Tame
+    spanish: 
+  description:
+    english: The creatures of the night can be tempted by their curiosity... And
+      stomach.
+    spanish: 
+  unlockCondition:
+    english: Level 9 is reached and Mine is level 4.
+    spanish: 
+  icon: {fileID: 21300000, guid: d695cad77bcce2644b1ce0dd2bee199c, type: 3}
+  stressChange: 10
+  itemCosts:
+  - itemBase: {fileID: 11400000, guid: aac3f9c05232aa5469b1800700e82db9, type: 2}
+    amount: 5
+  costPerMonster:
+  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
+    amount: 15
+  skillsRequired:
+  - skillId: 0
+    levelModifier: 15
+  itemRewards: []
+  toolRewards: []
+  clothesRewards:
+  - {fileID: 11400000, guid: 9f362106efc75f64b9b89c01bfa5ee4c, type: 2}
+  onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
+  requirements:
+  - buildingId: 0
+    minLevelRequired: 9
+  - buildingId: 2
+    minLevelRequired: 4

@@ -9,4 +9,6 @@ public enum MonsterIds
     Shadow = 2,
     Fungus = 3,
     Wendigo = 4,
+    VoodooDoll = 5,
+    Snake = 6
 }

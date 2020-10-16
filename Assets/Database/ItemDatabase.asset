@@ -20,6 +20,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 495ce43c51f317f47b1d0c8622c896ff, type: 2}
     - {fileID: 11400000, guid: 0defe47787be9a8488c594edbec82fb7, type: 2}
     - {fileID: 11400000, guid: 2b6b2b7c948900643b518010c4ac4a30, type: 2}
+    - {fileID: 11400000, guid: aac3f9c05232aa5469b1800700e82db9, type: 2}
   - category: Consumable
     items:
     - {fileID: 11400000, guid: b46c0fb9d93f3f94f80752367df32de5, type: 2}

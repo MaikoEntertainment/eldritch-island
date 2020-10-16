@@ -9,4 +9,7 @@ public enum LetterId
     tutorial2 = 2,
     tutorial3 = 3,
     tutorial4 = 4,
+    tutorial5 = 5,
+    temple1 = 6,
+    temple2 = 7
 }

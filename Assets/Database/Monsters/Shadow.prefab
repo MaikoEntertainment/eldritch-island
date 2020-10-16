@@ -47,14 +47,20 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 73cbba44950b18b48838b0bd97245dfd, type: 3}
   species:
     english: Shadow
+    spanish: 
   description:
     english: The Shadow travels between realms looking for someone to take it's place.
+    spanish: 
   ability:
     english: Consume's half of it's own Food on each Task.
+    spanish: 
   skills:
     initialSkills:
     - id: 5
-      level: 3
+      level: 2
+      exp: 0
+    - id: 4
+      level: 2
       exp: 0
   tools:
     slots: 1

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     public static float maxStress = 100;
+    public static float stressTreshold = 100;
 
     [SerializeField]
     protected MonsterIds id;
@@ -76,6 +77,13 @@ public class Monster : MonoBehaviour
                 finalSkills[sb.GetSkillId()].AddBonusLevel(sb.GetLevelModifier());
             }
         }
+        if (isOverStressed())
+        {
+            foreach (Skill fs in finalSkills.Values.ToList())
+            {
+                finalSkills[fs.GetId()].AddBonusLevel((int)(-0.5f * fs.GetLevelWithBonuses()));
+            }
+        }
         return finalSkills;
     }
     public virtual Dictionary<SkillIds, Skill> GetFinalSkills(Task task)
@@ -102,7 +110,13 @@ public class Monster : MonoBehaviour
         return skills.GetSkill(id).GetLevel();
     }
     public virtual float GetStress() { return stress; }
-    public virtual float GetStressMax() { return maxStress; }
+    public virtual float GetSaneStressMax() { return maxStress; }
+    public virtual float GetStressTreshold() { return stressTreshold; }
+    public virtual float GetStressMax() { return maxStress + stressTreshold; }
+    public virtual bool isOverStressed() 
+    { 
+        return GetStress() > GetStressMax() - GetStressTreshold(); 
+    }
 
     public virtual float GetStressAfterTask(Task t)
     {
@@ -161,7 +175,7 @@ public class Monster : MonoBehaviour
     public string GetAbility() { return ability.GetText(); }
 
     // Taks specific
-    public void FinishWork(Task t)
+    public virtual void FinishWork(Task t)
     {
         tools.UseTools(this, t);
         clothes.UseClothes(this, t);
@@ -188,11 +202,11 @@ public class Monster : MonoBehaviour
         List<ItemReward> finalCost = currentRewards;
         foreach (Clothes t in GetClothes())
         {
-            finalCost = t.GetClothes().GetTaskItemRewards(task, this, finalCost);
+            finalCost = t.GetTaskItemRewards(task, this, finalCost);
         }
         foreach (Tool t in GetTools())
         {
-            finalCost = t.GetToolBase().GetTaskItemRewards(task, this, finalCost);
+            finalCost = t.GetTaskItemRewards(task, this, finalCost);
         }
         return finalCost;
     }

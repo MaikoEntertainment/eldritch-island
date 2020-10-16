@@ -6,6 +6,8 @@ using UnityEngine;
 [System.Serializable]
 public class Task
 {
+    public static int maxMonsters = 3;
+
     protected TaskBase taskBase;
     [SerializeField]
     protected List<Monster> monsters = new List<Monster>();
@@ -93,7 +95,7 @@ public class Task
         foreach(Monster m in GetMonsters())
         {
             float monsterProgress = Math.Max(1, taskBase.GetSkillsRequired().Count);
-            Dictionary<SkillIds, Skill> skills = m.GetFinalSkills();
+            Dictionary<SkillIds, Skill> skills = m.GetFinalSkills(this);
             foreach(SkillBonus s in taskBase.GetSkillsRequired())
             {
                 int level = skills[s.GetSkillId()].GetLevelWithBonuses();
@@ -143,7 +145,7 @@ public class Task
     }
     public void AddMonsters(Monster m)
     {
-        if (!monsters.Contains(m))
+        if (!monsters.Contains(m) && monsters.Count < maxMonsters)
             monsters.Add(m);
     }
     public void RemoveMonster(Monster m)
@@ -189,6 +191,16 @@ public class Task
         return totalCosts.Values.ToList();
     }
 
+    public List<ItemReward> GetFinalItemRewardsPreview()
+    {
+        List<ItemReward> finalItemsRewards = taskBase.GetItemRewards();
+        foreach (Monster m in GetMonsters())
+        {
+            finalItemsRewards = m.GetTaskItemRewards(this, finalItemsRewards);
+        }
+        return finalItemsRewards;
+    }
+
     public bool StartTask()
     {
         PrepareTask();
@@ -220,7 +232,7 @@ public class Task
     public void FinishTask()
     {
         GetTask().OnComplete();
-        List<ItemReward> finalItemsRewards = taskBase.GetItemRewards();
+        List<ItemReward> finalItemsRewards = GetFinalItemRewardsPreview();
         List<ToolBase> finalToolRewards = taskBase.GetToolRewards();
         List<ClothesBase> finalClothesRewards = taskBase.GetClotheRewards();
         List<Item> itemFinalValues = new List<Item>();
@@ -228,7 +240,6 @@ public class Task
         List<Clothes> toolClothesFinalValues = new List<Clothes>();
         foreach (Monster m in GetMonsters())
         {
-            finalItemsRewards = m.GetTaskItemRewards(this, finalItemsRewards);
             foreach (SkillBonus s in GetTask().GetSkillsRequired())
                 m.AddSkillExp(s.GetSkillId(), s.GetLevelModifier());
             m.FinishWork(this);
@@ -245,13 +256,13 @@ public class Task
         int craftingPower = GetCraftingPower();
         foreach (ToolBase t in finalToolRewards)
         {
-            Tool reward = ItemMaster.GetInstance().CreateTool(t, craftingPower);
+            Tool reward = InventoryMaster.GetInstance().CreateTool(t, craftingPower);
             InventoryMaster.GetInstance().AddTool(reward);
             toolToolFinalValues.Add(reward);
         }
         foreach (ClothesBase c in finalClothesRewards)
         {
-            Clothes reward = ItemMaster.GetInstance().CreateClothes(c, craftingPower);
+            Clothes reward = InventoryMaster.GetInstance().CreateClothes(c, craftingPower);
             InventoryMaster.GetInstance().AddClothes(reward);
             toolClothesFinalValues.Add(reward);
         }

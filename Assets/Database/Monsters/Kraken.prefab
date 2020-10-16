@@ -47,15 +47,18 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 38eb01483ae96b94ebfd77de52fe53fc, type: 3}
   species:
     english: Kraken
+    spanish: 
   description:
     english: Deep withit the ocean, the kraken waits for it's to crush it with it's
       might tentacles.
+    spanish: 
   ability:
     english: Can use 2 Tools instead of 1.
+    spanish: 
   skills:
     initialSkills:
     - id: 3
-      level: 3
+      level: 4
       exp: 0
   tools:
     slots: 2

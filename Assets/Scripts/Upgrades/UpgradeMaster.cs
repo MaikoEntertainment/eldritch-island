@@ -25,6 +25,23 @@ public class UpgradeMaster : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        StatisticValue sv = StatisticsMaster.GetInstance().GetStatistic(StatisticIds.Dungeon1Clears);
+        sv.OnValueUpdate += (object o) => CheckForLetters();
+        CheckForLetters();
+    }
+
+    public void CheckForLetters()
+    {
+        StatisticValue sv = StatisticsMaster.GetInstance().GetStatistic(StatisticIds.Dungeon1Clears);
+        double clears1 = (double)sv.GetValue();
+        if (clears1 >= 5)
+            LetterMaster.GetInstance().UnlockLetter(LetterId.temple1);
+        if (clears1 >= 10)
+            LetterMaster.GetInstance().UnlockLetter(LetterId.temple2);
+    }
+
     public static UpgradeMaster GetInstance() { return _instance; }
 
     public void Load(List<SaveUpgrade> savedUpgrades)

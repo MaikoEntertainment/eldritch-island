@@ -26,9 +26,9 @@ MonoBehaviour:
     spanish: 
   upgradeCost:
   - itemBase: {fileID: 11400000, guid: 0defe47787be9a8488c594edbec82fb7, type: 2}
-    amount: 2
+    amount: 5
   - itemBase: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
-    amount: 16
+    amount: 20
   buildingRequirements: []
   statisticRequirements: []
   power: 1

@@ -35,7 +35,7 @@ public class TaskBaseLevelUp : TaskBase
     public override double GetProgressNeeded()
     {
         int level = BuildingMaster.GetInstance().GetBuilding(buildingId).GetLevel();
-        return Math.Pow(base.GetProgressNeeded(), 1 + 0.1f * level);
+        return base.GetProgressNeeded() * (1 + level);
     }
     public override bool IsAvailable()
     {

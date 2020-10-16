@@ -14,7 +14,7 @@ public class BuildingMine : Building
     public void CheckForUnlock(Building b)
     {
         /* Change when message system is compleated to notify */
-        if (b.GetLevel() == 5)
+        if (b.GetLevel() == 4)
         {
             UIBuildingMaster.GetInstance().UpdateBuildingList();
         }
@@ -23,7 +23,7 @@ public class BuildingMine : Building
     public override bool CanUnlock()
     {
         Building b = BuildingMaster.GetInstance().GetBuilding(BuildingIds.CraftHouse);
-        return b.GetLevel() > 4;
+        return b.GetLevel() >= 4;
     }
 
     public override int GetTaskSlots()
