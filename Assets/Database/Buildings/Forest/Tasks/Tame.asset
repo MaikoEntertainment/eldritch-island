@@ -25,7 +25,7 @@ MonoBehaviour:
   unlockCondition:
     english: Level 9 is reached and Mine is level 4.
     spanish: 
-  icon: {fileID: 21300000, guid: d695cad77bcce2644b1ce0dd2bee199c, type: 3}
+  icon: {fileID: 864916451691004800, guid: e8996999b66463142a43f917b261a88a, type: 3}
   stressChange: 10
   itemCosts:
   - itemBase: {fileID: 11400000, guid: aac3f9c05232aa5469b1800700e82db9, type: 2}

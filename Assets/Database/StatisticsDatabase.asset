@@ -29,3 +29,6 @@ MonoBehaviour:
     statistics:
     - {fileID: 11400000, guid: b7db8548c48e5ab40ad641dd2721920b, type: 2}
     - {fileID: 11400000, guid: 53b074c07b4744d4abe553d9489cde3f, type: 2}
+  - category: Hope
+    statistics:
+    - {fileID: 11400000, guid: 3cf1053c9df48f44f98b3ce544888c50, type: 2}

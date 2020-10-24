@@ -37,5 +37,5 @@ MonoBehaviour:
   itemRewards: []
   toolRewards: []
   clothesRewards: []
-  onEndNotification: {fileID: 11400000, guid: 8f5cf4c8dc6efc641a9eed0a897fdd56, type: 2}
+  onEndNotification: {fileID: 11400000, guid: 43e52d8656ac7fb4a83fba232a3153b8, type: 2}
   buildingId: 0

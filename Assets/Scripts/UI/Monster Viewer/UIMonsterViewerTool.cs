@@ -21,8 +21,8 @@ public class UIMonsterViewerTool : MonoBehaviour
         equipedTo = m;
         tool = t;
         icon.sprite = t.GetIcon();
-        uses.text = t.GetDurabilityLeft().ToString();
-        tier.text = t.GetTier().ToString();
+        uses.text = t.GetDurabilityLeft().ToString("F0");
+        tier.text = t.GetTier().ToString("F0");
         return this;
     }
 

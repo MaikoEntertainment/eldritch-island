@@ -28,3 +28,6 @@ MonoBehaviour:
   - category: Witchcraft
     tools:
     - {fileID: 11400000, guid: fdc5c745ddcdb8a48939c8b5f7af1b8c, type: 2}
+  - category: Crafting
+    tools:
+    - {fileID: 11400000, guid: af6cbba8401877f4ca4198b1a4104763, type: 2}

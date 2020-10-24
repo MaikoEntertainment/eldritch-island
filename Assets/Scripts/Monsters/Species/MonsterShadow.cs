@@ -6,15 +6,19 @@ public class MonsterShadow : Monster
 {
     public override List<Item> GetTaskItemCostForThisMonster(Task task, List<Item> currentCosts)
     {
-        for(int i=0; i < currentCosts.Count; i++)
+        List<Item> costs = new List<Item>();
+        for (int i=0; i < currentCosts.Count; i++)
         {
             Item itemCost = currentCosts[i];
             if (itemCost.GetId() == 0)
             {
-                currentCosts[i] = new Item(itemCost.GetItemBase(), itemCost.GetAmount() / 2);
-                break;
+                costs.Add(new Item(itemCost.GetItemBase(), itemCost.GetAmount() / 2));
+            }
+            else
+            {
+                costs.Add(new Item(itemCost.GetItemBase(), itemCost.GetAmount()));
             }
         }
-        return base.GetTaskItemCostForThisMonster(task, currentCosts);
+        return base.GetTaskItemCostForThisMonster(task, costs);
     }
 }

@@ -16,10 +16,10 @@ MonoBehaviour:
   progressNeeded: 200
   tags: 00000000
   myName:
-    english: Flesh Bush
+    english: Corrupted Bush
     spanish: Arbusto de Piel
   description:
-    english: What life can and can't be is a matter of perspective.
+    english: While deformed, these bushes will still provide nourishment.
     spanish: 
   unlockCondition:
     english: Level 2 is Reached.
@@ -29,24 +29,22 @@ MonoBehaviour:
   itemCosts:
   - itemBase: {fileID: 11400000, guid: 2b6b2b7c948900643b518010c4ac4a30, type: 2}
     amount: 2
-  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
-    amount: 6
   costPerMonster:
   - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
-    amount: 2
+    amount: 5
   skillsRequired:
   - skillId: 0
     levelModifier: 15
   - skillId: 5
     levelModifier: 8
   itemRewards:
-  - item: {fileID: 11400000, guid: 0defe47787be9a8488c594edbec82fb7, type: 2}
-    minAmount: 1
-    extraRange: 1
-    rewardChance: 1
   - item: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
     minAmount: 60
     extraRange: 20
+    rewardChance: 1
+  - item: {fileID: 11400000, guid: 2b6b2b7c948900643b518010c4ac4a30, type: 2}
+    minAmount: 1
+    extraRange: 1
     rewardChance: 1
   toolRewards: []
   clothesRewards: []

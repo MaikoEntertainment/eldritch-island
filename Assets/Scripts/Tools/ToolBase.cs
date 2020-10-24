@@ -21,7 +21,10 @@ public class ToolBase: ScriptableObject
     protected Tag[] tags;
 
     public int GetId() { return id; }
-    public double GetDurability(int tier=0) { return durability * (1 + tier); }
+    public double GetDurability(int tier=0) {
+        float shrineBonus = UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.StressCraft).GetBonus();
+        return durability * (1 + tier) * (1 + shrineBonus);
+    }
     public Tag[] GetTags() { return tags; }
     public List<SkillBonus> GetSkillBonuses(int tier = 0) {
         if (tier==0)

@@ -25,7 +25,7 @@ MonoBehaviour:
     english: Always up.
     spanish: 
   icon: {fileID: 6812396857366647474, guid: e8996999b66463142a43f917b261a88a, type: 3}
-  stressChange: 5
+  stressChange: 4
   itemCosts:
   - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
     amount: 2

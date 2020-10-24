@@ -4513,7 +4513,7 @@ MonoBehaviour:
     m_Left: 5
     m_Right: 0
     m_Top: 15
-    m_Bottom: 40
+    m_Bottom: 50
   m_ChildAlignment: 0
   m_Spacing: 5
   m_ChildForceExpandWidth: 1
@@ -8059,7 +8059,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 10
+  m_ScrollSensitivity: 25
   m_Viewport: {fileID: 0}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}

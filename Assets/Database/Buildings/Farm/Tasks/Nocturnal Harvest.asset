@@ -39,8 +39,8 @@ MonoBehaviour:
     levelModifier: 10
   itemRewards:
   - item: {fileID: 11400000, guid: aac3f9c05232aa5469b1800700e82db9, type: 2}
-    minAmount: 2
-    extraRange: 3
+    minAmount: 3
+    extraRange: 2
     rewardChance: 1
   toolRewards: []
   clothesRewards: []

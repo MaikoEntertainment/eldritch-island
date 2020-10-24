@@ -120,7 +120,7 @@ public class Monster : MonoBehaviour
 
     public virtual float GetStressAfterTask(Task t)
     {
-        return Mathf.Max(stress + t.GetStressChange(),0);
+        return Mathf.Max(stress + t.GetStressChange(), 0);
     }
     public virtual void AddTaskStress(Task t)
     {

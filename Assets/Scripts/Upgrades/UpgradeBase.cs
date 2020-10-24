@@ -15,6 +15,7 @@ public class UpgradeBase : ScriptableObject
     public List<Item> upgradeCost;
     public List<TaskBuildingRequirement> buildingRequirements;
     public List<StatisticNumberRequirement> statisticRequirements;
+    public bool isPercentage = true;
 
     public Sprite GetIcon() { return icon; }
     public string GetDescription() { return description.GetText(); }
@@ -58,6 +59,6 @@ public class UpgradeBase : ScriptableObject
     }
     public virtual string GetBonusUI(int level)
     {
-        return (GetBonus(level) * 100).ToString("F0")+"%";
+        return (GetBonus(level) * (isPercentage ? 100 : 1)).ToString(isPercentage ? "F0" : "F2") + (isPercentage ? "%" : "");
     }
 }

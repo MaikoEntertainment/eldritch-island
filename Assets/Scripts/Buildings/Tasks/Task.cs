@@ -114,19 +114,34 @@ public class Task
         int power = 0;
         foreach (Monster m in GetMonsters())
         {
-            power += m.GetFinalSkills()[SkillIds.Crafting].GetLevelWithBonuses();
+            float monsterPower = Math.Max(1, taskBase.GetSkillsRequired().Count);
+            Dictionary<SkillIds, Skill> skills = m.GetFinalSkills(this);
+            foreach (SkillBonus s in taskBase.GetSkillsRequired())
+            {
+                int level = skills[s.GetSkillId()].GetLevelWithBonuses();
+                monsterPower += level;
+            }
+            if (taskBase.GetSkillsRequired().Count > 0)
+                monsterPower /= taskBase.GetSkillsRequired().Count;
+            power += (int) monsterPower;
         }
         return power;
     }
 
     public List<Item> GetTaskFinalItemMonsterCost()
     {
-        List<Item> realPerMonsterCost = GetTask().GetCostPerMonster();
+        Dictionary<long, Item> realPerMonsterCost = new Dictionary<long, Item>();
         foreach (Monster m in GetMonsters())
         {
-            realPerMonsterCost = m.GetTaskItemCostForThisMonster(this, realPerMonsterCost);
+            foreach(Item i in m.GetTaskItemCostForThisMonster(this, GetTask().GetCostPerMonster()))
+            {
+                if (realPerMonsterCost.ContainsKey(i.GetId()))
+                    realPerMonsterCost[i.GetAmount()].ChangeAmount(i.GetAmount());
+                else
+                    realPerMonsterCost.Add(i.GetId(), i);
+            }
         }
-        return realPerMonsterCost;
+        return realPerMonsterCost.Values.ToList();
     }
     public void CheckForMonsterSanity()
     {

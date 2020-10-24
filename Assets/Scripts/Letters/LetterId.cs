@@ -11,5 +11,6 @@ public enum LetterId
     tutorial4 = 4,
     tutorial5 = 5,
     temple1 = 6,
-    temple2 = 7
+    temple2 = 7,
+    shrine1 = 8
 }

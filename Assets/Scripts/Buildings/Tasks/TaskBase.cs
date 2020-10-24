@@ -51,7 +51,8 @@ public class TaskBase: ScriptableObject
         if (stressChange > 0)
         {
             float upgradeMod = UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.Stress).GetBonus();
-            return (1 - upgradeMod) * stressChange;
+            float shrineHope = UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.StressHope).GetBonus();
+            return (1 - upgradeMod) * stressChange - shrineHope;
         }
         return stressChange;
     }

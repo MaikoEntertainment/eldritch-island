@@ -9,6 +9,9 @@ public class UIUpgradeMaster : MonoBehaviour
     public UIUpgradeHandler upgradeHandler;
     public Transform upgradeHandlerPanel;
 
+    public Transform upgradeHandlerHope;
+    public UIUpgradeHandler hopeHandler;
+
     private void Awake()
     {
         if (_instance)
@@ -28,5 +31,12 @@ public class UIUpgradeMaster : MonoBehaviour
         foreach (Transform t in upgradeHandlerPanel)
             Destroy(t.gameObject);
         Instantiate(upgradeHandler, upgradeHandlerPanel).GetComponent<UIUpgradeHandler>().Load();
+    }
+
+    public void OpenUpgradesShrine()
+    {
+        foreach (Transform t in upgradeHandlerPanel)
+            Destroy(t.gameObject);
+        Instantiate(hopeHandler, upgradeHandlerHope).GetComponent<UIUpgradeHandler>().Load();
     }
 }

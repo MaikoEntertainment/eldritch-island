@@ -8,6 +8,7 @@ public class UIToolBarMaster : MonoBehaviour
 
     public UIToolBarMonsterSummoner summoner;
     public UIToolbarUpgrade upgrades;
+    public UIToolbarShrine shrine;
 
     void Awake()
     {
@@ -31,6 +32,10 @@ public class UIToolBarMaster : MonoBehaviour
         StatisticValue sv = StatisticsMaster.GetInstance().GetStatistic(StatisticIds.Dungeon1Clears);
         sv.OnValueUpdate += UpdateUpgrade;
         UpdateUpgrade(sv.GetValue());
+
+        StatisticValue svs = StatisticsMaster.GetInstance().GetStatistic(StatisticIds.ShrineBuilding);
+        svs.OnValueUpdate += UpdateShrine;
+        UpdateShrine(svs.GetValue());
     }
 
     public void UpdateSummoner()
@@ -46,5 +51,12 @@ public class UIToolBarMaster : MonoBehaviour
         double clears = (double)value;
         if (clears < 10) return;
         upgrades.gameObject.SetActive(true);
+    }
+
+    public void UpdateShrine(object value)
+    {
+        double clears = (double)value;
+        if (clears < 10) return;
+        shrine.gameObject.SetActive(true);
     }
 }

@@ -38,13 +38,13 @@ MonoBehaviour:
   - skillId: 1
     levelModifier: 8
   itemRewards:
-  - item: {fileID: 11400000, guid: 2b6b2b7c948900643b518010c4ac4a30, type: 2}
-    minAmount: 1
-    extraRange: 1
-    rewardChance: 1
   - item: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
     minAmount: 10
     extraRange: 5
+    rewardChance: 1
+  - item: {fileID: 11400000, guid: 2b6b2b7c948900643b518010c4ac4a30, type: 2}
+    minAmount: 1
+    extraRange: 1
     rewardChance: 1
   toolRewards: []
   clothesRewards: []
