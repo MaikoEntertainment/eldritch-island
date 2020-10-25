@@ -38,4 +38,14 @@ public static class Utils
     {
         return new Color(1f, 0, .37f);
     }
+
+    public static Color GetToolColor()
+    {
+        return new Color(0.8f, 0.53f, 0.17f);
+    }
+
+    public static Color GetClothesColor()
+    {
+        return GetSuccessColor();
+    }
 }

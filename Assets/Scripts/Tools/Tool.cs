@@ -37,6 +37,13 @@ public class Tool
         double durability = GetDurability();
         return durabilityUsed >= durability;
     }
+
+    public double ChangeDurability(double value)
+    {
+        durabilityUsed += value;
+        return GetDurabilityLeft();
+    }
+
     public int GetTier() { return tier; }
     public double GetDurabilityLeft()
     {

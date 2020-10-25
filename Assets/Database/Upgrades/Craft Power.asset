@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Craft Power
   m_EditorClassIdentifier: 
   id: 3
-  baseValue: 0.5
+  baseValue: 0.2
   icon: {fileID: 7788705131787259084, guid: e8996999b66463142a43f917b261a88a, type: 3}
   name:
     english: Creator's Secrets
     spanish: 
   description:
-    english: Increases level bonus gained from crafting.
+    english: Increases level bonus gained from skills.
     spanish: 
   unlockCondition:
     english: Dungeon II has been silenced.
@@ -33,4 +33,5 @@ MonoBehaviour:
   statisticRequirements:
   - id: 7
     amountRequirement: 10
+  isPercentage: 1
   power: 1

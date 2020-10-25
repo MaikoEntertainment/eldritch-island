@@ -52,7 +52,7 @@ public class TaskBase: ScriptableObject
         {
             float upgradeMod = UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.Stress).GetBonus();
             float shrineHope = UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.StressHope).GetBonus();
-            return (1 - upgradeMod) * stressChange - shrineHope;
+            return Mathf.Max((1 - upgradeMod) * (stressChange - shrineHope), 0);
         }
         return stressChange;
     }
@@ -65,7 +65,14 @@ public class TaskBase: ScriptableObject
         }
         return finalSkillsRequired; 
     }
-    public List<Item> GetCostPerMonster() { return costPerMonster; }
+    public List<Item> GetCostPerMonster() {
+        List<Item> costPerMonsterFinal = new List<Item>();
+        foreach(Item i in costPerMonster)
+        {
+            costPerMonsterFinal.Add(i.Clone());
+        }
+        return costPerMonsterFinal; 
+    }
     public virtual List<Item> GetItemCost()
     {
         return itemCosts;

@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Tasks/Task Level Up")]
 public class TaskBaseLevelUp : TaskBase
 {
+    public float costPow = 1f;
     [SerializeField]
     protected BuildingIds buildingId;
     public override void OnComplete()
@@ -26,7 +27,7 @@ public class TaskBaseLevelUp : TaskBase
         foreach (Item cost in base.GetItemCost())
         {
             Item newCost = cost.Clone();
-            newCost.ChangeAmount((int)(newCost.GetAmount() * level * 0.5f));
+            newCost.ChangeAmount((int)Mathf.Pow((newCost.GetAmount() * level * 0.5f), costPow));
             trueCosts.Add(newCost);
         }
         return trueCosts;
@@ -35,7 +36,8 @@ public class TaskBaseLevelUp : TaskBase
     public override double GetProgressNeeded()
     {
         int level = BuildingMaster.GetInstance().GetBuilding(buildingId).GetLevel();
-        return base.GetProgressNeeded() * (1 + level);
+        float templeBonus = 1 - UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.LevelUpFast).GetBonus();
+        return base.GetProgressNeeded() * (1 + level) * templeBonus;
     }
     public override bool IsAvailable()
     {

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad45a5120d40f494fab78cb6cd84d803, type: 3}
+  m_Name: Crafting
+  m_EditorClassIdentifier: 
+  uiPrefab: {fileID: 43801964931256031, guid: 3a65c6164e7fad745a6f99e739b0172b, type: 3}
+  id: 9
+  title:
+    english: Tools & Extras
+    spanish: Herramientas & Extras

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba44c9d249879c4bae50d9b27f8b7f4, type: 3}
+  m_Name: Shrine
+  m_EditorClassIdentifier: 
+  id: 5
+  progressNeeded: 300
+  tags: 
+  myName:
+    english: Old Shrine
+    spanish: 
+  description:
+    english: A place best left forgotten. Rebuilding it is pointless.
+    spanish: 
+  unlockCondition:
+    english: Forget this place...
+    spanish: 
+  icon: {fileID: 3483340098289625841, guid: e8996999b66463142a43f917b261a88a, type: 3}
+  stressChange: -0.1
+  itemCosts:
+  - itemBase: {fileID: 11400000, guid: 495ce43c51f317f47b1d0c8622c896ff, type: 2}
+    amount: 10
+  - itemBase: {fileID: 11400000, guid: 1707c2b65d3365e4492b5dfce340cb94, type: 2}
+    amount: 10
+  - itemBase: {fileID: 11400000, guid: 2b6b2b7c948900643b518010c4ac4a30, type: 2}
+    amount: 3
+  costPerMonster:
+  - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
+    amount: 10
+  skillsRequired:
+  - skillId: 0
+    levelModifier: 20
+  - skillId: 1
+    levelModifier: 10
+  - skillId: 3
+    levelModifier: 10
+  itemRewards: []
+  toolRewards: []
+  clothesRewards: []
+  onEndNotification: {fileID: 11400000, guid: 49aaea679d4b4434ea6f4d9aaf1a5369, type: 2}
+  requirements:
+  - buildingId: 1
+    minLevelRequired: 8
+  statisticId: 8
+  increase: 1
+  notificationHope: {fileID: 11400000, guid: adb5c167f7e63af479b6c294c200f56c, type: 2}

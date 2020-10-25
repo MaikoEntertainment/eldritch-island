@@ -15,6 +15,7 @@ public class UITaskMonsterPick : MonoBehaviour
 
     public UITaskMonsterSkill monsterPickSkillPrefab;
     public UITaskMonsterTool monsterPickToolPrefab;
+    public UITaskMonsterClothes monsterPickClothesPrefab;
 
     public delegate void OnClick(Monster m);
     public event OnClick onClick;
@@ -42,6 +43,10 @@ public class UITaskMonsterPick : MonoBehaviour
         foreach (Tool tool in m.GetTools())
         {
             Instantiate(monsterPickToolPrefab.gameObject, equipmentList).GetComponent<UITaskMonsterTool>().Load(tool);
+        }
+        foreach (Clothes clothes in m.GetClothes())
+        {
+            Instantiate(monsterPickClothesPrefab.gameObject, equipmentList).GetComponent<UITaskMonsterClothes>().Load(clothes);
         }
     }
 

@@ -54,7 +54,7 @@ public class UIMonsterViewerToolsPicker : MonoBehaviour
         icon.sprite = t.GetIcon();
         toolName.text = t.GetToolBase().GetName();
         description.text = t.GetDescription();
-        durability.text = t.GetDurabilityLeft().ToString();
+        durability.text = t.GetDurabilityLeft().ToString("F0");
         level.text = t.GetTier().ToString();
         foreach (Transform skill in skillBonusList)
             Destroy(skill.gameObject);

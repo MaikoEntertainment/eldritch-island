@@ -52,8 +52,8 @@ MonoBehaviour:
     english: 
     spanish: 
   ability:
-    english: Gains 50% more EXP. Can't use tools.
-    spanish: "Gana 50% m\xE1s exp. No puede usar herramientas."
+    english: Gains double EXP. Can't use tools.
+    spanish: Gana el dobule de EXP. No puede usar herramientas.
   skills:
     initialSkills:
     - id: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mine Mienerals
   m_EditorClassIdentifier: 
   id: 1
-  progressNeeded: 50
+  progressNeeded: 60
   tags: 02000000
   myName:
     english: Mine Minerals
@@ -40,7 +40,7 @@ MonoBehaviour:
   itemRewards:
   - item: {fileID: 11400000, guid: 495ce43c51f317f47b1d0c8622c896ff, type: 2}
     minAmount: 5
-    extraRange: 5
+    extraRange: 3
     rewardChance: 1
   toolRewards: []
   clothesRewards: []

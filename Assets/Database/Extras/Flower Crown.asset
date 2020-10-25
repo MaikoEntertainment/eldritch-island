@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   icon: {fileID: 6678823951699107959, guid: e8996999b66463142a43f917b261a88a, type: 3}
-  durability: 16
+  durability: 20
   myName:
     english: Flower Crown
     spanish: Corona de Flores

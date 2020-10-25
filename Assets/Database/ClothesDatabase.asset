@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: ClothesDatabase
   m_EditorClassIdentifier: 
   sections:
-  - category: Nature
+  - category: Utils
     clothes:
     - {fileID: 11400000, guid: eee09ec6182759749b8521028f0fee29, type: 2}
+    - {fileID: 11400000, guid: 8ccb9d7af0bc8fd40ba59089029bad6b, type: 2}
   - category: Pets
     clothes:
     - {fileID: 11400000, guid: 9f362106efc75f64b9b89c01bfa5ee4c, type: 2}

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName = "Clothes/Reward Multiplier Chance")]
+[CreateAssetMenu(menuName = "Clothes/Reward Multiplier")]
 public class ClothesRewardMultiplier : ClothesBase
 {
     public float multiplier = 1.25f;

@@ -28,7 +28,7 @@ public class UIItemToolBarChangeSecond : MonoBehaviour
                 if (progressPerSecond > 0)
                 {
                     double amountPerSecond = 0;
-                    foreach (ItemReward ir in task.GetTask().GetItemRewards())
+                    foreach (ItemReward ir in task.GetFinalItemRewardsPreview())
                     {
                         if (ir.GetItem().GetId() == item.GetId())
                         {

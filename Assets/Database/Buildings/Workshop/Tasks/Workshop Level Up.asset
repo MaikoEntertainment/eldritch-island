@@ -38,4 +38,5 @@ MonoBehaviour:
   toolRewards: []
   clothesRewards: []
   onEndNotification: {fileID: 11400000, guid: 43e52d8656ac7fb4a83fba232a3153b8, type: 2}
+  costPow: 1.1
   buildingId: 3

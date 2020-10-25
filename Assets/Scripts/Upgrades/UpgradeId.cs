@@ -8,6 +8,7 @@ public enum UpgradeId
     Experience = 1,
     ClickPower = 2,
     CraftingPower = 3,
+    LevelUpFast = 4,
     StressHope = 70,
     StressCraft = 71
 }

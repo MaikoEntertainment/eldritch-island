@@ -12,5 +12,8 @@ public enum LetterId
     tutorial5 = 5,
     temple1 = 6,
     temple2 = 7,
-    shrine1 = 8
+    temple3 = 11,
+    shrine1 = 8,
+    crafting = 9,
+    CaveIntro = 10
 }

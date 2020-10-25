@@ -449,10 +449,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiers:
   - upgradeIds: 000000000100000002000000
-  - upgradeIds: 03000000
+  - upgradeIds: 0300000004000000
   upgradesTierLists: {fileID: 4467114991833055099}
   upgradePrefab: {fileID: 247481114224493488, guid: 2520c58a19cc6644fbc3157e57938f02, type: 3}
-  tierPrefab: {fileID: 684709268498916543, guid: 48a8a7b62216c4f4db2573274a281102, type: 3}
+  tierPrefab: {fileID: 6759018434800740917, guid: 3ac686e515b603c4aa75a745bd620866, type: 3}
 --- !u!114 &4467114992567732527
 MonoBehaviour:
   m_ObjectHideFlags: 0

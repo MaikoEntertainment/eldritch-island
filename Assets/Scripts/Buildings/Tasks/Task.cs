@@ -136,9 +136,9 @@ public class Task
             foreach(Item i in m.GetTaskItemCostForThisMonster(this, GetTask().GetCostPerMonster()))
             {
                 if (realPerMonsterCost.ContainsKey(i.GetId()))
-                    realPerMonsterCost[i.GetAmount()].ChangeAmount(i.GetAmount());
+                    realPerMonsterCost[i.GetId()].ChangeAmount(i.GetAmount());
                 else
-                    realPerMonsterCost.Add(i.GetId(), i);
+                    realPerMonsterCost.Add(i.GetId(), i.Clone());
             }
         }
         return realPerMonsterCost.Values.ToList();
@@ -183,8 +183,6 @@ public class Task
     {
         Dictionary<int, Item> totalCosts = new Dictionary<int, Item>();
 
-        List<Item> perMonsterCost = GetTask().GetCostPerMonster().ToList();
-
         // Base Costs
         foreach(Item i in GetTask().GetItemCost())
         {
@@ -192,16 +190,12 @@ public class Task
         }
 
         //Costs per Monster
-        foreach (Monster m in GetMonsters())
+        foreach (Item i in GetTaskFinalItemMonsterCost())
         {
-            List<Item> realPerMonsterCost = m.GetTaskItemCostForThisMonster(this, perMonsterCost);
-            foreach (Item i in realPerMonsterCost)
-            {
-                if (totalCosts.ContainsKey(i.GetId()))
-                    totalCosts[i.GetId()].ChangeAmount(i.GetAmount());
-                else
-                    totalCosts.Add(i.GetId(), i.Clone());
-            }
+            if (totalCosts.ContainsKey(i.GetId()))
+                totalCosts[i.GetId()].ChangeAmount(i.GetAmount());
+            else
+                totalCosts.Add(i.GetId(), i.Clone());
         }
         return totalCosts.Values.ToList();
     }

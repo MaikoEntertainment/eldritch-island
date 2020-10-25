@@ -53,7 +53,7 @@ public class UIMonsterViewerClothesPicker : MonoBehaviour
         icon.sprite = c.GetClothes().GetIcon();
         clothesName.text = c.GetClothes().GetName();
         description.text = c.GetDescription();
-        durability.text = c.GetDurabilityLeft().ToString();
+        durability.text = c.GetDurabilityLeft().ToString("F0");
         level.text = c.GetTier().ToString();
         foreach (Transform skill in skillBonusList)
             Destroy(skill.gameObject);

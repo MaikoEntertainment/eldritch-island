@@ -1797,8 +1797,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Task Slots
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e403ea521808a404288896fdc98f19e3, type: 2}
-  m_sharedMaterial: {fileID: -6811417616282052072, guid: e403ea521808a404288896fdc98f19e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eb1bb83ccaef62549a8ef3bd4d9a9ef3, type: 2}
+  m_sharedMaterial: {fileID: -452557475901162023, guid: eb1bb83ccaef62549a8ef3bd4d9a9ef3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -19,7 +19,7 @@ MonoBehaviour:
     english: Corrupted Wisp
     spanish: Wisp Corrompido
   description:
-    english: 'Increases items gained from tasks by '
+    english: 'Increases resources gained from tasks by '
     spanish: 
   skillBonuses:
   - skillId: 2
@@ -27,5 +27,5 @@ MonoBehaviour:
   - skillId: 4
     levelModifier: 2
   tags: 00000000
-  multiplier: 1.3
-  multiplierChangePerLevel: 0.05
+  multiplier: 1.2
+  multiplierChangePerLevel: 0.03

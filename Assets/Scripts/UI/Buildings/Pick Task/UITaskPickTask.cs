@@ -8,6 +8,7 @@ public class UITaskPickTask : MonoBehaviour
 {
     public Image icon;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI progressNeeded;
     public TextMeshProUGUI stress;
     public Transform itemList;
     public Transform itemMonsterList;
@@ -23,6 +24,7 @@ public class UITaskPickTask : MonoBehaviour
     {
         task = taskBase;
         text.text = taskBase.GetName();
+        progressNeeded.text = taskBase.GetProgressNeeded().ToString("F0");
         if (isSelected)
             text.color = selectedColor;
         icon.sprite = taskBase.GetIcon();

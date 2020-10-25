@@ -49,14 +49,14 @@ public class UIToolBarMaster : MonoBehaviour
     public void UpdateUpgrade(object value)
     {
         double clears = (double)value;
-        if (clears < 10) return;
+        if (clears < Constants.TempleMinClearsAppear) return;
         upgrades.gameObject.SetActive(true);
     }
 
     public void UpdateShrine(object value)
     {
         double clears = (double)value;
-        if (clears < 10) return;
+        if (clears < Constants.ShrineMinLevelAppear) return;
         shrine.gameObject.SetActive(true);
     }
 }

@@ -9,6 +9,7 @@ public class BuildingForest : Building
         base.Start();
         Building b = BuildingMaster.GetInstance().GetBuilding(BuildingIds.Campfire);
         b.onLevelUp += CheckForUnlock;
+        CheckForUnlock(b);
     }
 
     public void CheckForUnlock(Building b)
@@ -17,6 +18,11 @@ public class BuildingForest : Building
         if (b.GetLevel() == 2)
         {
             UIBuildingMaster.GetInstance().UpdateBuildingList();
+            
+        }
+        if (b.GetLevel() >= 2)
+        {
+            LetterMaster.GetInstance().UnlockLetter(LetterId.crafting);
         }
     }
 

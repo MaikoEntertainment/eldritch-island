@@ -112,7 +112,7 @@ public class InventoryMaster : MonoBehaviour
     public Tool CreateTool(ToolBase toolBase, int craftingPower)
     {
         float templeBonus = 1 + UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.CraftingPower).GetBonus();
-        double upgradeChance = Math.Pow(0.1f, 1 / (craftingPower * 0.4f * templeBonus + GetWorkShopLevelCraftMod()));
+        double upgradeChance = Math.Pow(0.1f, 1 / (Math.Pow(craftingPower, 0.6f) * 1.25f * templeBonus + GetWorkShopLevelCraftMod()));
         int tier = 0;
         double random = UnityEngine.Random.value;
         while (random < upgradeChance && tier < 99)
@@ -127,7 +127,7 @@ public class InventoryMaster : MonoBehaviour
     public Clothes CreateClothes(ClothesBase clothesBase, int craftingPower)
     {
         float templeBonus = 1 + UpgradeMaster.GetInstance().GetUpgrade(UpgradeId.CraftingPower).GetBonus();
-        double upgradeChance = Math.Pow(0.1f, 1 / (craftingPower * 0.4f * templeBonus + GetWorkShopLevelCraftMod()));
+        double upgradeChance = Math.Pow(0.1f, 1 / (Math.Pow(craftingPower, 0.6f) * 1.25f * templeBonus + GetWorkShopLevelCraftMod()));
         int tier = 0;
         double random = UnityEngine.Random.value;
         while (random < upgradeChance && tier < 99)

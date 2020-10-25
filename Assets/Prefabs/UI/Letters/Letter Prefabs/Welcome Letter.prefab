@@ -933,6 +933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text:
     english: First steps...
+    spanish: 
 --- !u!1 &6174253305672303795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,6 +1108,7 @@ MonoBehaviour:
       you know that you have met a terrible fate. The hardships that await you may
       drive you mad. But persist until end and you may be granted a new beginning.
       Follow the Light, Gather Food, Improve your base... Survive."'
+    spanish: 
 --- !u!1 &6794107776296982361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4855515699947055044, guid: 29d3a6871206acf4389d067c3d48f4e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34c75930ea2c90841aa955a9c6e31ee9, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

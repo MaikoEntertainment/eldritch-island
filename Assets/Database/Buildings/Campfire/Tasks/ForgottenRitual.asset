@@ -19,7 +19,8 @@ MonoBehaviour:
     english: Forgotten Ritual
     spanish: Ritual Perdido
   description:
-    english: Invoke the eldritch's powers to reduce ALL your monster stress by 5.
+    english: Invoke the eldritch's powers to reduce ALL your monsters' stress by
+      5.
     spanish: Invoca los poderes de los antiguos para reducer el estres de TODOS tus
       monstruos en 5.
   unlockCondition:

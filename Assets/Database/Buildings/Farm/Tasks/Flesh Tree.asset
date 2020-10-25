@@ -31,7 +31,7 @@ MonoBehaviour:
     amount: 2
   costPerMonster:
   - itemBase: {fileID: 11400000, guid: f51cb2f24e337834ab0b83d437ee6560, type: 2}
-    amount: 5
+    amount: 3
   skillsRequired:
   - skillId: 0
     levelModifier: 15

@@ -27,8 +27,10 @@ public class UpgradeMaster : MonoBehaviour
 
     private void Start()
     {
-        StatisticValue sv = StatisticsMaster.GetInstance().GetStatistic(StatisticIds.Dungeon1Clears);
-        sv.OnValueUpdate += (object o) => CheckForLetters();
+        StatisticValue dc1 = StatisticsMaster.GetInstance().GetStatistic(StatisticIds.Dungeon1Clears);
+        StatisticValue dc2 = StatisticsMaster.GetInstance().GetStatistic(StatisticIds.Dungeon1Clears);
+        dc1.OnValueUpdate += (object o) => CheckForLetters();
+        dc2.OnValueUpdate += (object o) => CheckForLetters();
         CheckForLetters();
     }
 
@@ -40,6 +42,9 @@ public class UpgradeMaster : MonoBehaviour
             LetterMaster.GetInstance().UnlockLetter(LetterId.temple1);
         if (clears1 >= 10)
             LetterMaster.GetInstance().UnlockLetter(LetterId.temple2);
+        StatisticValue d2c = StatisticsMaster.GetInstance().GetStatistic(StatisticIds.Dungeon2Clears);
+        if ((double)(d2c.GetValue()) >= 10)
+            LetterMaster.GetInstance().UnlockLetter(LetterId.temple3);
     }
 
     public static UpgradeMaster GetInstance() { return _instance; }

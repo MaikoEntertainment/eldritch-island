@@ -9,6 +9,7 @@ public class BuildingWorkshop : Building
         base.Start();
         Building b = BuildingMaster.GetInstance().GetBuilding(BuildingIds.Forest);
         b.onLevelUp += CheckForUnlock;
+        CheckForUnlock(b);
     }
 
     public void CheckForUnlock(Building b)
@@ -18,6 +19,9 @@ public class BuildingWorkshop : Building
         {
             UIBuildingMaster.GetInstance().UpdateBuildingList();
         }
+        if (b.GetLevel() >= 2)
+            LetterMaster.GetInstance().UnlockLetter(LetterId.CaveIntro);
+
     }
 
     public override bool CanUnlock()

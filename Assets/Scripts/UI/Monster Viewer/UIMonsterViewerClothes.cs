@@ -23,7 +23,7 @@ public class UIMonsterViewerClothes : MonoBehaviour
         equipedTo = m;
         clothes = c;
         icon.sprite = c.GetIcon();
-        uses.text = c.GetDurabilityLeft().ToString();
+        uses.text = c.GetDurabilityLeft().ToString("F0");
         tier.text = c.GetTier().ToString();
         return this;
     }

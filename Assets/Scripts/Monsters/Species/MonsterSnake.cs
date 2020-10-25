@@ -6,6 +6,6 @@ public class MonsterSnake : Monster
 {
     public override bool AddSkillExp(SkillIds id, double exp)
     {
-        return base.AddSkillExp(id, exp * 1.5d);
+        return base.AddSkillExp(id, exp * 2d);
     }
 }

@@ -19,7 +19,7 @@ public class UITaskMonsterTool : MonoBehaviour
     {
         tool = t;
         icon.sprite = t.GetIcon();
-        uses.text = t.GetDurabilityLeft().ToString();
+        uses.text = t.GetDurabilityLeft().ToString("F0");
         tier.text = t.GetTier().ToString();
         return this;
     }
