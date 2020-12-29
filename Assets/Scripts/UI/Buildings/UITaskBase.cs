@@ -6,6 +6,7 @@ public class UITaskBase : MonoBehaviour
 {
     public Image icon;
     public Image loadBar;
+    public Button edit;
     public TextMeshProUGUI progress;
     public TextMeshProUGUI iterations;
     public Transform monsterList;
@@ -21,6 +22,14 @@ public class UITaskBase : MonoBehaviour
         icon.sprite = task.GetTask().GetIcon();
         task.onUpdate += UpdateValues;
         UpdateValues(task);
+        if (MonsterMaster.GetInstance().GetActiveMonsters().Count == 0)
+            edit.gameObject.SetActive(false);
+        MonsterMaster.GetInstance().onMonsterActivated += AddEditButton;
+    }
+
+    public void AddEditButton(Monster m)
+    {
+        edit.gameObject.SetActive(true);
     }
 
     public void UpdateValues(Task task)
@@ -28,7 +37,9 @@ public class UITaskBase : MonoBehaviour
         ClearMonsters();
         foreach (Monster m in task.GetMonsters())
         {
-            Instantiate(monsterPrefab.gameObject, monsterList).GetComponent<UITaskMonster>().Load(m);
+            UITaskMonster taskMonster = Instantiate(monsterPrefab.gameObject, monsterList).GetComponent<UITaskMonster>();
+            taskMonster.Load(m);
+            taskMonster.OnDrag += OnDragMonster;
         }
         double progressMade = task.GetProgressMade();
         double progressGoal = (long)task.GetProgressGoal();
@@ -50,6 +61,7 @@ public class UITaskBase : MonoBehaviour
     {
         foreach (Transform m in monsterList)
         {
+            m.GetComponent<UITaskMonster>().OnDrag -= OnDragMonster;
             Destroy(m.gameObject);
         }
     }
@@ -62,6 +74,18 @@ public class UITaskBase : MonoBehaviour
     private void OnDisable()
     {
         task.onUpdate -= UpdateValues;
+        MonsterMaster.GetInstance().onMonsterActivated -= AddEditButton;
     }
 
+    public void OpenEdit()
+    {
+        UIMonsterPickerQuickMaster.GetInstance().ShowMonsterPickerQuick(task);
+    }
+
+    public Task GetTask() { return task; }
+
+    public void OnDragMonster(Monster m)
+    {
+        UIMonsterDraggerMaster.GetInstance().CreateMonsterDragger(m, task);
+    }
 }

@@ -27,6 +27,15 @@ public class InventoryMaster : MonoBehaviour
         else
         {
             _instance = this;
+            
+        }
+    }
+
+    private void Start()
+    {
+        if (!items.ContainsKey(0))
+        {
+            ChangeItemAmount(0, 0);
         }
     }
 
@@ -72,6 +81,38 @@ public class InventoryMaster : MonoBehaviour
         }
         else
             items[id].ChangeAmount(amount);
+    }
+
+    public bool CanPayItem(int id, long amount)
+    {
+        if (items.ContainsKey(id))
+        {
+            return items[id].GetAmount() >= amount;
+        }
+        return amount < 1;
+    }
+
+    public bool CanPayItems(List<Item> items)
+    {
+        foreach (Item i in items)
+        {
+            if (!CanPayItem(i.GetId(), i.GetAmount()))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void PayItems(List<Item> items)
+    {
+        foreach (Item i in items)
+        {
+            if (CanPayItem(i.GetId(), i.GetAmount()))
+            {
+                ChangeItemAmount(i.GetId(), -1 * i.GetAmount());
+            }
+        }
     }
 
     public List<Tool> GetTools()

@@ -208,12 +208,6 @@ public class UITaskCreatorHandler : MonoBehaviour
             Instantiate(errorPrefab.gameObject, errorArea).GetComponent<UIError>().Load(reasourcesError.GetText());
             return;
         }
-        int used = currentBuilding.GetActiveTasks().Count;
-        if (used >= currentBuilding.GetTaskSlots())
-        {
-            Instantiate(errorPrefab.gameObject, errorArea).GetComponent<UIError>().Load(slotsError.GetText());
-            return;
-        }
         bool result = currentBuilding.BeginDraftTask();
         if (result)
         {

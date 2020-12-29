@@ -59,6 +59,11 @@ public class UIBuildingMaster : MonoBehaviour
         creatorInstance.Load(building);
     }
 
+    public UITaskCreatorHandler GetCurrentTaskCreator()
+    {
+        return creatorInstance;
+    }
+
     public void CloseTaskCreator()
     {
         foreach (Transform child in taskCreator)

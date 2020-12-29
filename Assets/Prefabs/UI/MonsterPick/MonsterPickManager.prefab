@@ -577,7 +577,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 15
+  m_fontSize: 14.7
   m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1903,7 +1903,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 15
+  m_fontSize: 14.7
   m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3014,6 +3014,10 @@ PrefabInstance:
     - target: {fileID: 8286577210861248677, guid: 40f5b7d5ee8be6f479ffa0146efd00e9, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8286577211080797232, guid: 40f5b7d5ee8be6f479ffa0146efd00e9, type: 3}
+      propertyPath: m_fontSize
+      value: 14.7
       objectReference: {fileID: 0}
     - target: {fileID: 8286577211243775245, guid: 40f5b7d5ee8be6f479ffa0146efd00e9, type: 3}
       propertyPath: m_AnchorMin.y

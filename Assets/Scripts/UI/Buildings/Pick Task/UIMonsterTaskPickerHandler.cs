@@ -69,4 +69,10 @@ public class UIMonsterTaskPickerHandler : MonoBehaviour
             task.AddMonsters(monster);
         UpdateLists();
     }
+
+    public void TryToStart()
+    {
+        Close();
+        UIBuildingMaster.GetInstance().GetCurrentTaskCreator().BeginTaskDraft();
+    }
 }

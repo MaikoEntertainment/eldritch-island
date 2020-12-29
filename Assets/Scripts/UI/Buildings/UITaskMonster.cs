@@ -11,6 +11,9 @@ public class UITaskMonster : MonoBehaviour
 
     private Monster m;
 
+    public delegate void Drag(Monster m);
+    public event Drag OnDrag;
+
     public void Load(Monster m)
     {
         this.m = m;
@@ -28,5 +31,10 @@ public class UITaskMonster : MonoBehaviour
     public void OnDisable()
     {
         m.onStressChange -= UpdateStressBar;
+    }
+
+    public void OnDetectDrag()
+    {
+        OnDrag?.Invoke(m);
     }
 }

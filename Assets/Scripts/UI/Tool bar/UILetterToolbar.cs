@@ -6,10 +6,11 @@ using UnityEngine;
 public class UILetterToolbar : MonoBehaviour
 {
     public TextMeshProUGUI lettersAmount;
+    public UIBeat unreadBeat;
     public Color unreadColor;
     public AudioClip newLetter;
 
-    private void Awake()
+    private void Start()
     {
         LetterMaster.GetInstance().onLettersAmountChange += UpdateUnread;
     }
@@ -25,9 +26,13 @@ public class UILetterToolbar : MonoBehaviour
         if (amount > 0)
         {
             lettersAmount.color = unreadColor;
+            unreadBeat.enabled = true;
             SoundMaster.GetInstance().PlayEffect(newLetter);
         }
         else
+        {
             lettersAmount.color = Color.white;
+            unreadBeat.enabled = false;
+        }
     }
 }

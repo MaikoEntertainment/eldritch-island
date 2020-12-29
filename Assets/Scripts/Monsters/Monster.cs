@@ -79,9 +79,19 @@ public class Monster : MonoBehaviour
         }
         if (isOverStressed())
         {
-            foreach (Skill fs in finalSkills.Values.ToList())
+            if (GetStress() >= GetStressMax())
             {
-                finalSkills[fs.GetId()].AddBonusLevel((int)(-0.5f * fs.GetLevelWithBonuses()));
+                foreach (Skill fs in finalSkills.Values.ToList())
+                {
+                    finalSkills[fs.GetId()].AddBonusLevel((int)(-1f * fs.GetLevelWithBonuses()));
+                }
+            }
+            else
+            {
+                foreach (Skill fs in finalSkills.Values.ToList())
+                {
+                    finalSkills[fs.GetId()].AddBonusLevel((int)(-0.5f * fs.GetLevelWithBonuses()));
+                }
             }
         }
         return finalSkills;
@@ -118,9 +128,9 @@ public class Monster : MonoBehaviour
         return GetStress() > GetStressMax() - GetStressTreshold(); 
     }
 
-    public virtual float GetStressAfterTask(Task t)
+    public virtual float GetStressAfterTask(Task t, float additionalStress=0)
     {
-        return Mathf.Max(stress + t.GetStressChange(), 0);
+        return Mathf.Max(stress + t.GetStressChange() + additionalStress, 0);
     }
     public virtual void AddTaskStress(Task t)
     {
@@ -129,13 +139,14 @@ public class Monster : MonoBehaviour
     }
     public virtual bool AddStress(float stressChange)
     {
-        stress =  Math.Max(stress + stressChange,0);
+        stress = Math.Max(stress + stressChange,0);
+        stress = Math.Min(stress, GetStressMax());
         onStressChange?.Invoke(this);
         return (stress > GetStressMax());
     }
-    public virtual bool CanWork(Task task) 
+    public virtual bool CanWork(Task task, float additionalStress=0) 
     {
-        float resultingStress = GetStressAfterTask(task);
+        float resultingStress = GetStressAfterTask(task, additionalStress);
         return GetStressMax() > resultingStress;
     }
     public List<Tool> GetTools()

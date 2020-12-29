@@ -9,7 +9,7 @@ public class CampfireTask : TaskBaseBuildingLevelRequirement
     {
         foreach(Monster m in MonsterMaster.GetInstance().GetTasklessMonsters().Values.ToList())
         {
-            m.AddStress(-10);
+            m.AddStress(-20);
         }
         UITasklessMonsterMaster.GetInstance().UpdateTasklessMonsters();
     }

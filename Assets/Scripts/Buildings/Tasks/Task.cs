@@ -56,6 +56,11 @@ public class Task
     {
         return GetTask().GetStressChange();
     }
+    public float GetLeaveTaskPenalty()
+    {
+        if (GetStressChange() < 0) return 0;
+        return (float)(GetStressChange() * GetProgressMade() / GetProgressGoal());
+    }
     public double GetProgressPerSecond() { return progressPerSecond; }
     public double GetProgressGoal() { return GetTask().GetProgressNeeded(); }
     public double GetProgressMade(){ return progress; }
@@ -91,22 +96,28 @@ public class Task
     public bool GetIsInfinite() { return isInfinite; }
     public double CalculateProgressPerSecond()
     {
-        float progress = 0;
+        double progress = 0;
         foreach(Monster m in GetMonsters())
         {
-            float monsterProgress = Math.Max(1, taskBase.GetSkillsRequired().Count);
-            Dictionary<SkillIds, Skill> skills = m.GetFinalSkills(this);
-            foreach(SkillBonus s in taskBase.GetSkillsRequired())
-            {
-                int level = skills[s.GetSkillId()].GetLevelWithBonuses();
-                monsterProgress += 0.1f * level;
-            }
-            if (taskBase.GetSkillsRequired().Count > 0)
-                monsterProgress /= taskBase.GetSkillsRequired().Count;
-            progress += monsterProgress;
+            progress += CalculateMonsterProgressPerSecond(m);
         }
-        progressPerSecond = progress * progressBuildingMultiplier;
+        progressPerSecond = progress;
+        onUpdate?.Invoke(this);
         return progressPerSecond;
+    }
+
+    public double CalculateMonsterProgressPerSecond(Monster m)
+    {
+        float monsterProgress = Math.Max(1, taskBase.GetSkillsRequired().Count);
+        Dictionary<SkillIds, Skill> skills = m.GetFinalSkills(this);
+        foreach (SkillBonus s in taskBase.GetSkillsRequired())
+        {
+            int level = skills[s.GetSkillId()].GetLevelWithBonuses();
+            monsterProgress += 0.1f * level;
+        }
+        if (taskBase.GetSkillsRequired().Count > 0)
+            monsterProgress /= taskBase.GetSkillsRequired().Count;
+        return monsterProgress * progressBuildingMultiplier;
     }
 
     public int GetCraftingPower()
@@ -158,15 +169,27 @@ public class Task
     {
         this.monsters = monsters;
     }
-    public void AddMonsters(Monster m)
+    public bool AddMonsters(Monster m)
     {
-        if (!monsters.Contains(m) && monsters.Count < maxMonsters)
+        if (!monsters.Contains(m) && CanAddMonsters())
+        {
             monsters.Add(m);
+            CalculateProgressPerSecond();
+            return true;
+        }
+        return false;
+    }
+    public bool CanAddMonsters()
+    {
+        return monsters.Count < maxMonsters;
     }
     public void RemoveMonster(Monster m)
     {
         if (monsters.Contains(m))
+        {
             monsters.Remove(m);
+            CalculateProgressPerSecond();
+        }
     }
     public bool CanPayTask()
     {
@@ -308,9 +331,20 @@ public class Task
         ClearTask();
     }
 
+    public void PauseActiveTask()
+    {
+        hasTaskBegun = false;
+    }
+
+    public void ResumeActiveTask()
+    {
+        hasTaskBegun = true;
+        CalculateProgressPerSecond();
+    }
+
     public void PassTime(float timePassed)
     {
-        double progressMade = timePassed * progressPerSecond;
+        double progressMade = (hasTaskBegun ? 1 : 0) * timePassed * progressPerSecond;
         AddProgress(progressMade);
     }
 

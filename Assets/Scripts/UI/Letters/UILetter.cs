@@ -6,6 +6,6 @@ public class UILetter : MonoBehaviour
 {
     public void Close()
     {
-        UILetterMaster.GetInstance().CloseLetter();
+        Destroy(gameObject);
     }
 }

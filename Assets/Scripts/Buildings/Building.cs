@@ -120,14 +120,18 @@ public class Building : MonoBehaviour
     public bool CanBeginDraft()
     {
         if (draftTask == null) return false;
-        bool hasSpace = tasksActive.Count < GetTaskSlots();
         bool canPay = draftTask.CanPayTask();
-        return hasSpace && canPay;
+        return canPay;
     }
     public bool BeginDraftTask()
     {
         if (CanBeginDraft())
         {
+            if (tasksActive.Count >= GetTaskSlots())
+            {
+                int indexToRemove = tasksActive.Count - 1;
+                tasksActive[indexToRemove].CancelTask();
+            }
             tasksActive.Add(draftTask);
             draftTask.StartTask();
             onTasksUpdated?.Invoke();

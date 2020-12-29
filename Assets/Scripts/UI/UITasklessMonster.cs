@@ -12,6 +12,7 @@ public class UITasklessMonster : MonoBehaviour
 
     public UITaskMonsterTool toolPrefab;
     public UITaskMonsterClothes clothesPrefab;
+    public UIMonsterDragger draggerPrefab;
 
     private Monster m;
 
@@ -59,4 +60,8 @@ public class UITasklessMonster : MonoBehaviour
         UIMonsterViewerMaster.GetInstance().Load(m);
     }
 
+    public void DragMonster()
+    {
+        UIMonsterDraggerMaster.GetInstance().CreateMonsterDragger(m);
+    }
 }

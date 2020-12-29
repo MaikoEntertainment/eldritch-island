@@ -35,10 +35,21 @@ public class LetterMaster : MonoBehaviour
         if (!unlockedLetters.ContainsKey(LetterId.welcome))
         {
             UnlockLetter(LetterId.welcome);
-            MarkLettersAsRead();
-            UILetterMaster.GetInstance().LoadLetter(letterDictionary[LetterId.welcome]);
             UnlockLetter(LetterId.tutorial1);
+            MarkLettersAsRead();
+            UILetterMaster.GetInstance().LoadLetter(letterDictionary[LetterId.tutorial1]);
+            UILetterMaster.GetInstance().LoadLetter(letterDictionary[LetterId.welcome], true);
+        }
+        if (!unlockedLetters.ContainsKey(LetterId.tutorial2))
+            InventoryMaster.GetInstance().GetItem(0).onAmountChange += CheckForLevelUpTutorial;
+    }
+
+    public void CheckForLevelUpTutorial(Item i, long change)
+    {
+        if (i.GetAmount() >= 25 && !unlockedLetters.ContainsKey(LetterId.tutorial2))
+        {
             UnlockLetter(LetterId.tutorial2);
+            InventoryMaster.GetInstance().GetItem(0).onAmountChange -= CheckForLevelUpTutorial;
         }
     }
 

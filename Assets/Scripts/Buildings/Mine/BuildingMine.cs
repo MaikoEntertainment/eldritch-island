@@ -18,6 +18,10 @@ public class BuildingMine : Building
         {
             UIBuildingMaster.GetInstance().UpdateBuildingList();
         }
+        if (b.GetLevel() >= 4)
+        {
+            LetterMaster.GetInstance().UnlockLetter(LetterId.CaveIntro);
+        }
     }
 
     public override bool CanUnlock()

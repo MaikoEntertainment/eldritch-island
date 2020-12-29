@@ -23,11 +23,14 @@ public class UILetterMaster : MonoBehaviour
         }
     }
 
+
+
     public static UILetterMaster GetInstance() { return _instance; }
 
-    public void LoadLetter(Letter letter)
+    public void LoadLetter(Letter letter, bool keepPrevious=false)
     {
-        CloseLetter();
+        if (!keepPrevious)
+            CloseLetter();
         Instantiate(letter.GetUIPrefab(), letterPanel);
     }
 

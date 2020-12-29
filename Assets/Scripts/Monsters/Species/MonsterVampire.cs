@@ -11,9 +11,9 @@ public class MonsterVampire : Monster
         return base.AddStress(stressChange);
     }
 
-    public override float GetStressAfterTask(Task t)
+    public override float GetStressAfterTask(Task t, float additionalStress=0)
     {
-        float stressChange = t.GetTask().GetStressChange();
+        float stressChange = t.GetTask().GetStressChange() + additionalStress;
         if (stressChange < 0)
             stressChange *= 1.5f;
         return Mathf.Max(stress + stressChange, 0);

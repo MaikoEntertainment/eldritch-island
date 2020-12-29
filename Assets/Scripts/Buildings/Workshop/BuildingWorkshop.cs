@@ -20,8 +20,7 @@ public class BuildingWorkshop : Building
             UIBuildingMaster.GetInstance().UpdateBuildingList();
         }
         if (b.GetLevel() >= 2)
-            LetterMaster.GetInstance().UnlockLetter(LetterId.CaveIntro);
-
+            LetterMaster.GetInstance().UnlockLetter(LetterId.crafting);
     }
 
     public override bool CanUnlock()
