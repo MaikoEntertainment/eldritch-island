@@ -16,6 +16,7 @@ public class MonsterFungus : Monster
         float stressChange = t.GetTask().GetStressChange() + additionalStress;
         if (stressChange > 0)
             stressChange *= 0.9f;
-        return Mathf.Max(stress + stressChange, 0);
+        float stressAfter = Mathf.Clamp(stress + stressChange, 0, GetStressMax());
+        return stressAfter;
     }
 }

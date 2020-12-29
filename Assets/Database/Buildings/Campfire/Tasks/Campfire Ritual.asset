@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Campfire Ritual
   m_EditorClassIdentifier: 
   id: 0
-  progressNeeded: 50
+  progressNeeded: 40
   tags: 05000000
   myName:
     english: Campfire Ritual

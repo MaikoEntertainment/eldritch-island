@@ -130,7 +130,8 @@ public class Monster : MonoBehaviour
 
     public virtual float GetStressAfterTask(Task t, float additionalStress=0)
     {
-        return Mathf.Max(stress + t.GetStressChange() + additionalStress, 0);
+        float stressAfter = Mathf.Clamp(stress + t.GetStressChange() + additionalStress, 0, GetStressMax());
+        return stressAfter;
     }
     public virtual void AddTaskStress(Task t)
     {
@@ -146,8 +147,9 @@ public class Monster : MonoBehaviour
     }
     public virtual bool CanWork(Task task, float additionalStress=0) 
     {
-        float resultingStress = GetStressAfterTask(task, additionalStress);
-        return GetStressMax() > resultingStress;
+        /* float resultingStress = GetStressAfterTask(task, additionalStress);
+        return GetStressMax() > resultingStress; */
+        return true;
     }
     public List<Tool> GetTools()
     {
