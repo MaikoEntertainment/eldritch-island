@@ -132,7 +132,19 @@ public class InventoryMaster : MonoBehaviour
     {
         tools.Remove(tool);
     }
-   
+
+    public void RemoveToolsLevelGap(int level)
+    {
+        List<Tool> newTools = new List<Tool>();
+        foreach (Tool t in tools)
+        {
+            if (t.GetTier() >= level)
+            {
+                newTools.Add(t);
+            }
+        }
+        tools = newTools;
+    }
     public List<Clothes> GetClothes()
     {
         return clothes;
@@ -148,6 +160,19 @@ public class InventoryMaster : MonoBehaviour
     public void RemoveClothes(Clothes clothes)
     {
         this.clothes.Remove(clothes);
+    }
+
+    public void RemoveClothesLevelGap(int level)
+    {
+        List<Clothes> newClothes = new List<Clothes>();
+        foreach (Clothes c in clothes)
+        {
+            if (c.GetTier() >= level)
+            {
+                newClothes.Add(c);
+            }
+        }
+        clothes = newClothes;
     }
 
     public Tool CreateTool(ToolBase toolBase, int craftingPower)

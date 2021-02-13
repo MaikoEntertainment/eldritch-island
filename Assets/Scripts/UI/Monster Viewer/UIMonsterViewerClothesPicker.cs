@@ -7,6 +7,7 @@ public class UIMonsterViewerClothesPicker : MonoBehaviour
 {
     public Transform clothesList;
     public GameObject clothesViewer;
+    public GameObject removeMultiplePanel;
 
     public Image icon;
     public TextMeshProUGUI clothesName;
@@ -14,6 +15,7 @@ public class UIMonsterViewerClothesPicker : MonoBehaviour
     public TextMeshProUGUI level;
     public TextMeshProUGUI description;
     public Transform skillBonusList;
+    public Text deleteMultipleLevelGap;
 
     public UIMonsterViewerSkillBonus skillPrefab;
     public UITaskMonsterClothes clothesPrefab;
@@ -80,6 +82,17 @@ public class UIMonsterViewerClothesPicker : MonoBehaviour
     {
         InventoryMaster.GetInstance().RemoveClothes(clothes);
         CloseView();
+        LoadToolList();
+    }
+    public void ToogleRemoveMultipleView()
+    {
+        removeMultiplePanel.SetActive(!removeMultiplePanel.activeSelf);
+    }
+    public void RemoveMultiple()
+    {
+        int value = int.Parse(deleteMultipleLevelGap.text);
+        InventoryMaster.GetInstance().RemoveClothesLevelGap(value);
+        ToogleRemoveMultipleView();
         LoadToolList();
     }
 }

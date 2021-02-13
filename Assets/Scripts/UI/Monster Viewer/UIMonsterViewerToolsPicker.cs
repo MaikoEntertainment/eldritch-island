@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class UIMonsterViewerToolsPicker : MonoBehaviour
 {
     public Transform toolList;
     public GameObject toolViewer;
+    public GameObject removeMultiplePanel;
 
     public Image icon;
     public TextMeshProUGUI toolName;
@@ -15,6 +17,7 @@ public class UIMonsterViewerToolsPicker : MonoBehaviour
     public TextMeshProUGUI level;
     public TextMeshProUGUI description;
     public Transform skillBonusList;
+    public Text deleteMultipleLevelGap;
 
     public UIMonsterViewerSkillBonus skillPrefab;
     public UITaskMonsterTool toolPrefab;
@@ -87,5 +90,16 @@ public class UIMonsterViewerToolsPicker : MonoBehaviour
     private void OnDisable()
     {
         
+    }
+    public void ToogleRemoveMultipleView()
+    {
+        removeMultiplePanel.SetActive(!removeMultiplePanel.activeSelf);
+    }
+    public void RemoveMultiple()
+    {
+        int value = int.Parse(deleteMultipleLevelGap.text);
+        InventoryMaster.GetInstance().RemoveToolsLevelGap(value);
+        ToogleRemoveMultipleView();
+        LoadToolList();
     }
 }
